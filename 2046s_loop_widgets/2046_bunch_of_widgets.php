@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: 
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.11
+ * Version: 0.12
  * Author: 2046
  * Author URI: 
  *
