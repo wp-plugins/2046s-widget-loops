@@ -67,7 +67,6 @@ function w2046_post_widget() {
 			<h3>Widget title</h3>
 			<div class="pw_holder">
 				<p class="pw_the_title">
-					<strong>The title</strong><br />
 					<input type="text" name="<?php echo $this->get_field_name( 'the_title' ); ?>" value="<?php echo $instance['the_title'] ?>"/>
 					<br />
 					<em>if empty: no title, no html, nothing</em>
