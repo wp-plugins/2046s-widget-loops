@@ -90,16 +90,18 @@ function w2046_post_widget() {
 			<?php } 
 			*/
 			?>
-			<h3>Content</h3>
-			<strong>Select the content for each looped post</strong><br />
+			<h3>Widget title</h3>
 			<div class="pw_holder">
-				
 				<p class="pw_the_title">
 					<strong>The title</strong><br />
 					<input type="text" name="<?php echo $this->get_field_name( 'the_title' ); ?>" value="<?php echo $instance['the_title'] ?>"/>
 					<br />
 					<em>if empty: no title, no html, nothing</em>
 				</p>
+			</div>
+			<h3>Content</h3>
+			<strong>Select the content for each looped post</strong><br />
+			<div class="pw_holder">
 				<p class="pw_image_size">
 					<strong>Image size</strong><br />
 					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="0" <?php if ($instance['image_size'] == 0) echo 'checked="checked"'; ?>> No picture<br>
@@ -113,16 +115,17 @@ function w2046_post_widget() {
 				<p class="pw_comments_booble">
 					<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> /> Show comments booble
 				</p>
+				<em>Title of the post is present always.</em>
 			</div>
 			<h3>Which posts to show</h3>
 				<p class="pw_cat_selector">
 				<select name="<?php echo $this->get_field_name( 'cat_selector' ); ?>" class="cat_selector" >
 					<?php echo '<option '; if($instance['cat_selector'] == 0){echo 'selected="selected"';} echo' value="0" >Select posts by ID</option>'; ?>
 					<?php echo '<option '; if($instance['cat_selector'] == 1){echo 'selected="selected"';} echo' value="1" >Selected category</option>'; ?>
-					<?php echo '<option '; if($instance['cat_selector'] == 2){echo 'selected="selected"';} echo' value="2" >From the same cat. as the displayed post</option>'; ?>
+					<?php echo '<option '; if($instance['cat_selector'] == 2){echo 'selected="selected"';} echo' value="2" >From the same category</option>'; ?>
 				</select>
 				<br />
-				<em>The logic relates to the Post which is being displayed.</em>
+				<em>The logic relates to the Post(s) which is being displayed.</em>
 			</p>
 			<div class="pw_holder">
 				<p class="pw_post_ids">

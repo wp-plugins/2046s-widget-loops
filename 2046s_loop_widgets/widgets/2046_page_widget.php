@@ -58,14 +58,16 @@ function w2046_page_widget() {
 			);
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 		<div id="the_widget_id_<?php echo $this->id; ?>" class="pw_2046_lw">
-			<h3>Content</h3>
+			<h3>Widget title</h3>
 			<div class="pw_holder">
 				<p class="pw_the_title">
-					<strong>The title</strong><br />
 					<input type="text" name="<?php echo $this->get_field_name( 'the_title' ); ?>" value="<?php echo $instance['the_title'] ?>"/>
 					<br />
 					<small>if empty: no title, no html, nothing</small>
 				</p>
+			</div>
+			<h3>Content</h3>
+			<div class="pw_holder">
 				<p class="pw_image_size">
 					<strong>Image size</strong><br />
 					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="0" <?php if ($instance['image_size'] == 0) echo 'checked="checked"'; ?>> No picture<br>
@@ -84,6 +86,7 @@ function w2046_page_widget() {
 					<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> />
 				</p>
 			</div>
+			<em>Title of the post is present always.</em>
 			<h3>Which Pages to show</h3>
 			<div class="pw_holder">
 				<p class="pw_page_selector">

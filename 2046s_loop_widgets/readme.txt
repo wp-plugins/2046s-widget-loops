@@ -5,7 +5,7 @@ Donate Link: http://2046.cz
 Tags: admin, widget, loop, page, post
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.11
+Stable tag: 0.12
 
 2046's loop widgets boost you website prototyping.
 
@@ -57,12 +57,16 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 No problems so far.
 
 == Screenshots == 
-<img src="http://2046.cz/images/2046s-loop-widgets.png" alt="2046's loop widgets - screenshot" />
-Screenshots on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
+More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Changelog ==
 
-`0.11: 2012-02-07`
+= 0.12: 2012-02-07 =
+
+* UI fixes + added screenshot
+
+= 0.11: 2012-02-07 =
+
 Page widget: 
 * add show pages from the same hierarchy level
 * add restrict to pages by ID(s)
@@ -71,7 +75,9 @@ Post widget
 * do not show on: Single post, home, Front Page, Archive, Tag/Term list, Taxonomy, Category list, Author's list, Search, 404 error page
 Global facelift
 
-`0.1: 2012-02-05`: Initial version
+= 0.1: 2012-02-05 = 
+
+* Initial version
 
 = Known bugs =
 When the widget is droped into the widget area it won't get its ID and so the jQuery switch for Logic part won't hide unnecessary inputs.
