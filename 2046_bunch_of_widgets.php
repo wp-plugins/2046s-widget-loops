@@ -15,7 +15,7 @@ require_once(dirname(__FILE__).'/widgets/2046_post_widget.php');
 /* get page widget*/
 require_once(dirname(__FILE__).'/widgets/2046_page_widget.php');
 /* get zpravicky widget*/
-require_once(dirname(__FILE__).'/widgets/2046_post_zpravicky_widget.php');
+//require_once(dirname(__FILE__).'/widgets/2046_post_zpravicky_widget.php');
 
 // add WP featured image support
 if ( function_exists( 'add_theme_support' ) ) { 
