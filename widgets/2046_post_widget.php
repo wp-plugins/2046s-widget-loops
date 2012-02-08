@@ -35,7 +35,7 @@ function w2046_post_widget() {
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'w_2046_posts-widget' );
 		/* Create the widget. */
-		$this->WP_Widget( 'w_2046_posts-widget', __('2046\'s - post loop widget', 'w_2046_posts'), $widget_ops, $control_ops );
+		$this->WP_Widget( 'w_2046_posts-widget', __('2046\'s - Post loop widget', 'w_2046_posts'), $widget_ops, $control_ops );
 	}
 
 	/**

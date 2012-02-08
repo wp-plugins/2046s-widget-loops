@@ -29,7 +29,7 @@ function w2046_page_widget() {
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'w_2046_pages-widget' );
 		/* Create the widget. */
-		$this->WP_Widget( 'w_2046_pages-widget', __('2046 - page loop widget', 'w_2046_pages'), $widget_ops, $control_ops );
+		$this->WP_Widget( 'w_2046_pages-widget', __('2046\'s - Page loop widget', 'w_2046_pages'), $widget_ops, $control_ops );
 	}
 
 	/**
@@ -60,7 +60,7 @@ function w2046_page_widget() {
 				<p class="pw_the_title">
 					<input type="text" name="<?php echo $this->get_field_name( 'the_title' ); ?>" value="<?php echo $instance['the_title'] ?>"/>
 					<br />
-					<small>if empty: no title, no html, nothing</small>
+					<em>if empty: no title, no html, nothing</em>
 				</p>
 			</div>
 			<h3>Content</h3>
@@ -73,14 +73,10 @@ function w2046_page_widget() {
 					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="3" <?php if ($instance['image_size'] == 3) echo 'checked="checked"'; ?>> Large
 				</p>
 				<p class="pw_the_title">
-		
-					<strong>Show excerpt</strong><br />
-					<input id="tryme" type="checkbox" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" <?php if ($instance['with_excerpt'] == 'on'){ echo 'checked="checked"'; } ?> />
+					<input id="tryme" type="checkbox" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" <?php if ($instance['with_excerpt'] == 'on'){ echo 'checked="checked"'; } ?> /> Show excerpt
 				</p>
 				<p class="pw_comments_booble">
-		
-					<strong>Show comments booble</strong><br />
-					<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> />
+					<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> /> Show comments booble
 				</p>
 			</div>
 			<em>Title of the post is present always.</em>
