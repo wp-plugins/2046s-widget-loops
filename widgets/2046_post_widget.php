@@ -91,7 +91,7 @@ function w2046_post_widget() {
 				</p>
 			</div>
 			<em>Title of the post is present always.</em>
-			<h3>Which posts to show</h3>
+			<h3>Which Posts to show</h3>
 				<p class="pw_cat_selector">
 				<select name="<?php echo $this->get_field_name( 'cat_selector' ); ?>" class="cat_selector" >
 					<?php echo '<option '; if($instance['cat_selector'] == 0){echo 'selected="selected"';} echo' value="0" >Select posts by ID</option>'; ?>
