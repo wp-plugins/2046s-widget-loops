@@ -57,7 +57,7 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 No problems so far.
 
 == Screenshots == 
-
+1. Post & Page widget
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Changelog ==
