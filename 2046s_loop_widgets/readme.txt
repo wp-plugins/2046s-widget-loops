@@ -57,6 +57,7 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 No problems so far.
 
 == Screenshots == 
+1. Post and Page widget preview (there is one more widget, used for main article but it has no settings)
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Changelog ==
