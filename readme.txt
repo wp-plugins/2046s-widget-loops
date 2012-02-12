@@ -23,7 +23,8 @@ The "Post widget" that let's you display number of posts. You can select what pa
 
 The "Page widget" does almost the same as the "Post widget" but for Pages with extra settings for page types. Particular page logic can be for example to show child pages under the current parent page.
 
-The "Final loop" widget is a loop which you can use in the main content area for the final content (single.php or page.php). The widget should basicaly replace your main loop. It let's you control the comment area too. The Final loop widget is not restricted to the final post/page only. It can be used anywere else, though without the comment part.
+The "Final loop" widget is a loop which you can use in the main content area for the final content (single.php or page.php). This widget should basicaly replace your main loop.
+It let's you control the comment area too. The Final loop widget is not restricted to the final post/page only. It can be used anywere else, though without the comment part.
 
 <em>All widgets allows you to display the picture belonging to the looped post/page. For that matter the Wordpress "Featured picture" is used.</em>
 
