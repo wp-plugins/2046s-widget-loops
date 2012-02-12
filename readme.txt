@@ -5,7 +5,7 @@ Donate Link: http://2046.cz
 Tags: admin, widget, loop, page, post
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.13
+Stable tag: 0.131
 
 2046's loop widgets boost you website prototyping.
 
@@ -67,13 +67,20 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 
 == Upgrade Notice == 
 
-= 0.13 If you have any probems, just resave widgets. Note the recent widget is replaced by the Final loop widget.
+= 0.13 = 
+
+If you have any probems, just resave widgets. Note the recent widget is replaced by the Final loop widget.
 
 == Screenshots == 
 1. Post & Page widget
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Changelog ==
+
+= 0.131 =
+
+ * fixed typo
+ * added the page restriction
 
 = 0.13 =
 

@@ -155,7 +155,7 @@ function w2046_post_widget() {
 					<fieldset class="disallow_on_template_types" id="disallow_on_template_types">
 						<?php
 						$i = 1;
-						$template_types = array('Single post', 'Home', 'Front Page', 'Archive', 'Tag/Term list', 'Category list', 'Author\'s list', 'Search', '404 error page');
+						$template_types = array('Single post','Single page',  'Home', 'Front Page', 'Archive', 'Tag/Term list', 'Category list', 'Author\'s list', 'Search', '404 error page');
 						foreach ($template_types as $types){
 							echo '<input';
 							if(is_array($instance['disallow_on_template_types'])){
@@ -385,6 +385,7 @@ function w2046_post_widget() {
 		// disalow the widget to be seen on :
 		/* how it comes
 		1 Single post
+		page
 		2 home
 		3 Front Page
 		4 Archive
@@ -397,34 +398,36 @@ function w2046_post_widget() {
 		*/
 		if(!empty($disallow_on_template_types)){
 			if(is_single() && in_array(1, $disallow_on_template_types)){
-				echo 'sss';
 				return;
 			}
-			if(is_home() && in_array(2, $disallow_on_template_types)){
+			if(is_page() && in_array(2, $disallow_on_template_types)){
 				return;
 			}
-			if(is_front_page() && in_array(3, $disallow_on_template_types)){
+			if(is_home() && in_array(3, $disallow_on_template_types)){
 				return;
 			}
-			if(is_archive() && in_array(4, $disallow_on_template_types)){
+			if(is_front_page() && in_array(4, $disallow_on_template_types)){
 				return;
 			}
-			if(is_tag() && in_array(5, $disallow_on_template_types)){
+			if(is_archive() && in_array(5, $disallow_on_template_types)){
 				return;
 			}
-			if(is_tax() && in_array(6, $disallow_on_template_types)){
+			if(is_tag() && in_array(6, $disallow_on_template_types)){
 				return;
 			}
-			if(is_category() && in_array(7, $disallow_on_template_types)){
+			if(is_tax() && in_array(7, $disallow_on_template_types)){
 				return;
 			}
-			if(is_author() && in_array(8, $disallow_on_template_types)){
+			if(is_category() && in_array(8, $disallow_on_template_types)){
 				return;
 			}
-			if(is_search() && in_array(9, $disallow_on_template_types)){
+			if(is_author() && in_array(9, $disallow_on_template_types)){
 				return;
 			}
-			if(is_404() && in_array(10, $disallow_on_template_types)){
+			if(is_search() && in_array(10, $disallow_on_template_types)){
+				return;
+			}
+			if(is_404() && in_array(11, $disallow_on_template_types)){
 				return;
 			}
 			//var_dump($disallow_on_template_types);
