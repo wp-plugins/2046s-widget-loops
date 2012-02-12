@@ -63,8 +63,7 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 
 == Upgrade Notice == 
 
-= 0.14 If you have any probems, just resave widgets.
-= 0.13 No problems so far.
+= 0.13 If you have any probems, just resave widgets. Note the recent widget is replaced by the Final loop widget.
 
 == Screenshots == 
 1. Post & Page widget
@@ -74,16 +73,16 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 
 = 1.13 =
 
-Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids.
+ * Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids.
 
-Page widget fixes : Disallow on ids can handle multiple ids, Added Prevention for being show on Page, post ids and template types.
+ * Page widget fixes : Disallow on ids can handle multiple ids, Added Prevention for being show on Page, post ids and template types.
 
-Recent widget removed
-Added Final loop widget: Briefly. It let's you show Post or Pages anywhere. The widget let's you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it's form, show the author, list of categories and tags.
+ * Recent widget removed
+ * Added Final loop widget: Briefly. It let's you show Post or Pages anywhere. The widget let's you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it's form, show the author, list of categories and tags.
 
-When the user is logged in the "edit link" is present after the post/page title. 
-small note added in to all widgets: "To see the widget behave properly, when you drop the wiget in here the widget should to be saved first."
-In order to have a unique class which won't interfere with other classes, comment_booble class has been changed from "comment_number" to "wl2046_comment_number"
+ * When the user is logged in the "edit link" is present after the post/page title. 
+ * A small note added in to all widgets: "To see the widget behave properly, when you drop the wiget in here the widget should to be saved first."
+ * In order to have a unique class which won't interfere with other classes, comment_booble class has been changed from "comment_number" to "wl2046_comment_number"
 
 = 0.12: 2012-02-07 =
 
@@ -92,11 +91,15 @@ In order to have a unique class which won't interfere with other classes, commen
 = 0.11: 2012-02-07 =
 
 Page widget: 
+
  * add show pages from the same hierarchy level
  * add restrict to pages by ID(s)
+ 
 Post widget
+
  * restrict to post ID(s)
  * do not show on: Single post, home, Front Page, Archive, Tag/Term list, Taxonomy, Category list, Author's list, Search, 404 error page
+ 
 Global facelift
 
 = 0.1: 2012-02-05 = 
