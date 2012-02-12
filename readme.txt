@@ -71,7 +71,7 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 
 == Changelog ==
 
-= 1.13 =
+= 0.13 =
 
  * Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids.
 
