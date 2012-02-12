@@ -71,9 +71,13 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Changelog ==
-= 1.13 
-Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids
-Page widget fixes : Disallow on ids can handle multiple ids, Added Prevention for being show on Page, post ids and template types
+
+= 1.13 =
+
+Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids.
+
+Page widget fixes : Disallow on ids can handle multiple ids, Added Prevention for being show on Page, post ids and template types.
+
 Recent widget removed
 Added Final loop widget: Briefly. It let's you show Post or Pages anywhere. The widget let's you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it's form, show the author, list of categories and tags.
 
@@ -88,16 +92,16 @@ In order to have a unique class which won't interfere with other classes, commen
 = 0.11: 2012-02-07 =
 
 Page widget: 
-* add show pages from the same hierarchy level
-* add restrict to pages by ID(s)
+ * add show pages from the same hierarchy level
+ * add restrict to pages by ID(s)
 Post widget
-* restrict to post ID(s)
-* do not show on: Single post, home, Front Page, Archive, Tag/Term list, Taxonomy, Category list, Author's list, Search, 404 error page
+ * restrict to post ID(s)
+ * do not show on: Single post, home, Front Page, Archive, Tag/Term list, Taxonomy, Category list, Author's list, Search, 404 error page
 Global facelift
 
 = 0.1: 2012-02-05 = 
 
-* Initial version
+ * Initial version
 
 = Known bugs =
 When the widget is droped into the widget area it won't get its ID and so the jQuery switch for Logic part won't hide unnecessary inputs.
