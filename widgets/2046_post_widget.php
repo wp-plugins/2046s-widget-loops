@@ -31,7 +31,7 @@ function w2046_post_widget() {
 	// so the shared value comes handy
 	function w2046_posts_widget() {
 		/* Widget settings. */
-		$widget_ops = array( 'classname' => 'w_2046_posts', 'description' => __('Select what posts you want to see in the widget area. Fairly complex settings ;)', 'w_2046_posts') );
+		$widget_ops = array( 'classname' => 'w_2046_posts', 'description' => __('It let\'s you select one or many posts from the selected category or all. It let\'s you allow or disallow the loop to be show on certain places and much more.', 'w_2046_posts') );
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'w_2046_posts-widget' );
 		/* Create the widget. */
@@ -57,13 +57,14 @@ function w2046_post_widget() {
 			'how_many' => __('1', 'w_2046_posts'), // number
 			'with_offset' => __('', 'w_2046_posts'), // num
 			'stick_on_ids' => __('', 'w_2046_posts'), // num
-			'stick_on_template_types' => __(array(''), 'w_2046_posts'), //__('', 'w_2046_posts'), // names
+			'disallow_on_template_types' => __(array(''), 'w_2046_posts'), //__('', 'w_2046_posts'), // names
 			'disallow_on_ids' => __('', 'w_2046_posts'), // num
 			);
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 
 		?>
 		<div id="the_widget_id_<?php echo $this->id; ?>" class="pw_2046_lw">
+			<em>Note: To see the widget behave properly, when you drop the wiget in here the widget should to be saved first.</em>
 			<h3>Widget title</h3>
 			<div class="pw_holder">
 				<p class="pw_the_title">
@@ -77,13 +78,16 @@ function w2046_post_widget() {
 			<div class="pw_holder">
 				<p class="pw_image_size">
 					<strong>Image size</strong><br />
-					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="0" <?php if ($instance['image_size'] == 0) echo 'checked="checked"'; ?>> No picture<br>
-					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="1" <?php if ($instance['image_size'] == 1) echo 'checked="checked"'; ?>> Thumbnail<br>
-					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="2" <?php if ($instance['image_size'] == 2) echo 'checked="checked"'; ?>> Medium<br />
-					<input class="h" type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="3" <?php if ($instance['image_size'] == 3) echo 'checked="checked"'; ?>> Large
+					<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="0" <?php if ($instance['image_size'] == 0) echo 'checked="checked"'; ?>> No picture<br>
+					<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="1" <?php if ($instance['image_size'] == 1) echo 'checked="checked"'; ?>> Thumbnail<br>
+					<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="2" <?php if ($instance['image_size'] == 2) echo 'checked="checked"'; ?>> Medium<br />
+					<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="3" <?php if ($instance['image_size'] == 3) echo 'checked="checked"'; ?>> Large
 				</p>
 				<p class="pw_with_excerpt">
-					<input id="tryme" type="checkbox" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" <?php if ($instance['with_excerpt'] == 'on'){ echo 'checked="checked"'; } ?> /> Show excerpt
+					<strong>Content</strong><br />
+					<input type="radio" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" value="0" <?php if ($instance['with_excerpt'] == 0) echo 'checked="checked"'; ?>> No content<br>
+					<input type="radio" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" value="1" <?php if ($instance['with_excerpt'] == 1) echo 'checked="checked"'; ?>> Excerpt<br>
+					<input type="radio" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" value="2" <?php if ($instance['with_excerpt'] == 2) echo 'checked="checked"'; ?>> Content<br />
 				</p>
 				<p class="pw_comments_booble">
 					<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> /> Show comments booble
@@ -147,19 +151,19 @@ function w2046_post_widget() {
 			</div>
 			<h3>Prevent from being shown on</h3>
 			<div class="pw_holder">
-				<p class="pw_stick_on_template_types">
-					<fieldset class="stick_on_template_types" id="stick_on_template_types">
+				<p class="pw_disallow_on_template_types">
+					<fieldset class="disallow_on_template_types" id="disallow_on_template_types">
 						<?php
 						$i = 1;
 						$template_types = array('Single post', 'Home', 'Front Page', 'Archive', 'Tag/Term list', 'Category list', 'Author\'s list', 'Search', '404 error page');
 						foreach ($template_types as $types){
 							echo '<input';
-							if(is_array($instance['stick_on_template_types'])){
-								if(in_array($i,$instance['stick_on_template_types'])){
+							if(is_array($instance['disallow_on_template_types'])){
+								if(in_array($i,$instance['disallow_on_template_types'])){
 									echo ' checked="checked"';
 								}
 							}
-							echo ' type="checkbox" name="'.$this->get_field_name( 'stick_on_template_types' ).'[]" value="'.$i.'" /> '.$types.'<br />';
+							echo ' type="checkbox" name="'.$this->get_field_name( 'disallow_on_template_types' ).'[]" value="'.$i.'" /> '.$types.'<br />';
 							$i++;
 						}
 						?>
@@ -255,7 +259,7 @@ function w2046_post_widget() {
 		$instance['how_many'] = strip_tags( $new_instance['how_many'] ); // number
 		$instance['with_offset'] = strip_tags( $new_instance['with_offset'] ); // num
 		$instance['stick_on_ids'] = strip_tags( $new_instance['stick_on_ids'] ); // num
-		$instance['stick_on_template_types'] = $new_instance['stick_on_template_types'] ; // array
+		$instance['disallow_on_template_types'] = $new_instance['disallow_on_template_types'] ; // array
 		$instance['disallow_on_ids'] = strip_tags( $new_instance['disallow_on_ids'] ); // num
 		$instance['selected_post_type'] = strip_tags( $new_instance['selected_post_type'] ); // name
 
@@ -279,10 +283,11 @@ function w2046_post_widget() {
 		$how_many = $instance['how_many']; // number
 		$with_offset = $instance['with_offset']; // num
 		$stick_on_ids = $instance['stick_on_ids']; //num
-		$stick_on_template_types = $instance['stick_on_template_types'];
+		$disallow_on_template_types = $instance['disallow_on_template_types'];
 		$disallow_on_ids = $instance['disallow_on_ids']; // num
 		$selected_post_type = $instance['selected_post_type']; // name
 		// Get the current shown post informations
+		wp_reset_postdata();
 		global $post;
 		// this hack the exeptional cases such as empty search result, when on search page ;)
 		if(empty($post->ID)){
@@ -300,9 +305,9 @@ function w2046_post_widget() {
 		$args = array(
 			'post_type' => $selected_post_type,
 			'post_status' => 'publish',
-			'post__not_in' => array( $post->ID )
+			//'post__not_in' => array( $post->ID
 		);
-		
+		// exclude the actual post on category list etc.
 		if ($cat_selector == 0){
 			if (!empty($post_ids)){
 				// remove spaces
@@ -390,55 +395,63 @@ function w2046_post_widget() {
 		9 Search
 		10 404 error page
 		*/
-		if(!empty($stick_on_template_types)){
-			if(is_single() && in_array(1, $stick_on_template_types)){
+		if(!empty($disallow_on_template_types)){
+			if(is_single() && in_array(1, $disallow_on_template_types)){
 				echo 'sss';
 				return;
 			}
-			if(is_home() && in_array(2, $stick_on_template_types)){
+			if(is_home() && in_array(2, $disallow_on_template_types)){
 				return;
 			}
-			if(is_front_page() && in_array(3, $stick_on_template_types)){
+			if(is_front_page() && in_array(3, $disallow_on_template_types)){
 				return;
 			}
-			if(is_archive() && in_array(4, $stick_on_template_types)){
+			if(is_archive() && in_array(4, $disallow_on_template_types)){
 				return;
 			}
-			if(is_tag() && in_array(5, $stick_on_template_types)){
+			if(is_tag() && in_array(5, $disallow_on_template_types)){
 				return;
 			}
-			if(is_tax() && in_array(6, $stick_on_template_types)){
+			if(is_tax() && in_array(6, $disallow_on_template_types)){
 				return;
 			}
-			if(is_category() && in_array(7, $stick_on_template_types)){
+			if(is_category() && in_array(7, $disallow_on_template_types)){
 				return;
 			}
-			if(is_author() && in_array(8, $stick_on_template_types)){
+			if(is_author() && in_array(8, $disallow_on_template_types)){
 				return;
 			}
-			if(is_search() && in_array(9, $stick_on_template_types)){
+			if(is_search() && in_array(9, $disallow_on_template_types)){
 				return;
 			}
-			if(is_404() && in_array(10, $stick_on_template_types)){
+			if(is_404() && in_array(10, $disallow_on_template_types)){
 				return;
 			}
-			//var_dump($stick_on_template_types);
+			//var_dump($disallow_on_template_types);
 		}
-		$disallow_ids = array();
-		if(is_page() && !empty($disallow_on_ids)){
+		// Disallow for certain pages posts
+		$disallow_on_ids_array = array();
+		if(!empty($disallow_on_ids)){
+			$disallow_on_clean = str_replace (" ", "", $disallow_on_ids);
+			if(explode(',' ,$disallow_on_clean)){
+				$disallow_on_ids_array = explode(',' ,$disallow_on_clean);
+			}else{
+				array_push($disallow_on_ids_array, $disallow_on_ids);
+			}
 			// if the current page has the restricted id
 			// let it go
-			if(is_page($disallow_on_ids)){
+			if((is_page() || is_single()) && in_array($post->ID, $disallow_on_ids_array)){
 				return;
 			}
 		}
 		// if there are no restriction or the post->id is actually one of the chosen
 		// show the loop content
 		
-		/* Before widget (defined by themes). */
-		echo $before_widget;
+
 		// The Loop
 		if ($the_query->have_posts()){
+			/* Before widget (defined by themes). */
+			echo $before_widget;
 			if(!empty($the_title)){
 				echo '<h4>'.$the_title.'</h4>';
 			}
@@ -460,8 +473,11 @@ function w2046_post_widget() {
 						echo '">';
 						the_title();
 						echo '</a>';
+						if(is_user_logged_in()){
+							edit_post_link('edit', '', ' <small class="lw_2046_pID">'.$post->ID.'</small>');
+						}
 						if($comments_booble == 'on'){
-							echo '<span class="comment_number">';
+							echo '<span class="wl2046_comment_number">';
 								comments_number( ':)	', '1', '%' );
 								if(comments_open() == false){
 									echo ' &#10013;'; //&#9873;
@@ -487,11 +503,15 @@ function w2046_post_widget() {
 						the_post_thumbnail('large', $default_attr);
 					}
 					// print the excerpt if it is wanted
-					if($with_excerpt == 'on'){
+					if($with_excerpt == '1'){
 						the_excerpt();
+					}
+					elseif($with_excerpt == '2'){
+						the_content();
 					}
 				echo '</div>';
 			endwhile;
+			echo $after_widget;
 		}
 		/*if($show_next_link == 'on'){
 			posts_nav_link();
@@ -504,6 +524,6 @@ function w2046_post_widget() {
 		// Reset Post Data
 		wp_reset_postdata();
 	
-		echo $after_widget;
+		
 	}
 }

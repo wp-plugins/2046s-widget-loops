@@ -17,6 +17,15 @@ Meaning, when you build the content you don't think about the programming logic 
 These widgets covers the most routinely used Post and Page content logic. They are not supposed to fully cover all the possible layouts.
 The aim of these widgets is to speed up the process of content structuring and simplicity of usage rather then offer overwhelming complex solution where you loose your self in an instant.
 
+= The recent version has 3 widgets =
+
+The "Post widget" that let's you display number of posts and can select what part of the content should be shown, plus you can restrict the loop by some rules.
+The "Page widget" does almost the same as the "Post widget" but for Pages. Particular page logic can be for example to show child pages under the current parent page.
+The "Final loop" widget is a loop which you can use in the main content area for the final content (single.php or page.php). Because the widget should basicaly replace your main loop it let's you control the comment area too. This widget is not restricted to the final post/page and can be used anywere else, though without the comment part.
+All widgets allows you to display the picture belonging to the looped post/page. For that matter the Wordpress "Featured picture" is used.
+
+"A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
+
 == Installation ==
 
 If you are installing 2046's loop widgets for the first time, follow these steps:
@@ -54,13 +63,23 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 
 == Upgrade Notice == 
 
-No problems so far.
+= 0.14 If you have any probems, just resave widgets.
+= 0.13 No problems so far.
 
 == Screenshots == 
 1. Post & Page widget
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Changelog ==
+= 1.13 
+Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids
+Page widget fixes : Disallow on ids can handle multiple ids, Added Prevention for being show on Page, post ids and template types
+Recent widget removed
+Added Final loop widget: Briefly. It let's you show Post or Pages anywhere. The widget let's you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it's form, show the author, list of categories and tags.
+
+When the user is logged in the "edit link" is present after the post/page title. 
+small note added in to all widgets: "To see the widget behave properly, when you drop the wiget in here the widget should to be saved first."
+In order to have a unique class which won't interfere with other classes, comment_booble class has been changed from "comment_number" to "wl2046_comment_number"
 
 = 0.12: 2012-02-07 =
 

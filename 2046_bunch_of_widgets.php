@@ -3,13 +3,13 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: 
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.12
+ * Version: 0.13
  * Author: 2046
  * Author URI: 
  *
  */
 /* get the main post widget*/
-require_once(dirname(__FILE__).'/widgets/2046_list_of_recent_posts.php');
+require_once(dirname(__FILE__).'/widgets/2046_main_loop.php');
 /* get post widget*/
 require_once(dirname(__FILE__).'/widgets/2046_post_widget.php');
 /* get page widget*/
@@ -24,7 +24,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 
 // all credits for this hack belongs to people from
 // http://wordpress.stackexchange.com/questions/14331/get-terms-by-taxonomy-and-post-type
-function get_terms_by_post_type_2046($post_type,$taxonomy,$fields='all',$args){
+/*function get_terms_by_post_type_2046($post_type,$taxonomy,$fields='all',$args){
 	$q_args = array(
 		'post_type' => (array)$post_type,
 		'posts_per_page' => -1
@@ -82,3 +82,4 @@ function get_terms_by_post_type_2046($post_type,$taxonomy,$fields='all',$args){
 		return $re;
 	}
 }
+*/
