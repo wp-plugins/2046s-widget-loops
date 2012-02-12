@@ -20,8 +20,11 @@ The aim of these widgets is to speed up the process of content structuring and s
 = The recent version has 3 widgets =
 
 The "Post widget" that let's you display number of posts and can select what part of the content should be shown, plus you can restrict the loop by some rules.
+
 The "Page widget" does almost the same as the "Post widget" but for Pages. Particular page logic can be for example to show child pages under the current parent page.
+
 The "Final loop" widget is a loop which you can use in the main content area for the final content (single.php or page.php). Because the widget should basicaly replace your main loop it let's you control the comment area too. This widget is not restricted to the final post/page and can be used anywere else, though without the comment part.
+
 All widgets allows you to display the picture belonging to the looped post/page. For that matter the Wordpress "Featured picture" is used.
 
 "A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
