@@ -5,7 +5,7 @@ Donate Link: http://2046.cz
 Tags: admin, widget, loop, page, post
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.131
+Stable tag: 0.132
 
 2046's loop widgets boost you website prototyping.
 
