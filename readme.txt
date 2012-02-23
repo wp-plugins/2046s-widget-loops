@@ -20,7 +20,7 @@ Meaning, when you build the content you don't think about the programming logic 
 The wdget covers the most routinely used content logic. The widget is pretty complex, but it do not fully cover all the possible layouts which not even it's aim.
 The aim of this widget is to speed up the process of content structuring and simplicity of usage rather then offer overwhelming complex solution where you loose your self in an instant.
 
-This early 0.2 version not fully tested. It has so many possible settings that I'm not able to test them all. If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
+If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
 = Post types =
 
