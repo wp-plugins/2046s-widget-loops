@@ -1,0 +1,10 @@
+.pw_holder{background:#fff;border:1px solid #ccc;border-radius:3px;padding:0.5em;}
+.pw_type_holder{border-bottom:1px solid #ccc;}
+.pw_2046_lw input[type=text], .pw_2046_lw select{width:100%;}
+.warning{color:red}
+.blue{background:blue !important;}
+.green{background:green !important;}
+.hide{display:none;}
+.lw_2046_left, .lw_2046_right{width:300px;float:left;clear:none;margin:0 0 1em 0;}
+.lw_2046_left{margin-right:15px;}
+.lw_type_change_note{text-align:right;}
