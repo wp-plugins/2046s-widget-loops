@@ -20,12 +20,12 @@ Meaning, when you build the content you don't think about the programming logic 
 The wdget covers the most routinely used content logic. The widget is pretty complex, but it do not fully cover all the possible layouts which not even it's aim.
 The aim of this widget is to speed up the process of content structuring and simplicity of usage rather then offer overwhelming complex solution where you loose your self in an instant.
 
-This early 0.2 version not fully tested. It has so many possible settings so I'm not able to test them all. If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
+This early 0.2 version not fully tested. It has so many possible settings that I'm not able to test them all. If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
 = Post types =
 
 The widget automatically finds all the public post types your WP has. Native Post and Pages and also your custom post types.
-It will load it's taxonomies, native (category, tags), custom taxonimies, settings for comments form and more. For the page types it gives you an extra hierarchy settings.
+It will load it's taxonomies. Native (category, tags), custom taxonimies, settings for comments form and more. For the page types it gives you an extra hierarchy settings.
  
 = The content =
 
@@ -44,7 +44,7 @@ to the front end of your site. Like, when you want to see "x" posts from the cat
 posts exactly by their ID and stuff like that.
 On the contrary you can also restrict the widget content not to be shown certain template types, such as index, category, post, or page, search result, or hide it on certain page by it's ID. 
 
-The Wordpress page types are hierarchical and so the widget shows you all the settings as like for the posts (even taxonomies if you made any), plus particular hierarchical
+The Wordpress page types are hierarchical. The widget shows you all the settings as like for the posts (even taxonomies if you made any), plus particular hierarchical
 logic based on which the widget will show the content.
 
 The final content loop has no settings in this logic area. It doesn't need any, it simply shows the final content. By the final content is meant the main post/page/custom post types
@@ -129,6 +129,7 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
   * the CSS and JS are not hard coded in each widget but loads independently and only once
   * The widget now finds even custom post types
   * it finds custom taxonomies and build appropriate settings for them
+  * new navigation settings (Scribu's Page Navi ready)
   * and so on... 
   
 
