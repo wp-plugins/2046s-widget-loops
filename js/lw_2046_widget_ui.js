@@ -1,11 +1,5 @@
 jQuery(document).ready(function($){ 
-	// define search ancestro function
-	/*$.fn.hasAncestor = function(element) {
-		return this.filter(function() {
-			return !!$(this).closest(element).length;
-		});
-	};
-	*/
+	
 	var lw_settings = function(parent_widget) { 
 		//console.log($(parent_widget + ' select.page_selector').val() + ' -selector val');
 		if($(parent_widget + ' select.page_selector').val() == 0){
@@ -71,6 +65,12 @@ jQuery(document).ready(function($){
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
 		});
+		// asmselect
+		// enhance multiple select
+		$("div.pw_2046_lw select[multiple]").asmSelect({
+			addItemTarget: 'bottom',
+		});
+		
 	});
 	
 	//
@@ -82,6 +82,11 @@ jQuery(document).ready(function($){
 	$('#widgets-right select.location_selector').each( function() {
 		location_select(this);
 	});
+	// asmselect
+	// enhance multiple select
+	$("div.pw_2046_lw select[multiple]").asmSelect({
+		addItemTarget: 'bottom',
+	});
 	
 	//
 	// react on ajax sucess (on save)
@@ -92,7 +97,13 @@ jQuery(document).ready(function($){
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
 		});
+		// asmselect
+		// enhance multiple select
+		$("div.pw_2046_lw select[multiple]").asmSelect({
+			addItemTarget: 'bottom',
+		});
 	});
+	
 	
 	//
 	// ON CHANGES

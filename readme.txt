@@ -5,14 +5,11 @@ Donate Link: http://2046.cz
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.21
+Stable tag: 0.22
 
 2046's loop widget boosts you website prototyping.
 
 == Description ==
-
-Warning. The version 0.2 is totally rewritten. Though it is build on the same concept like the previous public version 0.131 all the widgets shrunk to only one widget.
-When you update you have to build your widget logic from the scratch, but this time easier with lot more functionality.
 
 Unlike other loop widgets "2046's loop widget" is made with top-down logic.
 Meaning, when you build the content you don't think about the programming logic behind it. The only thing you have to decide is what content you want to see and where.
@@ -120,6 +117,10 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Change log ==
+
+= 0.22 = [24.02.2012]
+
+ * the multiple select box for taxonomy types is now runned by the jquery-asmselect (you'll love it if you have hundreds of tags )
 
 = 0.21 = [24.02.2012]
 

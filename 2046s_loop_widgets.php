@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.21
+ * Version: 0.22
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -52,7 +52,7 @@ function w2046_main_loop_load_widgets() {
 
 		/* Set up some default widget settings. */
 		$defaults = array(
-			'the_post_type' => __(0, 'w_2046_posts'), // false, true
+			'the_post_type' => __('post', 'w_2046_posts'), // false, true
 			'the_widget_title' => __('', 'w_2046_posts'), // false, true
 			'the_post_title' => __('on', 'w_2046_posts'), // false, true
 			'image_position' => __(1, 'w_2046_posts'), // 0,1
@@ -296,10 +296,10 @@ function w2046_main_loop_load_widgets() {
 									$iter++;
 									echo '<strong>'.$each_taxonomy_label.'</strong>';
 									// select id problem
-									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'">';
+									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="multiple_select" title="Please select a '.$each_taxonomy_label.'">';
 										$i = 0;
 										foreach($terms as $term){
-											if($i == 0){echo '<option value="">no restrictions</option>';};
+											//if($i == 0){echo '<option value="">no restrictions</option>';};
 											echo '<option ';
 											if(!empty($instance['taxonomy'][$each_taxonomy_name])){
 												if(in_array($term->term_id, $instance['taxonomy'][$each_taxonomy_name])){echo 'selected="selected"';}
@@ -925,6 +925,9 @@ add_action( 'admin_print_scripts-widgets.php', 'f2046_lw_insert_custom_js', 11 )
 function f2046_lw_insert_custom_js() {
 	wp_register_script('lw_2046_widget_ui',plugins_url( 'js/lw_2046_widget_ui.js' , __FILE__ ));
 	wp_enqueue_script('lw_2046_widget_ui');
+	// ams sellect
+	wp_register_script('lw_2046_asm_select',plugins_url( 'js/asmselect/jquery.asmselect.js' , __FILE__ ));
+	wp_enqueue_script('lw_2046_asm_select');
 }
 
 add_action('admin_print_styles-widgets.php', 'f2046_lw_insert_custom_css');
