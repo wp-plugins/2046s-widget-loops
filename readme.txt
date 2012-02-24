@@ -5,7 +5,7 @@ Donate Link: http://2046.cz
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.22
+Stable tag: 0.24
 
 2046's loop widget boosts you website prototyping.
 
@@ -92,10 +92,17 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 
 = Known bugs =
 
- * When you select something from the select box, the admin menu sometimes pops out like if you click on it as well. Don't ask me why. If I know, I would fix it. ;(
- * When you use the CCTM plugin then there you might experience strange behavior when you work with taxonomies for custom post_types. It won't filter the content right, because the CCTM uses it's own functions which actually have this side effect.
+ * When you are in the widget setting in the part [elswhere]>[selected taxonomy] then the taxonomy fields are sometimes multiplied. This happens when always you drag&drop the widget.
+Don't wary this is just a Javascript skin effect. If you save the widget, or you come back next time, it will be fine. (I'm working on it).
 
 == Upgrade Notice == 
+
+= 0.24 = [22.02.2012] 
+
+ * fixed pagination
+ * fixed navigation for pagination
+ * simplified Javascript 
+ * added the restriction for number of posts/pages in [elsewhere]>[Selected taxonomy]. If the result returns more theb the number and some kind of navigation is ON, then the result will be paged.
 
 = 0.2 = [22.02.2012]
 
@@ -118,9 +125,10 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 
 == Change log ==
 
-= 0.22 = [24.02.2012]
+= 0.23 = [24.02.2012]
 
  * the multiple select box for taxonomy types is now runned by the jquery-asmselect (you'll love it if you have hundreds of tags )
+ * works paged
 
 = 0.21 = [24.02.2012]
 

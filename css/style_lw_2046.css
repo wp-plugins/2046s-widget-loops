@@ -8,28 +8,23 @@
 .lw_2046_left, .lw_2046_right{width:300px;float:left;clear:none;margin:0 0 1em 0;}
 .lw_2046_left{margin-right:15px;}
 .lw_type_change_note{text-align:right;}
-select.lw_multiple_select{height:5em !important;}
-
+/*select.lw_multiple_select{height:5em !important;}*/
 .asmContainer {
 	/* container that surrounds entire asmSelect widget */
 }
-
 .asmSelect {
 	/* the newly created regular 'select' */
 	display: inline; 
 }
-
 .asmOptionDisabled {
 	/* disabled options in new select */
 	color: #999; 
 }
-
 .asmHighlight {
 	/* the highlight span */
 	padding: 0;
 	margin: 0 0 0 1em;
 }
-
 .asmList {
 	/* html list that contains selected items */
 	margin: 0.25em 0 1em 0; 
@@ -38,7 +33,6 @@ select.lw_multiple_select{height:5em !important;}
 	padding-left: 0; 
 	list-style: none; 
 }
-
 .asmListItem {
 	/* li item from the html list above */
 	position: relative; 
@@ -52,17 +46,14 @@ select.lw_multiple_select{height:5em !important;}
 	line-height: 1em;
 	border-radius:3px;
 }
-
 .asmListItem:hover {
 	background-color: #e5e5e5;
 }
-
 .asmListItemLabel {
 	/* this is a span that surrounds the text in the item, except for the remove link */
 	padding: 5px; 
 	display: block;
 }
-
 .asmListSortable .asmListItemLabel {
 	cursor: move; 
 }

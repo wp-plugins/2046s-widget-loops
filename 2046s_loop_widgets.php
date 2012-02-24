@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.22
+ * Version: 0.24
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -61,7 +61,7 @@ function w2046_main_loop_load_widgets() {
 			'with_excerpt' => __(2, 'w_2046_posts'), // ids, category, from the sa
 			'postmeta' => __(array(''), 'w_2046_posts'), // Date, author, categories, tags
 			'comments_booble' => __('', 'w_2046_posts'), // false, true
-			'comments_selector' => __('', 'w_2046_posts'), // true, false
+			'comments_selector' => __('1', 'w_2046_posts'), // true, false
 			'comments_comments_closed_info' => __('on', 'w_2046_posts'), // true, false
 			'navigation' => __('', 'w_2046_posts'), // true, false
 			'location_selector' => __(true, 'w_2046_posts'), // single, id, most recent
@@ -296,7 +296,7 @@ function w2046_main_loop_load_widgets() {
 									$iter++;
 									echo '<strong>'.$each_taxonomy_label.'</strong>';
 									// select id problem
-									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="multiple_select" title="Please select a '.$each_taxonomy_label.'">';
+									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="lw_multiple_select" title="Please select a '.$each_taxonomy_label.'">';
 										$i = 0;
 										foreach($terms as $term){
 											//if($i == 0){echo '<option value="">no restrictions</option>';};
@@ -471,7 +471,7 @@ function w2046_main_loop_load_widgets() {
 
 		$args = array(
 			'post_type' => $the_post_type,
-			//'paged' => $paged,
+			'paged' => $paged,
 		);
 		// if they want to show particular ID instead the actual post || page
 		// check if they selected location: "Elsewhere"
@@ -503,6 +503,7 @@ function w2046_main_loop_load_widgets() {
 					if(!empty($taxonomies)){
 						// define the basic arguments, the relation
 						$args_taxonomies = array(
+							'posts_per_page' => $posts_number,
 							'tax_query' => array(
 								'relation' => $taxonomy_comarison
 								)
@@ -515,7 +516,7 @@ function w2046_main_loop_load_widgets() {
 								$args_taxonomies_tax_query = array(
 									'taxonomy' => $taxonomy, // get & set the tax name (key)
 									'field' => 'id',
-									'terms' => $value // add the term ID array (val)
+									'terms' => $value,  // add the term ID array (val)
 								);
 								// add to arrays to tax query a < b
 								array_push( $args_taxonomies['tax_query'], $args_taxonomies_tax_query);
@@ -606,6 +607,7 @@ function w2046_main_loop_load_widgets() {
 					if(!empty($taxonomies)){
 						// define the basic arguments, the relation
 						$args_taxonomies = array(
+							'posts_per_page' => $posts_number,
 							'tax_query' => array(
 								'relation' => $taxonomy_comarison
 								)
@@ -897,8 +899,8 @@ function w2046_main_loop_load_widgets() {
 			// Create navigation
 			if($navigation == 2){
 				echo '<div class="navigation">';
-					previous_posts_link('&#171; Previous');
-					next_posts_link('Next &#187;');
+					previous_posts_link('&#171; Previous', $the_query->max_num_pages);
+					next_posts_link('Next &#187;', $the_query->max_num_pages);
 					//posts_nav_link(' &#183; ', 'previous page', 'next page');
 				echo '</div>';
 			}
@@ -926,12 +928,16 @@ function f2046_lw_insert_custom_js() {
 	wp_register_script('lw_2046_widget_ui',plugins_url( 'js/lw_2046_widget_ui.js' , __FILE__ ));
 	wp_enqueue_script('lw_2046_widget_ui');
 	// ams sellect
+	// http://code.google.com/p/jquery-asmselect/
 	wp_register_script('lw_2046_asm_select',plugins_url( 'js/asmselect/jquery.asmselect.js' , __FILE__ ));
 	wp_enqueue_script('lw_2046_asm_select');
+
 }
 
 add_action('admin_print_styles-widgets.php', 'f2046_lw_insert_custom_css');
 function f2046_lw_insert_custom_css(){
 	wp_register_style('style_lw_2046', plugins_url( 'css/style_lw_2046.css' , __FILE__ ),false,0.1,'all');
 	wp_enqueue_style( 'style_lw_2046');
+
 }
+

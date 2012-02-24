@@ -37,11 +37,11 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_post_id").hide();
 			$(parent_widget + " p.pw_parent_page_id").hide();
 			$(parent_widget + " p.pw_with_offset").hide();
-			$(parent_widget + " p.pw_posts_number").hide();
+			$(parent_widget + " p.pw_posts_number").show();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
 		};
 	};
-	
+
 	var location_select = function(This){
 		if($(This).attr('value') == 0){
 			parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
@@ -53,7 +53,13 @@ jQuery(document).ready(function($){
 			jQuery(parent_widget + " div.if_elsewhere").show();
 			// show various inputs
 			lw_settings(parent_widget);
+			// asmselect
+			// enhance multiple select
+			$(parent_widget + ' .lw_multiple_select').asmSelect({
+				addItemTarget: 'bottom'
+			});
 		}
+		
 	}
 	
 	//
@@ -65,12 +71,6 @@ jQuery(document).ready(function($){
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
 		});
-		// asmselect
-		// enhance multiple select
-		$("div.pw_2046_lw select[multiple]").asmSelect({
-			addItemTarget: 'bottom',
-		});
-		
 	});
 	
 	//
@@ -82,33 +82,22 @@ jQuery(document).ready(function($){
 	$('#widgets-right select.location_selector').each( function() {
 		location_select(this);
 	});
-	// asmselect
-	// enhance multiple select
-	$("div.pw_2046_lw select[multiple]").asmSelect({
-		addItemTarget: 'bottom',
-	});
 	
 	//
 	// react on ajax sucess (on save)
 	//
 	$('body').ajaxSuccess(function(evt, request, settings) {
 		$('p.lw_type_change_note').hide();
-		
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
 		});
-		// asmselect
-		// enhance multiple select
-		$("div.pw_2046_lw select[multiple]").asmSelect({
-			addItemTarget: 'bottom',
-		});
+		
 	});
 	
 	
 	//
 	// ON CHANGES
 	//
-	
 	// set the actual post_type value in memory
 	var parent_div = '';
 	var old_type ='';
