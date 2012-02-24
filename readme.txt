@@ -5,7 +5,7 @@ Donate Link: http://2046.cz
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.2
+Stable tag: 0.21
 
 2046's loop widget boosts you website prototyping.
 
@@ -100,7 +100,12 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 
 == Upgrade Notice == 
 
-= 0.2 =
+= 0.21 = [24.02.2012]
+
+ * removed some forgotten echo calls
+ * the multiple select box has native size 5 rows from now
+
+= 0.2 = [22.02.2012]
 
 Warning. The version 0.2 is totally rewritten. Though it is build on the same concept like the previous public version 0.131 all the widgets shirnked to only one widget.
 When you update you have to build your widget logic from the scratch, but this time easier with lot more functionality.

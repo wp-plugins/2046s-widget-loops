@@ -296,7 +296,7 @@ function w2046_main_loop_load_widgets() {
 									$iter++;
 									echo '<strong>'.$each_taxonomy_label.'</strong>';
 									// select id problem
-									echo '<select multiple="multiple" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'">';
+									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'">';
 										$i = 0;
 										foreach($terms as $term){
 											if($i == 0){echo '<option value="">no restrictions</option>';};
@@ -576,7 +576,6 @@ function w2046_main_loop_load_widgets() {
 						'posts_per_page' => $posts_number,
 			 		);
 			 		$args = array_merge( $args , $args_parent_id);
-			 		echo '1 Children pages of Page parent';
 				}
 				// 2 Children pages of displayed Page
 				elseif($page_selector == 2){
@@ -587,22 +586,20 @@ function w2046_main_loop_load_widgets() {
 						'orderby' => 'menu_order'
 			 		);
 			 		$args = array_merge( $args , $args_parent_id);
-			 		echo '1 Children pages of Page parent';
 				}
 				// 3 Page(s) from the same hierarchy level
 				elseif($page_selector == 3){
 					if($post->post_parent != 0){
-						$args_parent_id = array(
+						$args_parent = array(
 							'post_parent' => $post->post_parent,
 							'posts_per_page' => $posts_number,
 							'order' => 'ASC',
 							'orderby' => 'menu_order'
 				 		);
-				 		$args = array_merge( $args , $args_parent_id);
+				 		$args = array_merge( $args , $args_parent);
 			 		}else{
 			 			return;
 			 		}
-			 		echo '3 Page(s) from the same hierarchy level';
 				}
 				// selected taxonnomy
 				elseif($page_selector == 4){
