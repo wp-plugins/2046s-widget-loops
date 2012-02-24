@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.2
+ * Version: 0.21
  * Author: 2046
  * Author URI: http://2046.cz
  *
