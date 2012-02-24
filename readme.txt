@@ -100,17 +100,11 @@ If none of these checks works, then let me know on the <a href="http://wordpress
 
 == Upgrade Notice == 
 
-= 0.21 = [24.02.2012]
-
- * removed some forgotten echo calls
- * the multiple select box has native size 5 rows from now
-
 = 0.2 = [22.02.2012]
 
 Warning. The version 0.2 is totally rewritten. Though it is build on the same concept like the previous public version 0.131 all the widgets shirnked to only one widget.
 When you update you have to build your widget logic from the scratch, but this time easier with lot more functionality.
 The 0.2 version can be considered as a different plugin then the previous 0.131 version was.
-
 
 = 0.131 =
 
@@ -126,6 +120,11 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Change log ==
+
+= 0.21 = [24.02.2012]
+
+ * removed some forgotten echo calls
+ * the multiple select box has native size 5 rows from now
 
 = 0.2 =
   * all 3 widgets where merged in to one widget
