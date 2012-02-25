@@ -52,6 +52,11 @@ The "Debug" mode renders the Query arguments you build by the widget to the fron
 
 "A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
 
+= Compatibility =
+
+Tested with <a href="http://wordpress.org/extend/plugins/custom-content-type-manager/">CCTM</a>, <a href="More Types">More types</a>, <a href="http://wordpress.org/extend/plugins/more-taxonomies/">More taxonomies</a>.
+<a href="http://wordpress.org/extend/plugins/wp-pagenavi/">WP-PageNavi</a> ready.
+
 == Installation ==
 
 If you are installing 2046's loop widgets for the first time, follow these steps:
