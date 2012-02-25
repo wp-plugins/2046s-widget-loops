@@ -123,16 +123,16 @@ jQuery(document).ready(function($){
 	$(document).delegate('select.location_selector', 'change', function(ev) {
 		// define the parent widget always, because you never know if there are not more same widgets
 		parent_widget = 'div#' + $(this).parents('div.pw_2046_lw').attr('id');
-		console.log(parent_widget + ' parent_widget');
+		//console.log(parent_widget + ' parent_widget');
 		// final loop
 		if($(parent_widget + ' select.location_selector').attr('value') == 0){
 			
-			console.log($(parent_widget + ' select.location_selector').attr('value') + ' if');
+			//console.log($(parent_widget + ' select.location_selector').attr('value') + ' if');
 			jQuery(parent_widget + " div.if_elsewhere").hide();
 		}
 		// elsewhere
 		else{
-			console.log($(parent_widget + ' select.page_selector').attr('value') + ' <- selector val');
+			//console.log($(parent_widget + ' select.page_selector').attr('value') + ' <- selector val');
 			// show the div with settings
 			jQuery(parent_widget + " div.if_elsewhere").show();
 			// show various inputs
