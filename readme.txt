@@ -11,10 +11,8 @@ Stable tag: 0.241
 
 == Description ==
 
-When you build the content with "2046's loop widget" you can forget the code, the only thing you have to decide is what content you want to see and where.
-
-The wdget covers the most routinely used content logic. The widget is pretty complex, but it do not fully cover all the possible layouts which not even it's aim.
-The aim of this widget is to speed up the process of content structuring and simplicity of usage rather then offer overwhelming complex solution where you loose your self in an instant.
+When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where.
+The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standarts.
 
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
