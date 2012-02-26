@@ -5,14 +5,13 @@ Donate Link: http://2046.cz/freestuff.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.24
+Stable tag: 0.241
 
 2046's loop widget boosts you website prototyping.
 
 == Description ==
 
-Unlike other loop widgets "2046's loop widget" is made with top-down logic.
-Meaning, when you build the content you don't think about the programming logic behind it. The only thing you have to decide is what content you want to see and where.
+When you build the content with "2046's loop widget" you can forget the code, the only thing you have to decide is what content you want to see and where.
 
 The wdget covers the most routinely used content logic. The widget is pretty complex, but it do not fully cover all the possible layouts which not even it's aim.
 The aim of this widget is to speed up the process of content structuring and simplicity of usage rather then offer overwhelming complex solution where you loose your self in an instant.
@@ -54,8 +53,9 @@ The "Debug" mode renders the Query arguments you build by the widget to the fron
 
 = Compatibility =
 
-Tested with <a href="http://wordpress.org/extend/plugins/custom-content-type-manager/">CCTM</a>, <a href="More Types">More types</a>, <a href="http://wordpress.org/extend/plugins/more-taxonomies/">More taxonomies</a>.
-<a href="http://wordpress.org/extend/plugins/wp-pagenavi/">WP-PageNavi</a> ready.
+Tested with <a href="http://wordpress.org/extend/plugins/custom-content-type-manager/">CCTM</a>, <a href="More Types">More types</a>, <a href="http://wordpress.org/extend/plugins/more-taxonomies/">More taxonomies</a>, <a href="http://wpml.org/">WPML</a>.
+<a href="http://wordpress.org/extend/plugins/wp-pagenavi/">WP-PageNavi</a> ready.<br />
+<a href="http://twitter.github.com/">Bootstrap</a> ready.
 
 == Installation ==
 
@@ -102,12 +102,8 @@ Don't wary this is just a Javascript skin effect. If you save the widget, or you
 
 == Upgrade Notice == 
 
-= 0.24 = [22.02.2012] 
-
- * fixed pagination
- * fixed navigation for pagination
- * simplified Javascript 
- * added the restriction for number of posts/pages in [elsewhere]>[Selected taxonomy]. If the result returns more theb the number and some kind of navigation is ON, then the result will be paged.
+= 0.241 =
+ * as of the new options for image linking, the internal values changed. If your image setup stop to work (I bet it will), just reset image settings.
 
 = 0.2 = [22.02.2012]
 
@@ -125,11 +121,27 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 
 == Screenshots ==
  
-1. Screenshot of the version 0.2
+1. Screenshot of the version 0.241
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Change log ==
 
+= 0.241 = [26.02.2012] 
+
+ * when elsewhere>taxonomy was selected and no taxonomy was specified the "post number" didn't work : FIXED
+ * edded Scafolding option
+ * image has now selector where you can choose if the image links to: post/page, image or nolink
+ * fixed edit links
+ * added classes to image links. General and also extra for each link type.
+ * Fixed bug for PAge types, when selected "by ID"
+
+= 0.24 = [22.02.2012] 
+
+ * fixed pagination
+ * fixed navigation for pagination
+ * simplified Javascript 
+ * added the restriction for number of posts/pages in [elsewhere]>[Selected taxonomy]. If the result returns more theb the number and some kind of navigation is ON, then the result will be paged.
+ 
 = 0.23 = [24.02.2012]
 
  * the multiple select box for taxonomy types is now runned by the jquery-asmselect (you'll love it if you have hundreds of tags )

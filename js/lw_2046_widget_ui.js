@@ -41,7 +41,18 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_against_taxonomy").hide();
 		};
 	};
-
+	// show hide scafolding settings
+	var scafoldig_select = function(This){
+		parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
+		if($(parent_widget + " select.scafolding_selector").attr('value') == 0){
+			jQuery(parent_widget + " p.pw_scafolding_column").hide();
+			jQuery(parent_widget + " p.pw_scafolding_row").hide();
+		}else{
+			jQuery(parent_widget + " p.pw_scafolding_column").show();
+			jQuery(parent_widget + " p.pw_scafolding_row").show();
+		}
+	}
+	
 	var location_select = function(This){
 		if($(This).attr('value') == 0){
 			parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
@@ -70,6 +81,8 @@ jQuery(document).ready(function($){
 		//console.log('just dropped in');
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
+			// scafolding behavior
+			scafoldig_select(this);
 		});
 	});
 	
@@ -81,7 +94,10 @@ jQuery(document).ready(function($){
 	
 	$('#widgets-right select.location_selector').each( function() {
 		location_select(this);
+		// scafolding behavior
+		scafoldig_select(this);
 	});
+	
 	
 	//
 	// react on ajax sucess (on save)
@@ -90,6 +106,8 @@ jQuery(document).ready(function($){
 		$('p.lw_type_change_note').hide();
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
+			// scafolding behavior
+			scafoldig_select(this);
 		});
 		
 	});
@@ -145,5 +163,12 @@ jQuery(document).ready(function($){
 		parent_widget = 'div#' + $(this).parents('div.pw_2046_lw').attr('id');
 		// show various inputs
 		lw_settings(parent_widget);
+	});
+	// scafolding select change
+	$(document).delegate('select.scafolding_selector', 'change', function(ev) {
+		// define the parent widget always, because you never know if there are not more same widgets
+		parent_widget = 'div#' + $(this).parents('div.pw_2046_lw').attr('id');
+		// scafolding behavior
+		scafoldig_select(this);
 	});
 });

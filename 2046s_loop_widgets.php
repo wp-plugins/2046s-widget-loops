@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.24
+ * Version: 0.241
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -57,13 +57,16 @@ function w2046_main_loop_load_widgets() {
 			'the_post_title' => __('on', 'w_2046_posts'), // false, true
 			'image_position' => __(1, 'w_2046_posts'), // 0,1
 			'image_size' => __(2, 'w_2046_posts'), // none, thumbnail, large
-			'image_with_link' => __('', 'w_2046_posts'), // false, true
+			'image_with_link' => __(0, 'w_2046_posts'), // false, true
 			'with_excerpt' => __(2, 'w_2046_posts'), // ids, category, from the sa
 			'postmeta' => __(array(''), 'w_2046_posts'), // Date, author, categories, tags
 			'comments_booble' => __('', 'w_2046_posts'), // false, true
 			'comments_selector' => __('1', 'w_2046_posts'), // true, false
 			'comments_comments_closed_info' => __('on', 'w_2046_posts'), // true, false
 			'navigation' => __('', 'w_2046_posts'), // true, false
+			'scafolding_selector' => __('0', 'w_2046_posts'), //
+			'scafolding_row' => __('', 'w_2046_posts'), // 
+			'scafolding_column' => __('', 'w_2046_posts'), // 
 			'location_selector' => __(true, 'w_2046_posts'), // single, id, most recent
 			'restrict_to_ids' => __('', 'w_2046_posts'), // numbs
 			'taxonomy' => __(array(''), 'w_2046_posts'), // numbs
@@ -139,7 +142,10 @@ function w2046_main_loop_load_widgets() {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_position' ); ?>" value="0" <?php if ($instance['image_position'] == 0) echo 'checked="checked"'; ?>> Image above the title<br />
 						<input type="checkbox" name="<?php echo $this->get_field_name( 'the_post_title' ); ?>" <?php if ($instance['the_post_title'] == 'on'){ echo 'checked="checked"'; } ?> /> Show <?php echo $type_title; ?> title<br />
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_position' ); ?>" value="1" <?php if ($instance['image_position'] == 1) echo 'checked="checked"'; ?>> Image below the title<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" <?php if ($instance['image_with_link'] == 'on'){ echo 'checked="checked"'; } ?> /> Make image as a link to the <?php echo $type_title; ?>
+						<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" value="0" <?php if ($instance['image_with_link'] == '0'){ echo 'checked="checked"'; } ?> /> Image without link<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" value="1" <?php if ($instance['image_with_link'] == '1'){ echo 'checked="checked"'; } ?> /> Image as a link to the <?php echo $type_title; ?><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" value="2" <?php if ($instance['image_with_link'] == '2'){ echo 'checked="checked"'; } ?> /> Image as a link to it's large version
 					</p>
 					<strong>Image size</strong>
 					<p class="pw_image_size">
@@ -224,6 +230,29 @@ function w2046_main_loop_load_widgets() {
 						<em>If the <a href="http://wordpress.org/extend/plugins/wp-pagenavi/" target="_blank">WP Page Navi</a> is installed it will be listed here too.</em>
 					<?php } ?>
 				</p>
+				<h3>Scafolding</h3>
+				<div class="pw_holder">
+					<strong>type of structure</strong>
+					<p class="pw_scafolding_selector">
+						<select name="<?php echo $this->get_field_name( 'scafolding_selector' ); ?>" class="scafolding_selector" >
+							<?php echo '<option '; if($instance['scafolding_selector'] == 0){echo 'selected="selected"';} echo' value="0" >Basic Wordpress classes</option>'; ?>
+							<?php echo '<option '; if($instance['scafolding_selector'] == 1){echo 'selected="selected"';} echo' value="1" >One column per row</option>'; ?>
+							<?php echo '<option '; if($instance['scafolding_selector'] == 2){echo 'selected="selected"';} echo' value="2" >Many Columns per row</option>'; ?>'; ?>
+						</select>
+						<em>Custom classes are added to the basic Wordress classes</em>
+					</p>
+					<p class="pw_scafolding_row">
+						<strong>Row div class</strong><br />
+						<input type="text" name="<?php echo $this->get_field_name( 'scafolding_row' ); ?>" value="<?php echo $instance['scafolding_row'] ?>"/>
+						<em>In Boostrap it will be "row"</em>
+					</p>
+					<p class="pw_scafolding_column">
+						<strong>Column div class</strong><br />
+						<input type="text" name="<?php echo $this->get_field_name( 'scafolding_column' ); ?>" value="<?php echo $instance['scafolding_column'] ?>"/>
+						<em>In Boostrap it can be "span3"</em>	
+					</p>
+					<em>Note: see <a href="http://twitter.github.com/bootstrap/scaffolding.html" target="_blank">Boostrap</a></em>
+				</div>
 			</div>
 			<div class="lw_2046_right">
 				<h3>Where this loop will be shown & what</h3>
@@ -297,7 +326,7 @@ function w2046_main_loop_load_widgets() {
 									echo '<strong>'.$each_taxonomy_label.'</strong>';
 									// select id problem
 									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="lw_multiple_select" title="Please select a '.$each_taxonomy_label.'">';
-										$i = 0;
+										//$i = 0;
 										foreach($terms as $term){
 											//if($i == 0){echo '<option value="">no restrictions</option>';};
 											echo '<option ';
@@ -305,7 +334,7 @@ function w2046_main_loop_load_widgets() {
 												if(in_array($term->term_id, $instance['taxonomy'][$each_taxonomy_name])){echo 'selected="selected"';}
 											}
 											echo ' value="'.$term->term_id.'">'.$term->name.' ('.$term->count .')</option>';
-											$i++;
+											//$i++;
 										}
 									echo '</select>
 								</p>';
@@ -411,6 +440,9 @@ function w2046_main_loop_load_widgets() {
 			$instance['comments_selector'] = strip_tags( $new_instance['comments_selector'] );
 			$instance['comments_comments_closed_info'] = strip_tags( $new_instance['comments_comments_closed_info'] );
 			$instance['navigation'] = strip_tags( $new_instance['navigation'] );
+			$instance['scafolding_selector'] = strip_tags( $new_instance['scafolding_selector'] );
+			$instance['scafolding_row'] = strip_tags( $new_instance['scafolding_row'] );
+			$instance['scafolding_column'] = strip_tags( $new_instance['scafolding_column'] );
 			$instance['location_selector'] = strip_tags( $new_instance['location_selector'] );
 			$instance['page_selector'] = strip_tags( $new_instance['page_selector'] );
 			$instance['parent_page_id'] = strip_tags( $new_instance['parent_page_id'] );
@@ -459,7 +491,11 @@ function w2046_main_loop_load_widgets() {
 		$stick_on_template_types = $instance['stick_on_template_types']; 
 		$disallow_on_ids = $instance['disallow_on_ids']; 
 		$navigation = $instance['navigation'];
-		$debug = $instance['debug'];  
+		$scafolding_selector = $instance['scafolding_selector'];
+		$scafolding_column = $instance['scafolding_column'];
+		$scafolding_row  = $instance['scafolding_row'];
+		$debug = $instance['debug'];
+		
 		// reset the previous loops
 		// just to be sure they wont manipulate the curent query
 		wp_reset_postdata();
@@ -524,6 +560,13 @@ function w2046_main_loop_load_widgets() {
 						}
 						// merge tax query with the main array
 						$args = array_merge( $args, $args_taxonomies);
+					}else{
+						$args_taxonomies = array(
+							'posts_per_page' => $posts_number
+							);
+						// merge tax query with the main array
+						$args = array_merge( $args, $args_taxonomies);
+					
 					}
 				}
 				// From the same taxonomy as the current page
@@ -564,11 +607,16 @@ function w2046_main_loop_load_widgets() {
 			else{
 				// 0 Select Page(s) by IDs
 				if($page_selector == 0){
+					$post_id_clean = ereg_replace(" ", "", $post_id);
+					$post_ids_array = explode(',', $post_id_clean);
 					$args_ids = array(
-						'post__in' => $post_id,
+						'post__in' => $post_ids_array
 			 		);
 			 		$args = array_merge( $args , $args_ids);
-			 		echo 'page-s by id';
+					/*$args_ids = array(
+						'post__in' => $post_id,
+			 		);
+			 		$args = array_merge( $args , $args_ids);*/
 		 		}
 				// 1 Children pages of Page parent
 				elseif($page_selector == 1){
@@ -754,32 +802,30 @@ function w2046_main_loop_load_widgets() {
 				echo '<h4>'.$the_widget_title.'</h4>';
 				
 			}
+			// scafolding custom classes
+			$custom_class = '';
+			if ($scafolding_selector == 1){
+				$custom_class = $scafolding_row;
+			}
+			elseif($scafolding_selector == 2){
+				echo '<div class="'.$scafolding_row.'">';
+				$custom_class = $scafolding_column;
+			}
+			
 			// The Loop
 			while ( $the_query->have_posts() ) : $the_query->the_post();
+				
 				echo '<div ';
-				post_class();
+				post_class($custom_class);
 				echo '>';
+					
+					// scafolding column
+					if ($scafolding_selector == 1){
+						echo '<div class="'.$scafolding_column.'">';
+					}
 					// if user want the image here 
-					if ( has_post_thumbnail() && $image_position == 0) { // check if the post has a Post Thumbnail assigned to it.
-						if ($image_with_link == 'on'){
-							echo '<a href="'. get_permalink() . '" title="'.get_the_title().'">';
-						}
-							// define thumbnail atributes
-							$default_attr = array(
-								'title'	=> trim(strip_tags( $the_query->post->post_title )),
-							);
-							if($image_size == 1){
-								the_post_thumbnail('thumbnail', $default_attr);
-							}
-							if($image_size == 2){
-									the_post_thumbnail('medium', $default_attr);
-							}
-							elseif($image_size == 3){
-								the_post_thumbnail('large', $default_attr);
-							}
-						if ($image_with_link == 'on'){
-							echo '</a>';
-						}
+					if ( has_post_thumbnail() && ($image_position == 0)) { // check if the post has a Post Thumbnail assigned to it.
+						echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
 					} 
 					// if user want to see post title
 					if($the_post_title == 'on'){
@@ -798,7 +844,7 @@ function w2046_main_loop_load_widgets() {
 								the_title();
 							echo '</a>';
 								if(is_user_logged_in()){
-								edit_post_link('edit', '', ' <small class="lw_2046_pID">'.$post->ID.'</small>');
+								edit_post_link('edit', '', ' <small class="lw_2046_pID">'.$the_query->post->ID.'</small>');
 							}
 						echo '</h2>';
 					}
@@ -812,25 +858,7 @@ function w2046_main_loop_load_widgets() {
 					}
 					// if user wants post thumbnail after the title
 					if ( has_post_thumbnail() && $image_position == 1) { // check if the post has a Post Thumbnail assigned to it.
-						if ($image_with_link == 'on'){
-							echo '<a href="'. get_permalink() . '" title="'.get_the_title().'">';
-						}
-							// define thumbnail atributes
-							$default_attr = array(
-								'title'	=> trim(strip_tags( $the_query->post->post_title )),
-							);
-							if($image_size == 1){
-								the_post_thumbnail('thumbnail', $default_attr);
-							}
-							if($image_size == 2){
-									the_post_thumbnail('medium', $default_attr);
-							}
-							elseif($image_size == 3){
-								the_post_thumbnail('large', $default_attr);
-							}
-						if ($image_with_link == 'on'){
-							echo '</a>';
-						}
+						//echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
 					} 
 					// if the user want the content
 					if($with_excerpt == '1'){
@@ -894,8 +922,16 @@ function w2046_main_loop_load_widgets() {
 							if($the_query->post->comment_status == "open"){comments_template( '', true );}
 						}
 					}
+					// scafolding column
+					if ($scafolding_selector == 1){
+						echo '</div>';
+					}
 				echo '</div>';
 			endwhile;
+			// scafolding
+			if($scafolding_selector == 2){
+				echo '</div>';
+			}
 			// Create navigation
 			if($navigation == 2){
 				echo '<div class="navigation">';
@@ -916,7 +952,42 @@ function w2046_main_loop_load_widgets() {
 	}
 
 }
-
+// build image html
+function f_2046_build_image($post_, $image_with_link, $image_size) {
+	//var_dump($post_);
+	$post_thumbnail_id = get_post_thumbnail_id( $post_->ID );
+	$output = '';
+	// make the image link to the post/page
+	if ($image_with_link == 1){
+		$output .= '<a href="'. get_permalink($post_->ID) . '" title="'.get_the_title($post_->ID).'" class="page_link img_link">';
+	}
+	// make the image link to it's large version
+	if ($image_with_link == 2){
+		$image_large_src = wp_get_attachment_image_src( $post_thumbnail_id, 'large');
+		// set links to large image and image's title
+		$output .= '<a href="'. $image_large_src[0] . '" class="image_link img_link">';
+	}
+		// define thumbnail atributes
+		$default_attr = array(
+			'title'	=> trim(strip_tags( $post_->post_title )),
+		);
+		if($image_size == 1){
+			$output .= wp_get_attachment_image( $post_thumbnail_id, 'thumbnail'); //get_the_post_thumbnail('thumbnail', $default_attr);
+		}
+		if($image_size == 2){
+			$output .= wp_get_attachment_image( $post_thumbnail_id, 'medium'); //get_the_post_thumbnail('medium', $default_attr);
+		}
+		elseif($image_size == 3){
+			$output .= wp_get_attachment_image( $post_thumbnail_id, 'large'); //get_the_post_thumbnail('large', $default_attr);
+		}
+	
+	if ($image_with_link > 0){
+		$output .= '</a>';
+	}
+	
+	return $output;
+	
+}
 // add WP featured image support
 if ( function_exists( 'add_theme_support' ) ) { 
 	add_theme_support( 'post-thumbnails' ); 
