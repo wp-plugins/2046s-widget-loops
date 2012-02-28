@@ -130,7 +130,7 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 
 = 0.242 =
 
- * the custom scafolding changed a bit. It doesn't add redundant native widget div. 
+ * the custom scafolding changed a bit. It doesn't add redundant native widget div (only in cases when it's not needed). 
  * also the navigation and the comments moved out of the widget div. This change should give you lot more freedom over their position, then when it was part of the widget scafold. 
  * added hard check for all imputs, you can't write nonsense in the fields, or something that harms the result, or your layout ;)
  * ..under "selected taxonomy" is from now offset as well
