@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
 			$(parent_widget + " div.pw_taxonomies").show();
 			$(parent_widget + " p.pw_post_id").hide();
 			$(parent_widget + " p.pw_parent_page_id").hide();
-			$(parent_widget + " p.pw_with_offset").hide();
+			$(parent_widget + " p.pw_with_offset").show();
 			$(parent_widget + " p.pw_posts_number").show();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
 		};

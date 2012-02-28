@@ -70,7 +70,7 @@ function w2046_main_loop_load_widgets() {
 			'location_selector' => __(true, 'w_2046_posts'), // single, id, most recent
 			'restrict_to_ids' => __('', 'w_2046_posts'), // numbs
 			'taxonomy' => __(array(''), 'w_2046_posts'), // numbs
-			'taxonomy_comarison' => __('OR', 'w_2046_posts'), // numbs
+			'taxonomy_comparison' => __('OR', 'w_2046_posts'), // numbs
 			'against_taxonomy' => __('', 'w_2046_posts'), // names
 			'posts_number' => __('', 'w_2046_posts'), // numbs
 			'page_selector' => __(0, 'w_2046_pages'), // ids, category, from the same category
@@ -343,9 +343,9 @@ function w2046_main_loop_load_widgets() {
 						if(count($all_taxonomies) > 1){
 							echo '<p>'; ?>
 								<strong>The comparison type</strong>
-								<select name="<?php echo $this->get_field_name( 'taxonomy_comarison' ); ?>" class="taxonomy_comarison" >
-									<?php echo '<option '; if($instance['taxonomy_comarison'] == 'OR'){echo 'selected="selected"';} echo' value="OR" >Matching one of the selected terms (OR)</option>'; ?>
-									<?php echo '<option '; if($instance['taxonomy_comarison'] == 'AND'){echo 'selected="selected"';} echo' value="AND" >Is releated to all selected terms (AND)</option>'; ?>'; ?>
+								<select name="<?php echo $this->get_field_name( 'taxonomy_comparison' ); ?>" class="taxonomy_comparison" >
+									<?php echo '<option '; if($instance['taxonomy_comparison'] == 'OR'){echo 'selected="selected"';} echo' value="OR" >Matching one of the selected terms (OR)</option>'; ?>
+									<?php echo '<option '; if($instance['taxonomy_comparison'] == 'AND'){echo 'selected="selected"';} echo' value="AND" >Is releated to all selected terms (AND)</option>'; ?>'; ?>
 								</select>
 							<?php 
 						}
@@ -441,20 +441,20 @@ function w2046_main_loop_load_widgets() {
 			$instance['comments_comments_closed_info'] = strip_tags( $new_instance['comments_comments_closed_info'] );
 			$instance['navigation'] = strip_tags( $new_instance['navigation'] );
 			$instance['scafolding_selector'] = strip_tags( $new_instance['scafolding_selector'] );
-			$instance['scafolding_row'] = strip_tags( $new_instance['scafolding_row'] );
-			$instance['scafolding_column'] = strip_tags( $new_instance['scafolding_column'] );
+			$instance['scafolding_row'] = preg_replace("/[^A-Za-z0-9\s-\_]/", "", $new_instance['scafolding_row'] ); // letters, numbers, dash, underscore
+			$instance['scafolding_column'] = preg_replace("/[^A-Za-z0-9\s-\_]/", "", $new_instance['scafolding_column']); // letters, numbers, dash, underscore
 			$instance['location_selector'] = strip_tags( $new_instance['location_selector'] );
 			$instance['page_selector'] = strip_tags( $new_instance['page_selector'] );
-			$instance['parent_page_id'] = strip_tags( $new_instance['parent_page_id'] );
-			$instance['taxonomy'] = $new_instance['taxonomy'];
-			$instance['taxonomy_comarison'] = $new_instance['taxonomy_comarison'];
+			$instance['parent_page_id'] = preg_replace("/[^0-9\s,]/", "", $new_instance['parent_page_id'] ); // numbers, spaces, dashes
+			$instance['taxonomy'] = $new_instance['taxonomy']; //array
+			$instance['taxonomy_comparison'] = $new_instance['taxonomy_comparison']; // array
 			$instance['against_taxonomy'] = strip_tags($new_instance['against_taxonomy']);
-			$instance['post_id'] = strip_tags( $new_instance['post_id'] );
-			$instance['posts_number'] = strip_tags( $new_instance['posts_number'] );
-			$instance['with_offset'] = strip_tags( $new_instance['with_offset'] );
-			$instance['restrict_to_ids'] = strip_tags( $new_instance['restrict_to_ids'] );
+			$instance['post_id'] = preg_replace("/[^0-9\s,]/", "", $new_instance['post_id'] ); // numbers, spaces, dashes
+			$instance['posts_number'] = preg_replace("/[^0-9]/", "", $new_instance['posts_number'] );// number
+			$instance['with_offset'] = preg_replace("/[^0-9]/", "", $new_instance['with_offset'] ); // only number
+			$instance['restrict_to_ids'] = preg_replace("/[^0-9\s,]/", "", $new_instance['restrict_to_ids'] );// numbers, spaces, dashes
 			$instance['stick_on_template_types'] = $new_instance['stick_on_template_types']; 
-			$instance['disallow_on_ids'] = $new_instance['disallow_on_ids'];
+			$instance['disallow_on_ids'] = preg_replace("/[^0-9\s,]/", "", $new_instance['disallow_on_ids']);// numbers, spaces, dashes
 			$instance['debug'] = $new_instance['debug'];  
 
 		return $instance;
@@ -483,7 +483,7 @@ function w2046_main_loop_load_widgets() {
 		$post_id = $instance['post_id']; //
 		$parent_page_id = $instance['parent_page_id']; //
 		$taxonomies = $instance['taxonomy']; //
-		$taxonomy_comarison = $instance['taxonomy_comarison'];
+		$taxonomy_comparison = $instance['taxonomy_comparison'];
 		$against_taxonomy = $instance['against_taxonomy'];
 		$with_offset = $instance['with_offset']; //
 		$posts_number = $instance['posts_number']; //
@@ -540,8 +540,9 @@ function w2046_main_loop_load_widgets() {
 						// define the basic arguments, the relation
 						$args_taxonomies = array(
 							'posts_per_page' => $posts_number,
+							'offset' => $with_offset,
 							'tax_query' => array(
-								'relation' => $taxonomy_comarison
+								'relation' => $taxonomy_comparison
 								)
 							);
 						// for each taxonomy, like categories tags, etc.
@@ -657,7 +658,7 @@ function w2046_main_loop_load_widgets() {
 						$args_taxonomies = array(
 							'posts_per_page' => $posts_number,
 							'tax_query' => array(
-								'relation' => $taxonomy_comarison
+								'relation' => $taxonomy_comparison
 								)
 							);
 						// for each taxonomy, like categories tags, etc.
@@ -708,11 +709,11 @@ function w2046_main_loop_load_widgets() {
 	 		$args = array_merge( $args , $args_ids);
 		}
 	
-	if($debug == 1){
-		echo '<p class="lw_2046_debug"><strong>Debug (query args)</strong><br><pre>';
-			var_dump($args);
-		echo '</pre></p>';
-	}
+		if($debug == 1){
+			echo '<p class="lw_2046_debug"><strong>Debug (query args)</strong><br><pre>';
+				var_dump($args);
+			echo '</pre></p>';
+		}
 		
 		// The Query
 		$the_query = new WP_Query( $args );
@@ -794,35 +795,50 @@ function w2046_main_loop_load_widgets() {
 				return;
 			}
 		}
+
 		// run the LOOP
 		if($the_query->have_posts()){
-			echo $before_widget;
+			// scafolding
+			// classical WP
+			if($scafolding_selector == 0){
+				echo $before_widget;
+			}
 			// if user want to see widget title
 			if (!empty($the_widget_title)){
 				echo '<h4>'.$the_widget_title.'</h4>';
 				
 			}
-			// scafolding custom classes
-			$custom_class = '';
-			if ($scafolding_selector == 1){
-				$custom_class = $scafolding_row;
-			}
-			elseif($scafolding_selector == 2){
+			// when one per row 
+				// than do not render div here
+			// many per row
+			if($scafolding_selector == 2){
 				echo '<div class="'.$scafolding_row.'">';
-				$custom_class = $scafolding_column;
 			}
-			
 			// The Loop
 			while ( $the_query->have_posts() ) : $the_query->the_post();
-				
-				echo '<div ';
-				post_class($custom_class);
-				echo '>';
-					
-					// scafolding column
-					if ($scafolding_selector == 1){
+
+				if($scafolding_selector == 1){
+					// row
+					echo '<div ';
+					post_class($scafolding_row);
+					echo '>';
+					// column
+					if(!empty($scafolding_column)){
 						echo '<div class="'.$scafolding_column.'">';
 					}
+				}
+				// scafolding column
+				elseif ($scafolding_selector == 2){
+					echo '<div ';
+					post_class($scafolding_column);
+					echo '>';
+				}
+				// basic WP class
+				else{
+					echo '<div ';
+					post_class();
+					echo '>';
+				}
 					// if user want the image here 
 					if ( has_post_thumbnail() && ($image_position == 0)) { // check if the post has a Post Thumbnail assigned to it.
 						echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
@@ -911,32 +927,29 @@ function w2046_main_loop_load_widgets() {
 							next_post_link('<div class="nav-next">%link</div>'); 
 						echo '</div>';
 					}
-					// comments
-					if($comments_selector == 0){
-						// show comments with the comments disabled text if disabled
-						if($comments_comments_closed_info == 'on'){
-						comments_template( '', true );
-						}
-						// show comments, when disabled do not show fucking "comments are closed" message
-						else{
-							if($the_query->post->comment_status == "open"){comments_template( '', true );}
-						}
+				// scafolding column
+				if ($scafolding_selector == 1){
+					if(!empty($scafolding_column)){
+						echo '</div><!-- END column -->';
 					}
-					// scafolding column
-					if ($scafolding_selector == 1){
-						echo '</div>';
-					}
-				echo '</div>';
+					echo '</div><!-- END row -->';
+				}else{
+					echo '</div><!-- END post (or, and) column -->';
+				}
 			endwhile;
-			// scafolding
-			if($scafolding_selector == 2){
+			// scafolding classical WP
+			if ($scafolding_selector == 0){
+				/* After widget (defined by themes). */
+				echo $after_widget;
+			}
+			elseif($scafolding_selector == 2){
 				echo '</div>';
 			}
 			// Create navigation
 			if($navigation == 2){
 				echo '<div class="navigation">';
-					previous_posts_link('&#171; Previous', $the_query->max_num_pages);
-					next_posts_link('Next &#187;', $the_query->max_num_pages);
+					previous_posts_link(__('&#171; previous'), $the_query->max_num_pages);
+					next_posts_link(__('next &#187;'), $the_query->max_num_pages);
 					//posts_nav_link(' &#183; ', 'previous page', 'next page');
 				echo '</div>';
 			}
@@ -944,14 +957,24 @@ function w2046_main_loop_load_widgets() {
 			if ($navigation == 3 && function_exists('wp_pagenavi')) { 
 				wp_pagenavi( array( 'query' => $the_query ) );
 			}
-			/* After widget (defined by themes). */
-			echo $after_widget;
+			// comments
+			if($comments_selector == 0){
+				// show comments with the comments disabled text if disabled
+				if($comments_comments_closed_info == 'on'){
+				comments_template( '', true );
+				}
+				// show comments, when disabled do not show fucking "comments are closed" message
+				else{
+					if($the_query->post->comment_status == "open"){comments_template( '', true );}
+				}
+			}
 		} // END if have a post
 	// Reset Post Data
 	wp_reset_postdata();
 	}
 
-}
+} // END of class
+
 // build image html
 function f_2046_build_image($post_, $image_with_link, $image_size) {
 	//var_dump($post_);
@@ -1011,4 +1034,3 @@ function f2046_lw_insert_custom_css(){
 	wp_enqueue_style( 'style_lw_2046');
 
 }
-

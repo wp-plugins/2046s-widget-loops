@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.241
+Stable tag: 0.242
 
 2046's loop widget boosts you website prototyping.
 
@@ -100,6 +100,10 @@ Don't wary this is just a Javascript skin effect. If you save the widget, or you
 
 == Upgrade Notice == 
 
+= 0.242 =
+
+ * The scafolding changed a bit. If you haven't use it (I mean custom class), nothing is changing for you. If you do. You have to rethink the design a bit. The reson why I changed it is that the native widget div broke the Bootsrap logic. I'm sorry for that. 
+
 = 0.241 =
  * as of the new options for image linking, the internal values changed. If your image setup stop to work (I bet it will), just reset image settings.
 
@@ -123,6 +127,14 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Change log ==
+
+= 0.242 =
+
+ * the custom scafolding changed a bit. It doesn't add redundant native widget div. 
+ * also the navigation and the comments moved out of the widget div. This change should give you lot more freedom over their position, then when it was part of the widget scafold. 
+ * added hard check for all imputs, you can't write nonsense in the fields, or something that harms the result, or your layout ;)
+ * ..under "selected taxonomy" is from now offset as well
+ * fixed typo in "taxonomy comparison" variable
 
 = 0.241 = [26.02.2012] 
 
@@ -169,12 +181,9 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 = 0.13 =
 
  * Post widget fixes : Div "beforewidget" won't show up if the loop is empty, Disallow on ids can handle multiple ids.
-
  * Page widget fixes : Disallow on ids can handle multiple ids, Added Prevention for being show on Page, post ids and template types.
-
  * Recent widget removed
  * Added Final loop widget: Briefly. It let's you show Post or Pages anywhere. The widget let's you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it's form, show the author, list of categories and tags.
-
  * When the user is logged in the "edit link" is present after the post/page title. 
  * A small note added in to all widgets: "To see the widget behave properly, when you drop the widget in here the widget should to be saved first."
  * In order to have a unique class which won't interfere with other classes, comment_booble class has been changed from "comment_number" to "wl2046_comment_number"
@@ -204,7 +213,7 @@ Global face lift
 = Known bugs =
 When the widget is dropped into the widget area it won't get its ID and so the jQuery switch for Logic part won't hide unnecessary inputs.
 Once the widget is saved everything works as it supposed to.
-This is not a crucial bug, it wont brake anything it is just something I want to fix. If you know how to get the widget ID before it is saved, let me know.
+This is not a crucial bug, it wont brake anything it is just something I want to fix. If you know how, let me know.
 
 = Future plans =
 
