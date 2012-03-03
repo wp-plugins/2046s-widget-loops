@@ -11,7 +11,8 @@ Stable tag: 0.243
 
 == Description ==
 
-When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where.
+The Drag&Drop content management is here. 
+When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
 The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standarts.
 
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
