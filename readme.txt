@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 0.242
+Stable tag: 0.243
 
 2046's loop widget boosts you website prototyping.
 
@@ -35,7 +35,7 @@ The logic is on the right side of the widget.
 All the post types in Wordpress are basically linear with no hierarchy, they are categorized and can be tagged. If you are skilled enough or help your self with a plugin you can
 create custom post types and add some extra taxonomies. You can find them all listed in the widget and select the logic on which the widget will render the content
 to the front end of your site. Like, when you want to see "x" posts from the category pets, or "x" posts from the same category as the actual main post is, or select
-posts exactly by their ID and stuff like that.
+posts exactly by their ID or by their custom meta. It lets you order the result by many available parameters.
 On the contrary you can also restrict the widget content not to be shown certain template types, such as index, category, post, or page, search result, or hide it on certain page by it's ID. 
 
 The Wordpress page types are hierarchical. The widget shows you all the settings as like for the posts (even taxonomies if you made any), plus particular hierarchical
@@ -128,9 +128,15 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 
 == Change log ==
 
+= 0.243 = [03.03.2012]
+
+ * The javascript is handled bit better, but still it's not prefect ..see the Known bugs
+ * NEW ordering (DESC, ASC) and it's comparison paremetrs as well.
+ * NEW filter logic for custom meta and the logic parametrs too. For one custom meta "only".
+
 = 0.242 =
 
- * the custom scafolding changed a bit. It doesn't add redundant native widget div (only in cases when it's not needed). 
+ * the custom scafolding changed a bit. It doesn't add redundant native widget div. 
  * also the navigation and the comments moved out of the widget div. This change should give you lot more freedom over their position, then when it was part of the widget scafold. 
  * added hard check for all imputs, you can't write nonsense in the fields, or something that harms the result, or your layout ;)
  * ..under "selected taxonomy" is from now offset as well
@@ -211,17 +217,18 @@ Global face lift
  * Initial version
 
 = Known bugs =
-When the widget is dropped into the widget area it won't get its ID and so the jQuery switch for Logic part won't hide unnecessary inputs.
-Once the widget is saved everything works as it supposed to.
+
+When you have multiple widgets where you filter the content by the taxonomies, than when you same some of these widgets the taxonomy selector is multiplied for other widget then the one you just saved ;(
 This is not a crucial bug, it wont brake anything it is just something I want to fix. If you know how, let me know.
 
 = Future plans =
 
- * Add selection box for post, pages, taxonomies as like in the menu builder instead manual ID insertion or log category, tag list.
+ * Drag&Drop content builder
+ * multiple custom meta comparison filter 
  * Complete localization ready for translation to other languages
- * Might be you who gives me other ideas ;)
+
 
 = Thanks =
 
 Thanks to Scribu for his WP Navi that I have "integrated" as one of the navigation settings in to the widget. And thanks to Sribu again. When I tried to find an answer for 
-all the uncommon problems it was his answer somewhere in the Interweb that helps me to find the solution.
+all the uncommon problems it was his answer somewhere in the Interweb that helps me to find the solution. Thanks to you allyou are my source of knowledge.

@@ -9,11 +9,14 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_with_offset").hide();
 			$(parent_widget + " p.pw_posts_number").hide();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
-		}else if($(parent_widget + ' select.page_selector').val() == 1){
+			$(parent_widget + " p.pw_meta_sort").hide();
+		}
+		else if($(parent_widget + ' select.page_selector').val() == 1){
 			$(parent_widget + " div.pw_taxonomies").hide();
 			$(parent_widget + " p.pw_post_id").hide();
 			$(parent_widget + " p.pw_parent_page_id").show();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
+			$(parent_widget + " p.pw_meta_sort").hide();
 		}
 		// 2,3
 		else if( $(parent_widget + ' select.page_selector').val() < 4){
@@ -22,6 +25,16 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_parent_page_id").hide();
 			$(parent_widget + " p.pw_with_offset").hide();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
+			$(parent_widget + " p.pw_meta_sort").hide();
+		}
+		else if($(parent_widget + ' select.page_selector').val() == 4){
+			$(parent_widget + " div.pw_taxonomies").show();
+			$(parent_widget + " p.pw_post_id").hide();
+			$(parent_widget + " p.pw_parent_page_id").hide();
+			$(parent_widget + " p.pw_with_offset").show();
+			$(parent_widget + " p.pw_posts_number").show();
+			$(parent_widget + " p.pw_against_taxonomy").hide();
+			$(parent_widget + " p.pw_meta_sort").hide();
 		}
 		else if($(parent_widget + ' select.page_selector').val() == 5){
 			$(parent_widget + " div.pw_taxonomies").hide();
@@ -30,15 +43,17 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_with_offset").show();
 			$(parent_widget + " p.pw_posts_number").show();
 			$(parent_widget + " p.pw_against_taxonomy").show();
+			$(parent_widget + " p.pw_meta_sort").hide();
 		}
-		// 4
+		// 6
 		else {
-			$(parent_widget + " div.pw_taxonomies").show();
+			$(parent_widget + " div.pw_taxonomies").hide();
 			$(parent_widget + " p.pw_post_id").hide();
 			$(parent_widget + " p.pw_parent_page_id").hide();
 			$(parent_widget + " p.pw_with_offset").show();
 			$(parent_widget + " p.pw_posts_number").show();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
+			$(parent_widget + " p.pw_meta_sort").show();
 		};
 	};
 	// show hide scafolding settings
@@ -50,6 +65,15 @@ jQuery(document).ready(function($){
 		}else{
 			jQuery(parent_widget + " p.pw_scafolding_column").show();
 			jQuery(parent_widget + " p.pw_scafolding_row").show();
+		}
+	}
+	// show / hide meta_value comparison
+	var meta_inputs = function(This){
+		parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
+		if($(parent_widget + " select.order_by").attr('value') == 'meta_value' || $(parent_widget + " select.order_by").attr('value') == 'meta_value_num'){
+			jQuery(parent_widget + " .pw_meta").show();
+		}else{
+			jQuery(parent_widget + " .pw_meta").hide();
 		}
 	}
 	
@@ -83,6 +107,8 @@ jQuery(document).ready(function($){
 			location_select(this);
 			// scafolding behavior
 			scafoldig_select(this);
+			// meta_value inputs
+			meta_inputs(this);
 		});
 	});
 	
@@ -96,13 +122,55 @@ jQuery(document).ready(function($){
 		location_select(this);
 		// scafolding behavior
 		scafoldig_select(this);
+		// meta_value inputs
+		meta_inputs(this);
 	});
 	
 	
 	//
 	// react on ajax sucess (on save)
 	//
+	
+	$('#widgets-right').ajaxComplete(function(event, XMLHttpRequest, ajaxOptions){
+
+		// determine which ajax request is this (we're after "save-widget")
+		var request = {}, pairs = ajaxOptions.data.split('&'), i, split, widget;
+
+		for(i in pairs){
+			split = pairs[i].split('=');
+			request[decodeURIComponent(split[0])] = decodeURIComponent(split[1]);
+		}
+
+		// only proceed if this was a widget-save request
+		if(request.action && (request.action === 'save-widget')){
+			// locate the widget block
+			widget = $('input.widget-id[value="' + request['widget-id'] + '"]').parents('.widget');
+
+			// trigger manual save, if this was the save request 
+			// and if we didn't get the form html response (the wp bug)
+			if(!XMLHttpRequest.responseText)
+				wpWidgets.save(widget, 0, 1, 0);
+
+			// we got an response, this could be either our request above,
+			// or a correct widget-save call, so fire an event on which we can hook our js
+			else
+				//$(document).trigger('saved_widget', widget);
+				// get the asmselect and stuff
+				$('p.lw_type_change_note').hide();
+				$('#widgets-right select.location_selector').each( function() {
+					location_select(this); 
+					// TODO: the taxonomy asmselect is still not perefect
+					// it needs to be runned only once and only for the concrete widget, not for all (each)
+					// scafolding behavior
+					scafoldig_select(this);
+					// meta_value inputs
+					meta_inputs(this);
+				});
+		}
+	});
+	/*
 	$('body').ajaxSuccess(function(evt, request, settings) {
+		console.log('on save');
 		$('p.lw_type_change_note').hide();
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
@@ -111,7 +179,7 @@ jQuery(document).ready(function($){
 		});
 		
 	});
-	
+	*/
 	
 	//
 	// ON CHANGES
@@ -120,8 +188,8 @@ jQuery(document).ready(function($){
 	var parent_div = '';
 	var old_type ='';
 	$(document).delegate('select.the_post_type', 'focusin', function(ev) {
-		  	old_type = $(this).attr('value');
-		  	parent_div = $(this).parents('div.pw_2046_lw').attr('id');
+				old_type = $(this).attr('value');
+				parent_div = $(this).parents('div.pw_2046_lw').attr('id');
 	});
 	// show-hide all the settings if the user has changed the post_type
 	$(document).delegate('select.the_post_type', 'change', function(ev) {
@@ -155,6 +223,8 @@ jQuery(document).ready(function($){
 			jQuery(parent_widget + " div.if_elsewhere").show();
 			// show various inputs
 			lw_settings(parent_widget);
+			// meta_value inputs
+			meta_inputs(this);
 		}
 	});
 	
@@ -163,12 +233,17 @@ jQuery(document).ready(function($){
 		parent_widget = 'div#' + $(this).parents('div.pw_2046_lw').attr('id');
 		// show various inputs
 		lw_settings(parent_widget);
+		// meta_value inputs
+		meta_inputs(this);
 	});
 	// scafolding select change
 	$(document).delegate('select.scafolding_selector', 'change', function(ev) {
-		// define the parent widget always, because you never know if there are not more same widgets
-		parent_widget = 'div#' + $(this).parents('div.pw_2046_lw').attr('id');
 		// scafolding behavior
-		scafoldig_select(this);
+		scafoldig_select(this);;
+	});
+	// order_by change
+	$(document).delegate('select.order_by', 'change', function(ev) {
+		// scafolding behavior
+		meta_inputs(this);
 	});
 });

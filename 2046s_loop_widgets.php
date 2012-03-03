@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.242
+ * Version: 0.243
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -71,6 +71,13 @@ function w2046_main_loop_load_widgets() {
 			'restrict_to_ids' => __('', 'w_2046_posts'), // numbs
 			'taxonomy' => __(array(''), 'w_2046_posts'), // numbs
 			'taxonomy_comparison' => __('OR', 'w_2046_posts'), // numbs
+			'order_by' => __('date', 'w_2046_posts'), 
+			'the_order' => __('DESC', 'w_2046_posts'), 
+			'meta_key_sort' => __('', 'w_2046_posts'),
+			//'meta_compare' => __('', 'w_2046_posts'), // not needed - we use the tax_query
+			'compare' => __('=', 'w_2046_posts'),
+			'meta_key' => __('', 'w_2046_posts'),
+			'meta_value' => __('', 'w_2046_posts'),  
 			'against_taxonomy' => __('', 'w_2046_posts'), // names
 			'posts_number' => __('', 'w_2046_posts'), // numbs
 			'page_selector' => __(0, 'w_2046_pages'), // ids, category, from the same category
@@ -155,6 +162,7 @@ function w2046_main_loop_load_widgets() {
 						<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="2" <?php if ($instance['image_size'] == 2) echo 'checked="checked"'; ?>> Medium<br />
 						<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="3" <?php if ($instance['image_size'] == 3) echo 'checked="checked"'; ?>> Large
 					</p>
+					<?php // TODO: image resorting, javascript hiding ?>
 					<p class="pw_comments_booble">
 						<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> /> Show comments booble
 					</p>
@@ -266,7 +274,7 @@ function w2046_main_loop_load_widgets() {
 					<em>"On final post" make sense when the widget is on single.php / page.php.</em>
 					</p>
 					<p>
-					<em>"Elsewhere" you have to define what <?php echo $type_title; ?> content you want to see. Good choice if you want to use it on Index page if you want to emphasize the most recent post or something like that. </em>
+					<em>"Elsewhere": you decide which "<?php echo $type_title; ?>" content you want to see, how and where.</em>
 					</p>
 				</p>
 				<div class="if_elsewhere">
@@ -287,7 +295,9 @@ function w2046_main_loop_load_widgets() {
 								if(!empty($all_taxonomies)){
 									echo '<option '; if($instance['page_selector'] == 4){echo 'selected="selected"';} echo' value="4" >Selected taxonomy</option>';
 									echo '<option '; if($instance['page_selector'] == 5){echo 'selected="selected"';} echo' value="5" >From the same taxonomy</option>'; 
-								}?>
+								}
+									echo '<option '; if($instance['page_selector'] == 6){echo 'selected="selected"';} echo' value="6" >By the custom meta values</option>';
+								?>
 							</select>
 						</p>
 						<p class="pw_parent_page_id">
@@ -372,7 +382,56 @@ function w2046_main_loop_load_widgets() {
 							<br />
 							<em>The offset is counted from the most recent post (by date). </em>
 						</p>
-
+						<p class="pw_meta_sort">
+							<strong>Meta key</strong><br />
+							<input type="text" name="<?php echo $this->get_field_name( 'meta_key' ); ?>" <?php if (!empty($instance['meta_key'])){ echo 'value="'.$instance['meta_key'].'"'; }else{ echo 'value=""';}; ?>/>
+							<br /><em>The exact "meta key" name. Both key and meta must be present!</em>
+							<br /><br />
+							<strong>Meta value</strong><br />
+							<input type="text" name="<?php echo $this->get_field_name( 'meta_value' ); ?>" <?php if (!empty($instance['meta_value'])){ echo 'value="'.$instance['meta_value'].'"'; }else{ echo 'value=""';}; ?>/>
+							<br /><em>The exact "meta value" name. Both key and meta must be present!</em>
+							<br /><br />
+							Meta comparison<br />
+							<select name="<?php echo $this->get_field_name( 'compare' ); ?>" class="compare" >
+								<?php 
+								$comp_types = array(  '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN' ); // 'BETWEEN', 'NOT BETWEEN'
+								foreach($comp_types as $types){
+									echo '<option '; if($instance['compare'] == $types){echo 'selected="selected"';} echo' value="'.$types.'" >'.$types.'</option>';
+								} ?>
+							</select>
+						</p>
+					</div>
+					<h3>Order</h3>
+					<div class="pw_holder">
+						<p class="pw_the_order">
+							<strong>Order</strong>
+							<select name="<?php echo $this->get_field_name( 'the_order' ); ?>" class="the_order" >
+								<?php echo '<option '; if($instance['the_order'] == 'ASC'){echo 'selected="selected"';} echo' value="ASC" >Ascendingly</option>'; ?>
+								<?php echo '<option '; if($instance['the_order'] == 'DESC'){echo 'selected="selected"';} echo' value="DESC" >Descendingly</option>'; ?>'; ?>
+							</select>
+						</p>
+						<p class="pw_order_by">
+							<strong>Order by</strong>
+							<select name="<?php echo $this->get_field_name( 'order_by' ); ?>" class="order_by" >
+								<?php 
+								// list if possible orders
+								// not inluded: 
+								if($the_type == 'page'){
+									$posible_orders = array('none','ID', 'title', 'date','modified','rand','comment_count','menu_order', 'parent', 'meta_value','meta_value_num');
+								}else{
+									$posible_orders = array('none','ID', 'title', 'date','modified','rand','comment_count', 'meta_value','meta_value_num');
+								}
+								foreach($posible_orders as $order){
+									echo '<option '; if($instance['order_by'] == $order){echo 'selected="selected"';} echo' value="'.$order.'" >'.$order.'</option>'; 
+								}?>
+							</select>
+							<em>meta_value sorts: alphabetically / meta_value_num: sorts numerically / parent: ID</em>
+							<span class="pw_meta">
+								<br /><br />Meta key<br />
+								<input type="text" name="<?php echo $this->get_field_name( 'meta_key_sort' ); ?>" <?php if (!empty($instance['meta_key_sort'])){ echo 'value="'.$instance['meta_key_sort'].'"'; }else{ echo 'value=""';}; ?>/>
+								<br /><em>The exact meta key name.</em>
+							</span>
+						</p>
 					</div>
 					<h3>Restrict to</h3>
 					<div class="pw_holder">
@@ -449,6 +508,12 @@ function w2046_main_loop_load_widgets() {
 			$instance['taxonomy'] = $new_instance['taxonomy']; //array
 			$instance['taxonomy_comparison'] = $new_instance['taxonomy_comparison']; // array
 			$instance['against_taxonomy'] = strip_tags($new_instance['against_taxonomy']);
+			$instance['order_by'] = strip_tags($new_instance['order_by']);
+			$instance['the_order'] = strip_tags($new_instance['the_order']);
+			$instance['meta_key_sort'] = strip_tags($new_instance['meta_key_sort']);
+			$instance['compare'] = $new_instance['compare'];
+			$instance['meta_value'] = strip_tags($new_instance['meta_value']);
+			$instance['meta_key'] = strip_tags($new_instance['meta_key']);
 			$instance['post_id'] = preg_replace("/[^0-9\s,]/", "", $new_instance['post_id'] ); // numbers, spaces, dashes
 			$instance['posts_number'] = preg_replace("/[^0-9]/", "", $new_instance['posts_number'] );// number
 			$instance['with_offset'] = preg_replace("/[^0-9]/", "", $new_instance['with_offset'] ); // only number
@@ -485,6 +550,12 @@ function w2046_main_loop_load_widgets() {
 		$taxonomies = $instance['taxonomy']; //
 		$taxonomy_comparison = $instance['taxonomy_comparison'];
 		$against_taxonomy = $instance['against_taxonomy'];
+		$the_order = $instance['the_order'];
+		$order_by = $instance['order_by'];
+		$meta_value = $instance['meta_value'];
+		$meta_key = $instance['meta_key'];
+		$meta_key_sort = $instance['meta_key_sort'];
+		$compare = $instance['compare'];
 		$with_offset = $instance['with_offset']; //
 		$posts_number = $instance['posts_number']; //
 		$restrict_to_ids = $instance['restrict_to_ids'];
@@ -512,6 +583,14 @@ function w2046_main_loop_load_widgets() {
 		// if they want to show particular ID instead the actual post || page
 		// check if they selected location: "Elsewhere"
 		if($location_selector == 1){
+			// sorting
+			$sorting_args = array(
+				'order' => $the_order,
+				'orderby' => $order_by,
+				'meta_key' => $meta_key_sort
+			);
+			$args = array_merge( $args , $sorting_args);
+			
 			// divide by types post | page_selector
 			// for post types
 			if($the_post_type == 'post'){
@@ -574,19 +653,50 @@ function w2046_main_loop_load_widgets() {
 				elseif($page_selector == 5){
 					if(!empty($against_taxonomy)){
 						$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
-						$args_taxonomies_against = array(
-						'tax_query' => array(
-								//'relation' => 'AND',
-								array(
-									'taxonomy' => $against_taxonomy,
-									'field' => 'id',
-									'terms' => $current_terms//array( '25')
+						/*if(is_term()){
+							global $wp_query;
+							$qe = $wp_query->tax_query->queries[0]['taxonomy'];
+							var_dump($wp_query->tax_query->queries);
+							$args_taxonomies_against = array(
+							'tax_query' => array(
+									//'relation' => 'AND',
+									array(
+										'taxonomy' => $qe,
+										//'field' => 'id',
+										//'terms' => $current_terms//array( '25')
+									)
 								)
-							)
-						);
+							);
+							// add to arrays to query
+							$args = array_merge( $args, $args_taxonomies_against);
+						}else{*/
+							$args_taxonomies_against = array(
+							'tax_query' => array(
+									//'relation' => 'AND',
+									array(
+										'taxonomy' => $against_taxonomy,
+										'field' => 'id',
+										'terms' => $current_terms//array( '25')
+									)
+								)
+							);
+						//}
 						// add to arrays to query
 						$args = array_merge( $args, $args_taxonomies_against);
 					}
+				}
+				// restrict to these post|page with these meta
+				elseif($page_selector == 6 && !empty($meta_key) && !empty($meta_value)){
+					$args_meta_restriction = array(
+						'meta_query' => array(
+							array(
+								'key' => $meta_key,
+								'value' => $meta_value,
+								'compare' => $compare
+							)
+						)
+					);
+					$args = array_merge( $args, $args_meta_restriction);
 				}else{
 					// they decided to offset the page
 					if(!empty($with_offset)){
@@ -696,6 +806,17 @@ function w2046_main_loop_load_widgets() {
 						// add to arrays to query
 						$args = array_merge( $args, $args_taxonomies_against);
 					}
+				}elseif($page_selector == 6 && !empty($meta_key) && !empty($meta_value)){
+					$args_meta_restriction = array(
+						'meta_query' => array(
+							array(
+								'key' => $meta_key,
+								'value' => $meta_value,
+								'compare' => $compare
+							)
+						)
+					);
+					$args = array_merge( $args, $args_meta_restriction);
 				}
 			}
 		}
@@ -712,6 +833,16 @@ function w2046_main_loop_load_widgets() {
 		if($debug == 1){
 			echo '<p class="lw_2046_debug"><strong>Debug (query args)</strong><br><pre>';
 				var_dump($args);
+				/*$args = array(
+					'meta_query' => array(
+						array(
+							'key' => 'cf_2046_in_slider',
+							'value' => 1,
+							'compare' => '='
+						)
+					)
+				);
+				var_dump($args);*/
 			echo '</pre></p>';
 		}
 		
