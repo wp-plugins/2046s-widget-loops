@@ -130,9 +130,9 @@ More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a
 
 = 0.243 = [03.03.2012]
 
- * The javascript is handled bit better, but still it's not prefect ..see the Known bugs
- * NEW ordering (DESC, ASC) and it's comparison paremetrs as well.
+ * NEW ordering and it's comparison paremetrs as well.
  * NEW filter logic for custom meta and the logic parametrs too. For one custom meta "only".
+ * The javascript is handled bit better, but still it's not prefect ..see the Known bugs bellow.
 
 = 0.242 =
 
@@ -218,7 +218,7 @@ Global face lift
 
 = Known bugs =
 
-When you have multiple widgets where you filter the content by the taxonomies, than when you same some of these widgets the taxonomy selector is multiplied for other widget then the one you just saved ;(
+When you have multiple widgets where you filter the content by the taxonomies, than when you save some of these widgets the taxonomy selector is multiplied for other widget than the one you just saved ;(
 This is not a crucial bug, it wont brake anything it is just something I want to fix. If you know how, let me know.
 
 = Future plans =
