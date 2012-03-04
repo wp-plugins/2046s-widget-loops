@@ -20,7 +20,7 @@ The Drag&Drop content management is here.
 When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
 The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standarts.
 
-The widget went through Localization process and so the core changed a bit. So if you update you might have to resave the widgets.
+The widget went through Localization process and so the core changed a bit. You might have to resave the widgets.
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
 = Post types =
@@ -245,7 +245,6 @@ This is not a crucial bug, it wont brake anything it is just something I want to
 
  * Drag&Drop content builder
  * multiple custom meta comparison filter 
- * Complete localization ready for translation to other languages
 
 
 = Thanks =
