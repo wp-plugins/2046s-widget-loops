@@ -11,10 +11,6 @@ Stable tag: 0.244
 
 == Description ==
 
-http://youtu.be/pScOFwTQwYQ
-
-Beta 1.31 preview
-
 
 The Drag&Drop content management is here. 
 When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
@@ -22,6 +18,9 @@ The widget covers the most routinely used content logic. The aim of this widget 
 
 The widget went through Localization process and so the core changed a bit. You might have to resave the widgets.
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
+
+http://youtu.be/pScOFwTQwYQ
+(Beta 1.31 concept preview)
 
 = Post types =
 
