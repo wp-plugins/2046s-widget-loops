@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.243
+ * Version: 0.244
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -20,6 +20,8 @@ add_action( 'widgets_init', 'w2046_main_loop_load_widgets' );
  */
 function w2046_main_loop_load_widgets() {
 	register_widget( 'w2046_main_loop' );
+	// localization
+	load_plugin_textdomain( 'p_2046s_loop_widget', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/'); 
 }
 
 /**
@@ -34,13 +36,13 @@ function w2046_main_loop_load_widgets() {
 	 */
 	function w2046_main_loop() {
 		/* Widget settings. */
-		$widget_ops = array( 'classname' => 'wname_2046_main_loop', 'description' => __('It let\'s you show Post or Pages anywhere. The widget let\'s you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it\'s form.', 'wname_2046_main_loop') );
+		$widget_ops = array( 'classname' => 'wname_2046_main_loop', 'description' => __('It let\'s you show Post or Pages anywhere. The widget let\'s you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it\'s form.', 'p_2046s_loop_widget') );
 
 		/* Widget control settings. */
 		$control_ops = array( 'width' => 620, 'height' => 350, 'id_base' => 'wname_2046_main_loop-widget' );
 
 		/* Create the widget. */
-		$this->WP_Widget( 'wname_2046_main_loop-widget', __('2046\'s - loop widget', 'wname_2046_main_loop'), $widget_ops, $control_ops );
+		$this->WP_Widget( 'wname_2046_main_loop-widget', __('2046\'s - loop widget', 'p_2046s_loop_widget'), $widget_ops, $control_ops );
 	}
 
 	/**
@@ -49,46 +51,46 @@ function w2046_main_loop_load_widgets() {
 	 * when creating your form elements. This handles the confusing stuff.
 	 */
 	function form( $instance ) { 
-
+		
 		/* Set up some default widget settings. */
 		$defaults = array(
-			'the_post_type' => __('post', 'w_2046_posts'), // false, true
-			'the_widget_title' => __('', 'w_2046_posts'), // false, true
-			'the_post_title' => __('on', 'w_2046_posts'), // false, true
-			'image_position' => __(1, 'w_2046_posts'), // 0,1
-			'image_size' => __(2, 'w_2046_posts'), // none, thumbnail, large
-			'image_with_link' => __(0, 'w_2046_posts'), // false, true
-			'with_excerpt' => __(2, 'w_2046_posts'), // ids, category, from the sa
-			'postmeta' => __(array(''), 'w_2046_posts'), // Date, author, categories, tags
-			'comments_booble' => __('', 'w_2046_posts'), // false, true
-			'comments_selector' => __('1', 'w_2046_posts'), // true, false
-			'comments_comments_closed_info' => __('on', 'w_2046_posts'), // true, false
-			'navigation' => __('', 'w_2046_posts'), // true, false
-			'scafolding_selector' => __('0', 'w_2046_posts'), //
-			'scafolding_row' => __('', 'w_2046_posts'), // 
-			'scafolding_column' => __('', 'w_2046_posts'), // 
-			'location_selector' => __(true, 'w_2046_posts'), // single, id, most recent
-			'restrict_to_ids' => __('', 'w_2046_posts'), // numbs
-			'taxonomy' => __(array(''), 'w_2046_posts'), // numbs
-			'taxonomy_comparison' => __('OR', 'w_2046_posts'), // numbs
-			'order_by' => __('date', 'w_2046_posts'), 
-			'the_order' => __('DESC', 'w_2046_posts'), 
-			'meta_key_sort' => __('', 'w_2046_posts'),
-			//'meta_compare' => __('', 'w_2046_posts'), // not needed - we use the tax_query
-			'compare' => __('=', 'w_2046_posts'),
-			'meta_key' => __('', 'w_2046_posts'),
-			'meta_value' => __('', 'w_2046_posts'),  
-			'against_taxonomy' => __('', 'w_2046_posts'), // names
-			'posts_number' => __('', 'w_2046_posts'), // numbs
-			'page_selector' => __(0, 'w_2046_pages'), // ids, category, from the same category
-			'parent_page_id' => __('', 'w_2046_pages'), // num, (coma delimiter)
-			//'tax_selector' => __(0, 'w_2046_posts'), // single, id, most recent
-			'post_id' => __('', 'w_2046_posts'), // num singl
-			'with_offset' => __('', 'w_2046_posts'), // num
-			'stick_on_template_types' => __(array(''), 'w_2046_posts'), 
-			'disallow_on_ids' => __('', 'w_2046_posts'), // num
-			'navigation' => __('', 'w_2046_posts'), // num
-			'debug' => __('', 'w_2046_posts'), // num
+			'the_post_type' => 'post', // false, true
+			'the_widget_title' => '', // false, true
+			'the_post_title' => 'on', // false, true
+			'image_position' => 1, // 0,1
+			'image_size' => 2, // none, thumbnail, large
+			'image_with_link' => 0, // false, true
+			'with_excerpt' => 2, // ids, category, from the sa
+			'postmeta' => array(''), // Date, author, categories, tags
+			'comments_booble' => '', // false, true
+			'comments_selector' =>1, // true, false
+			'comments_comments_closed_info' => 'on', // true, false
+			'navigation' => '', // true, false
+			'scafolding_selector' => 0, //
+			'scafolding_row' => '', // 
+			'scafolding_column' => '', // 
+			'location_selector' => true, // single, id, most recent
+			'restrict_to_ids' => '', // numbs
+			'taxonomy' => array(''), // numbs
+			'taxonomy_comparison' => 'OR', // numbs
+			'order_by' => 'date', 
+			'the_order' => 'DESC', 
+			'meta_key_sort' => '',
+			//'meta_compare' => __('', 'p_2046s_loop_widget'), // not needed - we use the tax_query
+			'compare' => '=',
+			'meta_key' => '',
+			'meta_value' => '',  
+			'against_taxonomy' => '', // names
+			'posts_number' => '', // numbs
+			'page_selector' => 0, // ids, category, from the same category
+			'parent_page_id' => '', // num, (coma delimiter)
+			//'tax_selector' => __(0, 'p_2046s_loop_widget'), // single, id, most recent
+			'post_id' => '', // num singl
+			'with_offset' => '', // num
+			'stick_on_template_types' => array(''), 
+			'disallow_on_ids' => '', // num
+			'navigation' => '', // num
+			'debug' => '', // num
 		);
 
 		// get all custom "post" types
@@ -103,18 +105,16 @@ function w2046_main_loop_load_widgets() {
 		unset($post_types['attachment']);
 
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
-		?>
-		<div id="the_widget_id_<?php echo $this->id; ?>" class="pw_2046_lw">
-			
-				<h3>Post type</h3>
-				<div class="pw_type_holder">
-					<?php // if more then default post types exists, built select box
+		
+		echo '<div id="the_widget_id_'.$this->id.'" class="pw_2046_lw">
+				<h3>'.__('Post type','p_2046s_loop_widget').'</h3>
+				<div class="pw_type_holder">';
+					// if more then default post types exists, built select box
 					//$i = 0;
-					if (count($post_types) > 1){ ?>
-						<p class="pw_the_post_type">
-							<strong>Select post type</strong><br />
-							<select name="<?php echo $this->get_field_name( 'the_post_type' ); ?>" id="the_post_type" class="the_post_type">
-								<?php 
+					if (count($post_types) > 1){
+						echo '<p class="pw_the_post_type">
+							<strong>'.__('Select post type','p_2046s_loop_widget').'</strong><br />
+							<select name="'. $this->get_field_name( 'the_post_type' ) .'" id="the_post_type" class="the_post_type">';
 								foreach($post_types as $post_t){
 									echo '<option '; if($instance['the_post_type'] == $post_t->name ){echo 'selected="selected"';} echo' value="'.$post_t->name.'" >'.$post_t->labels->singular_name.'</option>';
 									
@@ -125,58 +125,55 @@ function w2046_main_loop_load_widgets() {
 										$the_type = $post_t->capability_type;
 									}
 									//$i++;
-								} ?>
-							</select>
-						</p>
-					<?php } ?>
-				</div>
-			<?php 
+								} 
+							echo '</select>
+						</p>';
+					}
+				echo '</div>';
 			// get all the avaiable taxonomies
 			$all_taxonomies = get_object_taxonomies($actual_type_name,'objects');
-			?>
-			<div class="lw_2046_left">
-				<h3>Widget title</h3>
+			echo '<div class="lw_2046_left">
+				<h3>'. __('Widget title', 'p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
 					<p class="pw_the_title">
-						<input type="text" name="<?php echo $this->get_field_name( 'the_widget_title' ); ?>" value="<?php echo $instance['the_widget_title'] ?>"/>
+						<input type="text" name="'. $this->get_field_name( 'the_widget_title' ).'" value="'. $instance['the_widget_title'] .'"/>
 						<br />
-						<em>if empty: no title, no html, nothing</em>
+						<em>'.__('if empty: no title, no html, nothing', 'p_2046s_loop_widget').'</em>
 					</p>
 				</div>
-				<h3>Content</h3>
+				<h3>'.__('Content','p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
 					<p class="pw_image_position">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_position' ); ?>" value="0" <?php if ($instance['image_position'] == 0) echo 'checked="checked"'; ?>> Image above the title<br />
-						<input type="checkbox" name="<?php echo $this->get_field_name( 'the_post_title' ); ?>" <?php if ($instance['the_post_title'] == 'on'){ echo 'checked="checked"'; } ?> /> Show <?php echo $type_title; ?> title<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_position' ); ?>" value="1" <?php if ($instance['image_position'] == 1) echo 'checked="checked"'; ?>> Image below the title<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_position' ) .'" value="0" '; if ($instance['image_position'] == 0) {echo 'checked="checked"';} echo '> '.__('Image above the title','p_2046s_loop_widget').'<br />
+						<input type="checkbox" name="'. $this->get_field_name( 'the_post_title' ).'"'; if ($instance['the_post_title'] == 'on'){ echo 'checked="checked"'; } echo '/>'.__('Show', 'p_2046s_loop_widget').' "'. $type_title.'" '.__('title','p_2046s_loop_widget').'<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_position' ) .'" value="1" '; if ($instance['image_position'] == 1) {echo 'checked="checked"';} echo '> '.__('Image below the title','p_2046s_loop_widget').'<br />
 						<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" value="0" <?php if ($instance['image_with_link'] == '0'){ echo 'checked="checked"'; } ?> /> Image without link<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" value="1" <?php if ($instance['image_with_link'] == '1'){ echo 'checked="checked"'; } ?> /> Image as a link to the <?php echo $type_title; ?><br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="<?php echo $this->get_field_name( 'image_with_link' ); ?>" value="2" <?php if ($instance['image_with_link'] == '2'){ echo 'checked="checked"'; } ?> /> Image as a link to it's large version
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_with_link' ).'" value="0"'; if ($instance['image_with_link'] == '0'){ echo 'checked="checked"'; } echo '/> '.__('Image without link','p_2046s_loop_widget').'<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_with_link' ).'" value="1"'; if ($instance['image_with_link'] == '1'){ echo 'checked="checked"'; } echo '/> '.__('Image as a link to the','p_2046s_loop_widget').' "'. $type_title.'"<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_with_link' ).'" value="2"'; if ($instance['image_with_link'] == '2'){ echo 'checked="checked"'; } echo '/> '.__('Image as a link to it\'s large version','p_2046s_loop_widget').'
 					</p>
 					<strong>Image size</strong>
 					<p class="pw_image_size">
 					
-						<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="0" <?php if ($instance['image_size'] == 0) echo 'checked="checked"'; ?>> No picture<br>
-						<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="1" <?php if ($instance['image_size'] == 1) echo 'checked="checked"'; ?>> Thumbnail<br>
-						<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="2" <?php if ($instance['image_size'] == 2) echo 'checked="checked"'; ?>> Medium<br />
-						<input type="radio" name="<?php echo $this->get_field_name( 'image_size' ); ?>" value="3" <?php if ($instance['image_size'] == 3) echo 'checked="checked"'; ?>> Large
-					</p>
-					<?php // TODO: image resorting, javascript hiding ?>
-					<p class="pw_comments_booble">
-						<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_booble' ); ?>" <?php if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } ?> /> Show comments booble
+						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="0" '; if ($instance['image_size'] == 0) echo 'checked="checked"'; echo '> '.__('No picture','p_2046s_loop_widget').'<br>
+						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="1" '; if ($instance['image_size'] == 1) echo 'checked="checked"'; echo '> '.__('Thumbnail','p_2046s_loop_widget').'<br>
+						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="2" '; if ($instance['image_size'] == 2) echo 'checked="checked"'; echo '> '.__('Medium','p_2046s_loop_widget').'<br />
+						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="3" '; if ($instance['image_size'] == 3) echo 'checked="checked"'; echo '> '.__('Large','p_2046s_loop_widget').'
+					</p>';
+					// TODO: image resorting, javascript hiding 
+					echo '<p class="pw_comments_booble">
+						<input type="checkbox" name="'. $this->get_field_name( 'comments_booble' ).'" '; if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } echo'/> '.__('Show comments booble','p_2046s_loop_widget').'
 					</p>
 					<p class="pw_with_excerpt">
-						<strong>Content</strong><br />
-						<input type="radio" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" value="0" <?php if ($instance['with_excerpt'] == 0) echo 'checked="checked"'; ?>> No content<br>
-						<input type="radio" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" value="1" <?php if ($instance['with_excerpt'] == 1) echo 'checked="checked"'; ?>> Excerpt<br>
-						<input type="radio" name="<?php echo $this->get_field_name( 'with_excerpt' ); ?>" value="2" <?php if ($instance['with_excerpt'] == 2) echo 'checked="checked"'; ?>> Content<br />
+						<strong>'.__('Content','p_2046s_loop_widget').'</strong><br />
+						<input type="radio" name="'. $this->get_field_name( 'with_excerpt' ).'" value="0" '; if ($instance['with_excerpt'] == 0) echo 'checked="checked"'; echo '> '.__('No content','p_2046s_loop_widget').'<br>
+						<input type="radio" name="'. $this->get_field_name( 'with_excerpt' ).'" value="1" '; if ($instance['with_excerpt'] == 1) echo 'checked="checked"'; echo '> '.__('Excerpt','p_2046s_loop_widget').'<br>
+						<input type="radio" name="'. $this->get_field_name( 'with_excerpt' ).'" value="2" '; if ($instance['with_excerpt'] == 2) echo 'checked="checked"'; echo '> '.__('Content','p_2046s_loop_widget').'<br />
 					</p>
 				
 					<p class="pw_postmeta">
-						<strong>Whether to show metadata for <?php echo $type_title; ?></strong>
-						<fieldset class="stick_on_template_types" id="stick_on_template_types">
-							<?php
+						<strong>'.__('Whether to show metadata for','p_2046s_loop_widget').' '. $type_title.'</strong>
+						<fieldset class="stick_on_template_types" id="stick_on_template_types">';
 							// create temporary list of current taxonomy types
 							$tmp_all_tax = array();
 							foreach ($all_taxonomies as $each_tax){
@@ -208,112 +205,108 @@ function w2046_main_loop_load_widgets() {
 								$tax_name = get_taxonomy($types);
 								echo ' type="checkbox" name="'.$this->get_field_name( 'postmeta' ).'[]" value="'.$types.'" /> '.$tax_name->labels->name.'<br />';
 							}
-							?>
-						</fieldset>
+							
+						echo '</fieldset>
 					</p>
-					<strong>Show comments</strong>
+					<strong>'.__('Show comments','p_2046s_loop_widget').'</strong>
 					<p class="pw_comments_selector">
-						<select name="<?php echo $this->get_field_name( 'comments_selector' ); ?>" class="comments_selector" >
-							<?php echo '<option '; if($instance['comments_selector'] == 0){echo 'selected="selected"';} echo' value="0" >Show</option>'; ?>
-							<?php echo '<option '; if($instance['comments_selector'] == 1){echo 'selected="selected"';} echo' value="1" >Hide</option>'; ?>'; ?>
+						<select name="'. $this->get_field_name( 'comments_selector' ).'" class="comments_selector" >
+							<option '; if($instance['comments_selector'] == 0){echo 'selected="selected"';} echo ' value="0" >'.__('Show','p_2046s_loop_widget').'</option>
+							<option '; if($instance['comments_selector'] == 1){echo 'selected="selected"';} echo ' value="1" >'.__('Hide','p_2046s_loop_widget').'</option>
 						</select>
 					</p>
 					<p class="pw_comments_comments_closed_info">
-						<input type="checkbox" name="<?php echo $this->get_field_name( 'comments_comments_closed_info' ); ?>" <?php if ($instance['comments_comments_closed_info'] == 'on'){ echo 'checked="checked"'; } ?> /> Show warning text if comments are closed
+						<input type="checkbox" name="'. $this->get_field_name( 'comments_comments_closed_info' ).'"'; if ($instance['comments_comments_closed_info'] == 'on'){ echo 'checked="checked"'; } echo' /> '.__('Show warning text if comments are closed','p_2046s_loop_widget').'
 						<br />
-						<em>Note: Comments will be shown on final post or page only!</em>
+						<em>'.__('Note: Comments will be shown on final post or page only!','p_2046s_loop_widget').'</em>
 					</p>
 				</div>
-				<h3>Navigation</h3>
+				<h3>'.__('Navigation','p_2046s_loop_widget').'</h3>
 				<p class="pw_navigation">
-					<select name="<?php echo $this->get_field_name( 'navigation' ); ?>" class="navigation" >
-						<option value="">Without navigation</option>
-						<?php echo '<option '; if($instance['navigation'] == 1){echo 'selected="selected"';} echo' value="1" >Prev-Next. Only on final page.</option>';
-						echo '<option '; if($instance['navigation'] == 2){echo 'selected="selected"';} echo' value="2" >Prev-Next links</option>';
+					<select name="'. $this->get_field_name( 'navigation' ).'" class="navigation" >
+						<option value="">'.__('Without navigation','p_2046s_loop_widget').'</option>
+						<option '; if($instance['navigation'] == 1){echo 'selected="selected"';} echo' value="1" >'.__('Prev-Next. Only on final page','p_2046s_loop_widget').'</option>
+						<option '; if($instance['navigation'] == 2){echo 'selected="selected"';} echo' value="2" >'.__('Prev-Next links','p_2046s_loop_widget').'</option>';
 						if (function_exists('wp_pagenavi')) {
-							echo '<option '; if($instance['navigation'] == 3){echo 'selected="selected"';} echo' value="3" >WP PageNavi</option>'; 
-						} ?>
-					</select>
-					<?php if (!function_exists('wp_pagenavi')) { ?>
-						<em>If the <a href="http://wordpress.org/extend/plugins/wp-pagenavi/" target="_blank">WP Page Navi</a> is installed it will be listed here too.</em>
-					<?php } ?>
-				</p>
-				<h3>Scafolding</h3>
+							echo '<option '; if($instance['navigation'] == 3){echo 'selected="selected"';} echo' value="3">WP PageNavi</option>'; 
+						} 
+					echo '</select>';
+					if (!function_exists('wp_pagenavi')) {
+						echo '<em>'.__('If the <a href="http://wordpress.org/extend/plugins/wp-pagenavi/" target="_blank">WP Page Navi</a> is installed it will be listed here too.','p_2046s_loop_widget').'</em>';
+					} 
+				echo '</p>
+				<h3>'.__('Scafolding','p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
-					<strong>type of structure</strong>
+					<strong>'.__('type of structure','p_2046s_loop_widget').'</strong>
 					<p class="pw_scafolding_selector">
-						<select name="<?php echo $this->get_field_name( 'scafolding_selector' ); ?>" class="scafolding_selector" >
-							<?php echo '<option '; if($instance['scafolding_selector'] == 0){echo 'selected="selected"';} echo' value="0" >Basic Wordpress classes</option>'; ?>
-							<?php echo '<option '; if($instance['scafolding_selector'] == 1){echo 'selected="selected"';} echo' value="1" >One column per row</option>'; ?>
-							<?php echo '<option '; if($instance['scafolding_selector'] == 2){echo 'selected="selected"';} echo' value="2" >Many Columns per row</option>'; ?>'; ?>
+						<select name="'. $this->get_field_name( 'scafolding_selector' ).'" class="scafolding_selector" >
+							<option '; if($instance['scafolding_selector'] == 0){echo 'selected="selected"';} echo' value="0">'.__('Basic Wordpress classes','p_2046s_loop_widget').'</option>
+							<option '; if($instance['scafolding_selector'] == 1){echo 'selected="selected"';} echo' value="1">'.__('One column per row','p_2046s_loop_widget').'</option>
+							<option '; if($instance['scafolding_selector'] == 2){echo 'selected="selected"';} echo' value="2">'.__('Many Columns per row','p_2046s_loop_widget').'</option>
 						</select>
-						<em>Custom classes are added to the basic Wordress classes</em>
+						<em>'.__('Custom classes are added to the basic Wordress classes','p_2046s_loop_widget').'</em>
 					</p>
 					<p class="pw_scafolding_row">
-						<strong>Row div class</strong><br />
-						<input type="text" name="<?php echo $this->get_field_name( 'scafolding_row' ); ?>" value="<?php echo $instance['scafolding_row'] ?>"/>
-						<em>In Boostrap it will be "row"</em>
+						<strong>'.__('Row div class','p_2046s_loop_widget').'</strong><br />
+						<input type="text" name="'. $this->get_field_name( 'scafolding_row' ).'" value="'. $instance['scafolding_row'] .'"/>
+						<em>'.__('In Boostrap it will be "row"','p_2046s_loop_widget').'</em>
 					</p>
 					<p class="pw_scafolding_column">
-						<strong>Column div class</strong><br />
-						<input type="text" name="<?php echo $this->get_field_name( 'scafolding_column' ); ?>" value="<?php echo $instance['scafolding_column'] ?>"/>
-						<em>In Boostrap it can be "span3"</em>	
+						<strong>'.__('Column div class','p_2046s_loop_widget').'</strong><br />
+						<input type="text" name="'. $this->get_field_name( 'scafolding_column' ).'" value="'. $instance['scafolding_column'] .'"/>
+						<em>'.__('In Boostrap it can be "span3"','p_2046s_loop_widget').'</em>	
 					</p>
-					<em>Note: see <a href="http://twitter.github.com/bootstrap/scaffolding.html" target="_blank">Boostrap</a></em>
+					<em>'.__('Note: see ','p_2046s_loop_widget').'<a href="http://twitter.github.com/bootstrap/scaffolding.html" target="_blank">Boostrap</a></em>
 				</div>
 			</div>
 			<div class="lw_2046_right">
-				<h3>Where this loop will be shown & what</h3>
+				<h3>'.__('Where this loop will be shown & what','p_2046s_loop_widget').'</h3>
 				
 				<p class="pw_location_selector">
-					<select name="<?php echo $this->get_field_name( 'location_selector' ); ?>" class="location_selector" >
-						<?php echo '<option '; if($instance['location_selector'] == 0){echo 'selected="selected"';} echo' value="0" >On final Post (Page)</option>'; ?>
-						<?php echo '<option '; if($instance['location_selector'] == 1){echo 'selected="selected"';} echo' value="1" >Elsewhere</option>'; ?>
+					<select name="'. $this->get_field_name( 'location_selector' ).'" class="location_selector" >
+						<option '; if($instance['location_selector'] == 0){echo 'selected="selected"';} echo' value="0">'.__('On final Post (Page)','p_2046s_loop_widget').'</option>
+						<option '; if($instance['location_selector'] == 1){echo 'selected="selected"';} echo' value="1">'.__('Elsewhere','p_2046s_loop_widget').'</option>
 					</select>
 					<p>
-					<em>"On final post" make sense when the widget is on single.php / page.php.</em>
+					<em>'.__('"On final post" make sense when the widget is on single.php / page.php.','p_2046s_loop_widget').'</em>
 					</p>
 					<p>
-					<em>"Elsewhere": you decide which "<?php echo $type_title; ?>" content you want to see, how and where.</em>
+					<em>'.__('"Elsewhere": you decide which','p_2046s_loop_widget').' "'. $type_title.'" '.__('content you want to see, how and where.','p_2046s_loop_widget').'</em>
 					</p>
 				</p>
 				<div class="if_elsewhere">
-					<h3>Which <?php echo $type_title; ?></h3>
+					<h3>'.__('Which','p_2046s_loop_widget').' '. $type_title.'</h3>
 					<div class="pw_holder">
 						<p class="pw_page_selector">
-							<strong>Select the logic</strong><br />
-							<select name="<?php echo $this->get_field_name( 'page_selector' ); ?>" class="page_selector" >
-								<?php 
-								echo '<option '; if($instance['page_selector'] == 0){echo 'selected="selected"';} echo' value="0" >Select '.$type_title.'(s) by IDs</option>';
+							<strong>'.__('Select the logic','p_2046s_loop_widget').'</strong><br />
+							<select name="'. $this->get_field_name( 'page_selector' ).'" class="page_selector">';
+								echo '<option '; if($instance['page_selector'] == 0){echo 'selected="selected"';} echo' value="0" >'.__('Select','p_2046s_loop_widget').' '.$type_title.'(s) by IDs</option>';
 								// if the type is hyerarchical / page type
 								if($the_type == 'page'){
-									echo '<option '; if($instance['page_selector'] == 1){echo 'selected="selected"';} echo' value="1" >Children pages of '.$type_title.' parent</option>';
-									echo '<option '; if($instance['page_selector'] == 2){echo 'selected="selected"';} echo' value="2" >Children pages of displayed '.$type_title.'</option>';
-									echo '<option '; if($instance['page_selector'] == 3){echo 'selected="selected"';} echo' value="3" >'.$type_title.'(s) from the same hierarchy level</option>';
+									echo '<option '; if($instance['page_selector'] == 1){echo 'selected="selected"';} echo' value="1">'.__('Children pages of','p_2046s_loop_widget').' '.$type_title.' '.__('parent','p_2046s_loop_widget').'</option>
+									<option '; if($instance['page_selector'] == 2){echo 'selected="selected"';} echo' value="2">'.__('Children pages of displayed','p_2046s_loop_widget').' '.$type_title.'</option>
+									<option '; if($instance['page_selector'] == 3){echo 'selected="selected"';} echo' value="3">'.$type_title.' '.__('(s) from the same hierarchy level','p_2046s_loop_widget').'</option>';
 								}
 								// if there are any taxonomies
 								if(!empty($all_taxonomies)){
-									echo '<option '; if($instance['page_selector'] == 4){echo 'selected="selected"';} echo' value="4" >Selected taxonomy</option>';
-									echo '<option '; if($instance['page_selector'] == 5){echo 'selected="selected"';} echo' value="5" >From the same taxonomy</option>'; 
+									echo '<option '; if($instance['page_selector'] == 4){echo 'selected="selected"';} echo' value="4">'.__('Selected taxonomy','p_2046s_loop_widget').'</option>
+									<option '; if($instance['page_selector'] == 5){echo 'selected="selected"';} echo' value="5">'.__('From the same taxonomy','p_2046s_loop_widget').'</option>'; 
 								}
-									echo '<option '; if($instance['page_selector'] == 6){echo 'selected="selected"';} echo' value="6" >By the custom meta values</option>';
-								?>
+									echo '<option '; if($instance['page_selector'] == 6){echo 'selected="selected"';} echo' value="6">'.__('By the custom meta values','p_2046s_loop_widget').'</option>
 							</select>
 						</p>
 						<p class="pw_parent_page_id">
-							<strong><?php echo $type_title; ?> parent ID</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'parent_page_id' ); ?>" <?php if (!empty($instance['parent_page_id'])){ echo 'value="'.$instance['parent_page_id'].'"'; }else{ echo 'value=""';}; ?>/>
+							<strong>'. $type_title.' '.__('parent ID','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'parent_page_id' ).'" ';if (!empty($instance['parent_page_id'])){ echo 'value="'.$instance['parent_page_id'].'"'; }else{ echo 'value=""';} echo '/>
 							<br />
-							<small>ONLY one page ID !</small>
+							<small>'.__('ONLY one page ID !','p_2046s_loop_widget').'</small>
 						</p>
 						<p class="pw_post_id">
-							<strong>Enter <?php echo $type_title; ?> ID(s)</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'post_id' ); ?>" <?php if (!empty($instance['post_id'])){ echo 'value="'.$instance['post_id'].'"'; }else{ echo 'value=""';}; ?>/>
+							<strong>'.__('Enter','p_2046s_loop_widget').' '. $type_title.' ID(s)</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'post_id' ).'" '; if (!empty($instance['post_id'])){ echo 'value="'.$instance['post_id'].'"'; }else{ echo 'value=""';} echo'/>
 							<br />
-							<em>Separate IDs by comma.</em>
-						</p>
-
-						<?php 
+							<em>'.__('Separate IDs by comma.','p_2046s_loop_widget').'</em>
+						</p>';
 						 
 						$iter = 0;
 						// filter objects
@@ -331,11 +324,11 @@ function w2046_main_loop_load_widgets() {
 					
 							if(count($terms) > 0){
 								echo '<p class="pw_taxonomy">';
-									if($iter == 0){ echo '<h4>Select taxonomy term</h4>';}
+									if($iter == 0){ echo '<h4>'.__('Select taxonomy term','p_2046s_loop_widget').'</h4>';}
 									$iter++;
 									echo '<strong>'.$each_taxonomy_label.'</strong>';
 									// select id problem
-									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="lw_multiple_select" title="Please select a '.$each_taxonomy_label.'">';
+									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="lw_multiple_select" title="'.__('Please select a','p_2046s_loop_widget').' '.$each_taxonomy_label.'">';
 										//$i = 0;
 										foreach($terms as $term){
 											//if($i == 0){echo '<option value="">no restrictions</option>';};
@@ -347,73 +340,73 @@ function w2046_main_loop_load_widgets() {
 											//$i++;
 										}
 									echo '</select>
-								</p>';
+								</p>
+								<em>'.__('Warning! The number for each term counted for all post/page/cutom post types all together.','p_2046s_loop_widget').'</em>
+								<br /><br />
+								<em>'.__('Note! If you see the taxonomy selector multiplied, don not panic. These are just virtual copies, a bug.','p_2046s_loop_widget').'</em>
+								<br /><br />
+								';
 							}
 						}
 						if(count($all_taxonomies) > 1){
-							echo '<p>'; ?>
-								<strong>The comparison type</strong>
-								<select name="<?php echo $this->get_field_name( 'taxonomy_comparison' ); ?>" class="taxonomy_comparison" >
-									<?php echo '<option '; if($instance['taxonomy_comparison'] == 'OR'){echo 'selected="selected"';} echo' value="OR" >Matching one of the selected terms (OR)</option>'; ?>
-									<?php echo '<option '; if($instance['taxonomy_comparison'] == 'AND'){echo 'selected="selected"';} echo' value="AND" >Is releated to all selected terms (AND)</option>'; ?>'; ?>
-								</select>
-							<?php 
+							echo '<p>'.'
+								<strong>'.__('The comparison type','p_2046s_loop_widget').'</strong>
+								<select name="'. $this->get_field_name( 'taxonomy_comparison' ).'" class="taxonomy_comparison">
+									<option '; if($instance['taxonomy_comparison'] == 'OR'){echo 'selected="selected"';} echo' value="OR">'.__('Matching one of the selected terms','p_2046s_loop_widget').' (OR)</option>
+									<option '; if($instance['taxonomy_comparison'] == 'AND'){echo 'selected="selected"';} echo' value="AND">'.__('Is releated to all selected terms','p_2046s_loop_widget').' (AND)</option>
+								</select>';
 						}
 						echo '</div>';
-						// 5 ?>
- 						<p class="pw_against_taxonomy">
-							Select against which <?php echo $type_title; ?> taxonomy you want to match the loop<br />
-							<?php 
+						// 5 
+ 						echo '<p class="pw_against_taxonomy">
+							'.__('Select against which','p_2046s_loop_widget').' '. $type_title.' '.__('taxonomy you want to match the loop','p_2046s_loop_widget').'<br />';
 							foreach($all_taxonomies as $each_taxonomy){ 
 								// remove the post_format from the list
 								if($each_taxonomy->name == 'post_format'){
 									continue;
 								}
-								echo '<input type="radio" name="'. $this->get_field_name( 'against_taxonomy' ).'" value="'.$each_taxonomy->name.'"'; if ($instance['against_taxonomy'] == $each_taxonomy->name) {echo 'checked="checked"';} echo '> '.$each_taxonomy->label; ?> <br>
-							<?php } ?>
-						</p>
+								echo '<input type="radio" name="'. $this->get_field_name( 'against_taxonomy' ).'" value="'.$each_taxonomy->name.'"'; if ($instance['against_taxonomy'] == $each_taxonomy->name) {echo 'checked="checked"';} echo '> '.$each_taxonomy->label.' <br>';
+							}
+						echo '</p>
 						<p class="pw_posts_number">
-							<strong>Number of posts</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'posts_number' ); ?>" <?php if (!empty($instance['posts_number'])){ echo 'value="'.$instance['posts_number'].'"'; }else{ echo 'value=""';}; ?>/>
+							<strong>'.__('Number of posts','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'posts_number' ).'" '; if (!empty($instance['posts_number'])){ echo 'value="'.$instance['posts_number'].'"'; }else{ echo 'value=""';} echo'/>
 						</p>
 						<p class="pw_with_offset">
-							<strong>Offset</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'with_offset' ); ?>" <?php if (!empty($instance['with_offset'])){ echo 'value="'.$instance['with_offset'].'"'; }else{ echo 'value=""';}; ?>/>
+							<strong>'.__('Offset','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'with_offset' ).'" '; if (!empty($instance['with_offset'])){ echo 'value="'.$instance['with_offset'].'"'; }else{ echo 'value=""';} echo '/>
 							<br />
-							<em>The offset is counted from the most recent post (by date). </em>
 						</p>
 						<p class="pw_meta_sort">
-							<strong>Meta key</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'meta_key' ); ?>" <?php if (!empty($instance['meta_key'])){ echo 'value="'.$instance['meta_key'].'"'; }else{ echo 'value=""';}; ?>/>
-							<br /><em>The exact "meta key" name. Both key and meta must be present!</em>
+							<strong>'.__('Meta key','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'meta_key' ).'" '; if (!empty($instance['meta_key'])){ echo 'value="'.$instance['meta_key'].'"'; }else{ echo 'value=""';} echo '/>
+							<br /><em>'.__('The exact "meta key" name. Both key and value must be present!','p_2046s_loop_widget').'</em>
 							<br /><br />
-							<strong>Meta value</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'meta_value' ); ?>" <?php if (!empty($instance['meta_value'])){ echo 'value="'.$instance['meta_value'].'"'; }else{ echo 'value=""';}; ?>/>
-							<br /><em>The exact "meta value" name. Both key and meta must be present!</em>
+							<strong>'.__('Meta value','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'meta_value' ).'" '; if (!empty($instance['meta_value'])){ echo 'value="'.$instance['meta_value'].'"'; }else{ echo 'value=""';} echo '/>
+							<br /><em>'.__('The exact "meta value" name. Both key and meta must be present!','p_2046s_loop_widget').'</em>
 							<br /><br />
-							Meta comparison<br />
-							<select name="<?php echo $this->get_field_name( 'compare' ); ?>" class="compare" >
-								<?php 
+							'.__('Meta comparison','p_2046s_loop_widget').'<br />
+							<select name="'. $this->get_field_name( 'compare' ).'" class="compare">';
 								$comp_types = array(  '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN' ); // 'BETWEEN', 'NOT BETWEEN'
 								foreach($comp_types as $types){
 									echo '<option '; if($instance['compare'] == $types){echo 'selected="selected"';} echo' value="'.$types.'" >'.$types.'</option>';
-								} ?>
-							</select>
+								} 
+							echo '</select>
 						</p>
 					</div>
-					<h3>Order</h3>
+					<h3>'.__('Order','p_2046s_loop_widget').'</h3>
 					<div class="pw_holder">
 						<p class="pw_the_order">
-							<strong>Order</strong>
-							<select name="<?php echo $this->get_field_name( 'the_order' ); ?>" class="the_order" >
-								<?php echo '<option '; if($instance['the_order'] == 'ASC'){echo 'selected="selected"';} echo' value="ASC" >Ascendingly</option>'; ?>
-								<?php echo '<option '; if($instance['the_order'] == 'DESC'){echo 'selected="selected"';} echo' value="DESC" >Descendingly</option>'; ?>'; ?>
+							<strong>'.__('Order','p_2046s_loop_widget').'</strong>
+							<select name="'. $this->get_field_name( 'the_order' ).'" class="the_order">
+								<option '; if($instance['the_order'] == 'ASC'){echo 'selected="selected"';} echo' value="ASC">'.__('Ascendingly','p_2046s_loop_widget').'</option>
+								<option '; if($instance['the_order'] == 'DESC'){echo 'selected="selected"';} echo' value="DESC">'.__('Descendingly','p_2046s_loop_widget').'</option>
 							</select>
 						</p>
 						<p class="pw_order_by">
-							<strong>Order by</strong>
-							<select name="<?php echo $this->get_field_name( 'order_by' ); ?>" class="order_by" >
-								<?php 
+							<strong>'.__('Order by','p_2046s_loop_widget').'</strong>
+							<select name="'. $this->get_field_name( 'order_by' ).'" class="order_by">';
 								// list if possible orders
 								// not inluded: 
 								if($the_type == 'page'){
@@ -423,30 +416,29 @@ function w2046_main_loop_load_widgets() {
 								}
 								foreach($posible_orders as $order){
 									echo '<option '; if($instance['order_by'] == $order){echo 'selected="selected"';} echo' value="'.$order.'" >'.$order.'</option>'; 
-								}?>
-							</select>
-							<em>meta_value sorts: alphabetically / meta_value_num: sorts numerically / parent: ID</em>
+								}
+							echo '</select>
+							<em>'.__('meta_value sorts: alphabetically / meta_value_num: sorts numerically / parent: ID','p_2046s_loop_widget').'</em>
 							<span class="pw_meta">
-								<br /><br />Meta key<br />
-								<input type="text" name="<?php echo $this->get_field_name( 'meta_key_sort' ); ?>" <?php if (!empty($instance['meta_key_sort'])){ echo 'value="'.$instance['meta_key_sort'].'"'; }else{ echo 'value=""';}; ?>/>
-								<br /><em>The exact meta key name.</em>
+								<br /><br />'.__('Meta key','p_2046s_loop_widget').'<br />
+								<input type="text" name="'. $this->get_field_name( 'meta_key_sort' ).'" '; if (!empty($instance['meta_key_sort'])){ echo 'value="'.$instance['meta_key_sort'].'"'; }else{ echo 'value=""';} echo'/>
+								<br /><em>'.__('The exact meta key name.','p_2046s_loop_widget').'</em>
 							</span>
 						</p>
 					</div>
-					<h3>Restrict to</h3>
+					<h3>'.__('Restrict to','p_2046s_loop_widget').'</h3>
 					<div class="pw_holder">
 						<p class="restrict_to_ids">
-							<strong>Restrict to post or page IDs:</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'restrict_to_ids' ); ?>" <?php if (!empty($instance['restrict_to_ids'])){ echo 'value="'.$instance['restrict_to_ids'].'"'; }else{ echo 'value=""';}; ?>/>
+							<strong>'.__('Restrict to post or page IDs:','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'restrict_to_ids' ).'" '; if (!empty($instance['restrict_to_ids'])){ echo 'value="'.$instance['restrict_to_ids'].'"'; }else{ echo 'value=""';} echo'/>
 							<br />
-							<em>No restrictions if empty. Separate IDs by comma.</em>
+							<em>'.__('No restrictions if empty. Separate IDs by comma.','p_2046s_loop_widget').'</em>
 						</p>
 					</div>
-					<h3>Prevent from being shown on</h3>
+					<h3>'.__('Prevent from being shown on','p_2046s_loop_widget').'</h3>
 					<div class="pw_holder">
 						<p class="pw_stick_on_template_types">
-							<fieldset class="stick_on_template_types" id="stick_on_template_types">
-								<?php
+							<fieldset class="stick_on_template_types" id="stick_on_template_types">';
 								$i = 1;
 								$template_types = array('Single post', 'Home', 'Front Page', 'Archive', 'Tag/Term list', 'Category list', 'Author\'s list', 'Search', '404 error page');
 								foreach ($template_types as $types){
@@ -459,24 +451,22 @@ function w2046_main_loop_load_widgets() {
 									echo ' type="checkbox" name="'.$this->get_field_name( 'stick_on_template_types' ).'[]" value="'.$i.'" /> '.$types.'<br />';
 									$i++;
 								}
-								?>
-							</fieldset>
+							echo '</fieldset>
 						</p>
 						<p class="disallow_on_ids">
-							<strong>Do not show on post/page with IDs:</strong><br />
-							<input type="text" name="<?php echo $this->get_field_name( 'disallow_on_ids' ); ?>" <?php if (!empty($instance['disallow_on_ids'])){ echo 'value="'.$instance['disallow_on_ids'].'"'; }else{ echo 'value=""';}; ?>/>
+							<strong>'.__('Do not show on post/page with IDs:','p_2046s_loop_widget').'</strong><br />
+							<input type="text" name="'. $this->get_field_name( 'disallow_on_ids' ).'" '; if (!empty($instance['disallow_on_ids'])){ echo 'value="'.$instance['disallow_on_ids'].'"'; }else{ echo 'value=""';} echo '/>
 							<br />
-							<em>No restrictions if empty. Separate IDs by comma.</em>
+							<em>'.__('No restrictions if empty. Separate IDs by comma.','p_2046s_loop_widget').'</em>
 						</p>
 					</div>
 				</div>
-				<input type="checkbox" name="<?php echo $this->get_field_name( 'debug' ); ?>" value="1" <?php if ($instance['debug'] == 1) echo 'checked="checked"'; ?>> debug
+				<input type="checkbox" name="'. $this->get_field_name( 'debug' ).'" value="1" '; if ($instance['debug'] == 1) {echo 'checked="checked"';} echo '> debug
 			</div>
 			<p class="lw_type_change_note">
-				In order to load the appropriate settings for the selected "post type" you have to save the widget.
+				'.__('In order to load the appropriate settings for the selected "post type" you have to save the widget.','p_2046s_loop_widget').'
 			</p>
-		</div>
-	<?php
+		</div>';
 	}
 	
 	/**
@@ -653,35 +643,16 @@ function w2046_main_loop_load_widgets() {
 				elseif($page_selector == 5){
 					if(!empty($against_taxonomy)){
 						$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
-						/*if(is_term()){
-							global $wp_query;
-							$qe = $wp_query->tax_query->queries[0]['taxonomy'];
-							var_dump($wp_query->tax_query->queries);
-							$args_taxonomies_against = array(
-							'tax_query' => array(
-									//'relation' => 'AND',
-									array(
-										'taxonomy' => $qe,
-										//'field' => 'id',
-										//'terms' => $current_terms//array( '25')
-									)
+						$args_taxonomies_against = array(
+						'tax_query' => array(
+								//'relation' => 'AND',
+								array(
+									'taxonomy' => $against_taxonomy,
+									'field' => 'id',
+									'terms' => $current_terms//array( '25')
 								)
-							);
-							// add to arrays to query
-							$args = array_merge( $args, $args_taxonomies_against);
-						}else{*/
-							$args_taxonomies_against = array(
-							'tax_query' => array(
-									//'relation' => 'AND',
-									array(
-										'taxonomy' => $against_taxonomy,
-										'field' => 'id',
-										'terms' => $current_terms//array( '25')
-									)
-								)
-							);
-						//}
-						// add to arrays to query
+							)
+						);
 						$args = array_merge( $args, $args_taxonomies_against);
 					}
 				}
@@ -833,16 +804,6 @@ function w2046_main_loop_load_widgets() {
 		if($debug == 1){
 			echo '<p class="lw_2046_debug"><strong>Debug (query args)</strong><br><pre>';
 				var_dump($args);
-				/*$args = array(
-					'meta_query' => array(
-						array(
-							'key' => 'cf_2046_in_slider',
-							'value' => 1,
-							'compare' => '='
-						)
-					)
-				);
-				var_dump($args);*/
 			echo '</pre></p>';
 		}
 		
@@ -1079,8 +1040,8 @@ function w2046_main_loop_load_widgets() {
 			// Create navigation
 			if($navigation == 2){
 				echo '<div class="navigation">';
-					previous_posts_link(__('&#171; previous'), $the_query->max_num_pages);
-					next_posts_link(__('next &#187;'), $the_query->max_num_pages);
+					previous_posts_link(__('&#171; previous','p_2046s_loop_widget'), $the_query->max_num_pages);
+					next_posts_link(__('next &#187;','p_2046s_loop_widget'), $the_query->max_num_pages);
 					//posts_nav_link(' &#183; ', 'previous page', 'next page');
 				echo '</div>';
 			}

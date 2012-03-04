@@ -1,5 +1,6 @@
-.pw_holder{background:#fff;border:1px solid #ccc;border-radius:3px;padding:0.5em;}
+.pw_holder{background:#fff;border:1px solid #ccc;border-radius:3px;padding:0.5em;box-shadow: 0px 0px 3px #ddd;}
 .pw_type_holder{border-bottom:1px solid #ccc;}
+.pw_2046_lw input[type=text]{box-shadow:inset 2px 2px 0px 0px #ddd;background:#f9f9f9;}
 .pw_2046_lw input[type=text], .pw_2046_lw select{width:100%;}
 .warning{color:red}
 .blue{background:blue !important;}

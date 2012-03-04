@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 0.243
+Stable tag: 0.244
 
 2046's loop widget boosts you website prototyping.
 
@@ -13,10 +13,14 @@ Stable tag: 0.243
 
 http://youtu.be/pScOFwTQwYQ
 
+Beta 1.31 preview
+
+
 The Drag&Drop content management is here. 
 When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
 The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standarts.
 
+The widget went through Localization process and so the core changed a bit. So if you update you might have to resave the widgets.
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
 = Post types =
@@ -51,6 +55,11 @@ The final content loop has no settings in this logic area. It doesn't need any, 
 The "Debug" mode renders the Query arguments you build by the widget to the front-end of your site, right before the loop.</em>
 
 "A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
+
+= Localization =
+
+ * English
+ * Czech
 
 = Compatibility =
 
@@ -103,6 +112,10 @@ Don't wary this is just a Javascript skin effect. If you save the widget, or you
 
 == Upgrade Notice == 
 
+= 0.244 =
+
+ * resave the widgets, the core changed again (sory for that)
+
 = 0.242 =
 
  * The scafolding changed a bit. If you haven't use it (I mean custom class), nothing is changing for you. If you do. You have to rethink the design a bit. The reson why I changed it is that the native widget div broke the Bootsrap logic. I'm sorry for that. 
@@ -130,6 +143,10 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Change log ==
+
+= 0.244 = [04.03.2012]
+
+ * localized (English, Czech) ready for more.
 
 = 0.243 = [03.03.2012]
 
