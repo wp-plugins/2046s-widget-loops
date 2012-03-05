@@ -964,10 +964,6 @@ function w2046_main_loop_load_widgets() {
 							}
 						echo '</span>';
 					}
-					// if user want the image here 
-					if ( has_post_thumbnail() && ($image_position == 0)) { // check if the post has a Post Thumbnail assigned to it.
-						echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
-					} 
 					// if user wants post thumbnail after the title
 					if ( has_post_thumbnail() && $image_position == 1) { // check if the post has a Post Thumbnail assigned to it.
 						//echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
