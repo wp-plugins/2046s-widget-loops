@@ -2,7 +2,7 @@
 Contributors: 2046
 Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
 Donate Link: http://2046.cz/freestuff.html
-Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
+Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.3.1
 Stable tag: 0.246
