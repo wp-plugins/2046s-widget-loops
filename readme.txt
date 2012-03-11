@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 0.245
+Stable tag: 0.246
 
 2046's loop widget boosts you website prototyping.
 
@@ -111,7 +111,10 @@ Don't wary this is just a Javascript skin effect. If you save the widget, or you
 
 == Upgrade Notice == 
 
-	
+= 0.246 =
+
+ * resave widgets (as always)
+
 = 0.244 =
 
  * resave the widgets, the core changed again (sory for that)
@@ -143,6 +146,16 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
 
 == Change log ==
+
+= 0.246 =
+
+ * NEW - Gallery builder!
+ * NEW - h1-h5+span settings for titles
+ * NEW - added show/hide edit link
+ * NEW - html settings for titles
+ * NEW - ON/OFF title link
+ * NEW - show/hide edit link
+ * asmselect removed (the fancy taxonomy selector) until I find out how to implement it correctly
 
 = 0.245 =
 

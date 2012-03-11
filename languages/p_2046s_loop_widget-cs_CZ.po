@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2046's loop widget\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 00:54+0100\n"
-"PO-Revision-Date: 2012-03-04 00:59+0100\n"
+"POT-Creation-Date: 2012-03-11 16:44+0100\n"
+"PO-Revision-Date: 2012-03-11 16:46+0100\n"
 "Last-Translator: Jan Mucska <2046@2046.cz>\n"
 "Language-Team: 2046 <2046.cz>\n"
 "Language: \n"
@@ -14,387 +14,418 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-Language: EN\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: /var/www/kuraz/wp-content/plugins/2046s-widget-loops\n"
+"X-Poedit-SearchPath-0: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk\n"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:39
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:39
 msgid "It let's you show Post or Pages anywhere. The widget let's you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it's form."
 msgstr "Osnadní vám způsob umístění vašeho obsahu kdekoli na vašich stránkách bez potřeby programování."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:45
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:45
 msgid "2046's - loop widget"
 msgstr "2046's - loop widget"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:110
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:113
 msgid "Post type"
 msgstr "Post typ"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:116
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:119
 msgid "Select post type"
 msgstr "Vyberte \"post\" typ"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:136
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:139
 msgid "Widget title"
 msgstr "Nadpis Widgety"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:141
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:144
 msgid "if empty: no title, no html, nothing"
 msgstr "Pokud je prázdné nezobrazí se vubec nic, žádný obsah, žádne HTML, nic."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:144
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:168
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:171
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:147
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:187
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:190
 msgid "Content"
 msgstr "Obsah"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:147
-msgid "Image above the title"
-msgstr "Obrázek nad titulkem"
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:150
+msgid "Title"
+msgstr "Titulek"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:148
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:214
-msgid "Show"
-msgstr "Ukázat"
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:151
+msgid "Show title"
+msgstr "Zobrazit titulek"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:148
-msgid "title"
-msgstr "titulek"
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:152
+msgid "as a link"
+msgstr "jako odkaz"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:149
-msgid "Image below the title"
-msgstr "Obrázek pod titulkem"
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:153
+msgid "Show edit link"
+msgstr "zobrazit link na editaci"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:151
-msgid "Image without link"
-msgstr "Obrázek bez odkazu"
-
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:152
-msgid "Image as a link to the"
-msgstr "Obrázek jako odkaz na"
-
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:153
-msgid "Image as a link to it's large version"
-msgstr "Obtázek s odkazem na jeho větší verzi"
-
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:158
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:164
 msgid "No picture"
 msgstr "Bez obrázku"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:159
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:165
 msgid "Thumbnail"
 msgstr "Zmenšenina"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:160
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:166
 msgid "Medium"
 msgstr "Střední velikost"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:161
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:167
 msgid "Large"
 msgstr "Velká velikost"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:165
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:171
+msgid "Image position"
+msgstr ";Pozice obrázku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:173
+msgid "Image above the title"
+msgstr "Obrázek nad titulkem"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:174
+msgid "Image below the title"
+msgstr "Obrázek pod titulkem"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:176
+msgid "Image linking"
+msgstr "Odkaz obrázku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:178
+msgid "Image without link"
+msgstr "Obrázek bez odkazu"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:179
+msgid "Image as a link to the"
+msgstr "Obrázek jako odkaz na"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:180
+msgid "Image as a link to it's \"large\" version"
+msgstr "Obtázek s odkazem na jeho \"velkou\" verzi"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:184
 msgid "Show comments booble"
 msgstr "Zobrazit počet komentářů"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:169
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:188
 msgid "No content"
 msgstr "Bez obsahu"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:170
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:189
 msgid "Excerpt"
 msgstr "Zkrácenina"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:175
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:194
 msgid "Whether to show metadata for"
 msgstr "Jestli ukázat metadata nebo ne"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:211
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:230
 msgid "Show comments"
 msgstr "Ukázat komentáře"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:215
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:233
+msgid "Show"
+msgstr "Ukázat"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:234
 msgid "Hide"
 msgstr "Skrýt"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:219
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:238
 msgid "Show warning text if comments are closed"
 msgstr "Zobrazit upozornění o uzamčených kometářích"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:221
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:240
 msgid "Note: Comments will be shown on final post or page only!"
 msgstr "Poznámka: komentáře budou zobrazeny pouze na finální stránce/příspěvku."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:224
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:243
 msgid "Navigation"
 msgstr "Navigace"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:227
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:246
 msgid "Without navigation"
 msgstr "Bez navigace"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:228
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:247
 msgid "Prev-Next. Only on final page"
 msgstr "předchozí-další. Pouze na finální stránce."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:229
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:248
 msgid "Prev-Next links"
 msgstr "předchozí-další"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:235
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:254
 msgid "If the <a href=\"http://wordpress.org/extend/plugins/wp-pagenavi/\" target=\"_blank\">WP Page Navi</a> is installed it will be listed here too."
 msgstr "Pokud si nainstalujete a zapnete <a href=\"http://wordpress.org/extend/plugins/wp-pagenavi/\" target=\"_blank\">WP Page Navi</a> ukáže se jako jedna z možností."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:238
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:257
 msgid "Scafolding"
 msgstr "HTML struktura"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:240
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:259
 msgid "type of structure"
 msgstr "typ struktury"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:243
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:262
 msgid "Basic Wordpress classes"
 msgstr "Základní třídy WP."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:244
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:263
 msgid "One column per row"
 msgstr "Jeden sloupec na řádek"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:245
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:264
 msgid "Many Columns per row"
 msgstr "Více sloupců na řádek"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:247
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:266
 msgid "Custom classes are added to the basic Wordress classes"
 msgstr "Vlastní třídy budou přidány k implicitním třídám WP."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:250
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:269
 msgid "Row div class"
 msgstr "Třída (div) řádku"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:252
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:271
 msgid "In Boostrap it will be \"row\""
 msgstr "V Bootstrapu by to bylo \"row\""
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:255
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:274
 msgid "Column div class"
 msgstr "Třída (div) sloupce"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:257
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:276
 msgid "In Boostrap it can be \"span3\""
 msgstr "V Bootstrapu by to byl \"row\""
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:259
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:278
 msgid "Note: see "
 msgstr "Podívejte se na:"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:263
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:282
 msgid "Where this loop will be shown & what"
 msgstr "Kde bude tento loop zobrazen a co v něm"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:267
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:286
 msgid "On final Post (Page)"
 msgstr "Na finální stránce/příspěvku"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:268
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:287
+msgid "Gallery (Images of post/page)"
+msgstr "Galerie (obrázky stránky)"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:288
 msgid "Elsewhere"
 msgstr "Kdekoli"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:271
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:291
 msgid "\"On final post\" make sense when the widget is on single.php / page.php."
 msgstr "\"Na finální stránce\" vyberte pokud chcete tímto loopem nahradit hlavní obsah finální stránky."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:274
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:294
+msgid "\"Images of final post/page (gallery)\": The content settings are applied to the gallery images."
+msgstr "\"Obrázky příspěvku/stránky\": V obsahovém nastavení nastavíte zobrazení galerie."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:297
 msgid "\"Elsewhere\": you decide which"
 msgstr "\"Kdekoli\", vy se rozhodnete"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:274
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:297
 msgid "content you want to see, how and where."
 msgstr "obsah který chcete zobrazit"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:278
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:301
 msgid "Which"
 msgstr "Který/á"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:281
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:304
 msgid "Select the logic"
 msgstr "Vyber logiku"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:283
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:306
 msgid "Select"
 msgstr "Vyber"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:286
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:309
 msgid "Children pages of"
 msgstr "Potomci nadřazené stránky"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:286
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:309
 msgid "parent"
 msgstr "Nadřazená stránka"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:287
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:310
 msgid "Children pages of displayed"
 msgstr "Potomci zobrazené stránky"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:288
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:311
 msgid "(s) from the same hierarchy level"
 msgstr "ze stejné hierarchické urovně"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:292
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:315
 msgid "Selected taxonomy"
 msgstr "Vyber taxonomii"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:293
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:316
 msgid "From the same taxonomy"
 msgstr "Ze stejné taxonomie"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:295
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:318
 msgid "By the custom meta values"
 msgstr "Podle vlastních meta"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:299
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:322
 msgid "parent ID"
 msgstr "Id nadřazené stránky"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:302
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:325
 msgid "ONLY one page ID !"
 msgstr "Pouze jedno ID!"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:305
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:328
 msgid "Enter"
 msgstr "Vložit"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:308
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:331
 msgid "Separate IDs by comma."
 msgstr "ID oddělujte čárkou"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:327
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:332
+msgid "In the case of gallery, only first ID will be used. If empty the ID of visited post/page is used."
+msgstr "V případě galerie bude použito pouze první ID."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:350
 msgid "Select taxonomy term"
 msgstr "Vyberte taxonomický termín"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:331
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:354
 msgid "Please select a"
 msgstr "Prosím vyberte"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:344
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:367
 msgid "Warning! The number for each term counted for all post/page/cutom post types all together."
 msgstr "Pozor! Počty jednotlivých termínu jsou počitané ze všech typu příspevku a stránek dohromady."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:346
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:369
 msgid "Note! If you see the taxonomy selector multiplied, don not panic. These are just virtual copies, a bug."
 msgstr "Poznámka: pokud se vám zobrazí zmultiplikoivane pole pro výběr taxonomií, nepanikařte, je to jen kosmetický bug."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:352
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:376
 msgid "The comparison type"
 msgstr "Typ porovnávání"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:354
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:378
 msgid "Matching one of the selected terms"
 msgstr "Porovnej k něktrému z vybraných termínů"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:355
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:379
 msgid "Is releated to all selected terms"
 msgstr "Vstahuje se ke všem vybraným termínum"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:361
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:385
 msgid "Select against which"
 msgstr " "
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:361
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:385
 msgid "taxonomy you want to match the loop"
 msgstr ": vyberte se kterou taxonomií chcete porovnat tento loop."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:371
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:395
 msgid "Number of posts"
 msgstr "Počet"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:375
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:399
 msgid "Offset"
 msgstr "Posun"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:380
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:422
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:404
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:446
 msgid "Meta key"
 msgstr "Meta klíč"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:382
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:406
 msgid "The exact \"meta key\" name. Both key and value must be present!"
 msgstr "Přesný název \"meta key\". Název i hodnota musí být zadané."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:384
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:408
 msgid "Meta value"
 msgstr "Meta hodnota"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:386
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:410
 msgid "The exact \"meta value\" name. Both key and meta must be present!"
 msgstr "Přesný název \"meta value\". Název i hodnota musí být zadané."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:388
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:412
 msgid "Meta comparison"
 msgstr "Porovnáváni meta"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:397
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:400
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:421
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:424
 msgid "Order"
 msgstr "Řazení"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:402
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:426
 msgid "Ascendingly"
 msgstr "Vzestupně"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:403
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:427
 msgid "Descendingly"
 msgstr "Sestupně"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:407
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:431
 msgid "Order by"
 msgstr "Seřadit podle"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:420
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:444
 msgid "meta_value sorts: alphabetically / meta_value_num: sorts numerically / parent: ID"
 msgstr "meta value porovnává abecedně / meta_value_num porovnává číselně / rodič: ID"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:424
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:448
 msgid "The exact meta key name."
 msgstr "Přesný název"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:428
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:452
 msgid "Restrict to"
 msgstr "Omezit na"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:431
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:455
 msgid "Restrict to post or page IDs:"
 msgstr "Omezit na příspěvky a stránky. Zadejte jejich ID."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:434
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:459
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:458
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:483
 msgid "No restrictions if empty. Separate IDs by comma."
 msgstr "Pokud je pole pržádné nedojde k omezení, ID oddělujte čárkou. "
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:437
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:461
 msgid "Prevent from being shown on"
 msgstr "Zamezit ukázat na"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:456
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:480
 msgid "Do not show on post/page with IDs:"
 msgstr "Neukázat na příspšvkách a stránkách; podle ID."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:466
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:490
 msgid "In order to load the appropriate settings for the selected \"post type\" you have to save the widget."
 msgstr "Abychom mohli nahrát data náležející k vybranému typu, musite Widgetu uložit."
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:981
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1063
 msgid "Posted on"
 msgstr "Napsáno"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:986
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1068
 msgid "Author"
 msgstr "Autor"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:1042
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1124
 msgid "&#171; previous"
 msgstr "&#171; předchozí"
 
-#: /var/www/kuraz/wp-content/plugins/2046s-widget-loops/2046s_loop_widgets.php:1043
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1125
 msgid "next &#187;"
 msgstr "další &#187;"
 

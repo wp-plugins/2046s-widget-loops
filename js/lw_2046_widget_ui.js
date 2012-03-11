@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_post_id").show();
 			$(parent_widget + " p.pw_with_offset").hide();
 			$(parent_widget + " p.pw_posts_number").hide();
-			$(parent_widget + " p.pw_against_taxonomy").hide();
+			$(parent_widget + " .pw_against_taxonomy").hide();
 			$(parent_widget + " p.pw_meta_sort").hide();
 		}
 		else if($(parent_widget + ' select.page_selector').val() == 1){
@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_meta_sort").hide();
 		}
 		// 6
-		else {
+		else{
 			$(parent_widget + " div.pw_taxonomies").hide();
 			$(parent_widget + " p.pw_post_id").hide();
 			$(parent_widget + " p.pw_parent_page_id").hide();
@@ -54,26 +54,26 @@ jQuery(document).ready(function($){
 			$(parent_widget + " p.pw_posts_number").show();
 			$(parent_widget + " p.pw_against_taxonomy").hide();
 			$(parent_widget + " p.pw_meta_sort").show();
-		};
+		}
 	};
 	// show hide scafolding settings
 	var scafoldig_select = function(This){
 		parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
 		if($(parent_widget + " select.scafolding_selector").attr('value') == 0){
-			jQuery(parent_widget + " p.pw_scafolding_column").hide();
-			jQuery(parent_widget + " p.pw_scafolding_row").hide();
+			$(parent_widget + " p.pw_scafolding_column").hide();
+			$(parent_widget + " p.pw_scafolding_row").hide();
 		}else{
-			jQuery(parent_widget + " p.pw_scafolding_column").show();
-			jQuery(parent_widget + " p.pw_scafolding_row").show();
+			$(parent_widget + " p.pw_scafolding_column").show();
+			$(parent_widget + " p.pw_scafolding_row").show();
 		}
 	}
 	// show / hide meta_value comparison
 	var meta_inputs = function(This){
 		parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
 		if($(parent_widget + " select.order_by").attr('value') == 'meta_value' || $(parent_widget + " select.order_by").attr('value') == 'meta_value_num'){
-			jQuery(parent_widget + " .pw_meta").show();
+			$(parent_widget + " .pw_meta").show();
 		}else{
-			jQuery(parent_widget + " .pw_meta").hide();
+			$(parent_widget + " .pw_meta").hide();
 		}
 	}
 	
@@ -81,34 +81,105 @@ jQuery(document).ready(function($){
 		if($(This).attr('value') == 0){
 			parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
 			//console.log($(This).attr('value') + 'on save 0 ' + parent_widget);
-			jQuery(parent_widget + " div.if_elsewhere").hide();
-		}else{
+			$(parent_widget + " div.if_elsewhere").hide();
+			// show some parts of the content block, not used in the gallery case
+			//$(parent_widget + " .pw_title_settings").show();
+			$(parent_widget + " .pw_comments_booble").show();
+			$(parent_widget + " .pw_with_excerpt").show();
+			$(parent_widget + " .pw_postmeta").show();
+			$(parent_widget + " .stick_on_template_types").show();
+			$(parent_widget + " .pw_comments_selector").show();
+			$(parent_widget + " .pw_comments_comments_closed_info").show();
+			$(parent_widget + " .pw_navigation").show();
+			$(parent_widget + " .navigation_title").show();
+			$(parent_widget + " .show_comments_title").show();
+			
+		}else if($(This).attr('value') == 1){
 			parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
 			//console.log($(This).attr('value') + ' on save 1 ' + parent_widget);
-			jQuery(parent_widget + " div.if_elsewhere").show();
+			$(parent_widget + " div.if_elsewhere").show();
 			// show various inputs
 			lw_settings(parent_widget);
 			// asmselect
 			// enhance multiple select
-			$(parent_widget + ' .lw_multiple_select').asmSelect({
-				addItemTarget: 'bottom'
-			});
+			//$(parent_widget + ' .lw_multiple_select').asmSelect({
+			//	addItemTarget: 'bottom'
+			//});
+			// show hide unnecessary settings for images
+			$(parent_widget + " .which_part").show();
+			$(parent_widget + " .pw_page_selector").show();
+			$(parent_widget + " .prevent_from").show();
+			$(parent_widget + " .restrict_to").show();
+			// show some parts of the content block, not used in the gallery case
+			//$(parent_widget + " .pw_title_settings").show();
+			$(parent_widget + " .pw_comments_booble").show();
+			$(parent_widget + " .pw_with_excerpt").show();
+			$(parent_widget + " .pw_postmeta").show();
+			$(parent_widget + " .stick_on_template_types").show();
+			$(parent_widget + " .pw_comments_selector").show();
+			$(parent_widget + " .pw_comments_comments_closed_info").show();
+			$(parent_widget + " .pw_navigation").show();
+			$(parent_widget + " .navigation_title").show();
+			$(parent_widget + " .show_comments_title").show();
+		}
+		// gallery
+		else{
+			parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
+			$(parent_widget + " div.if_elsewhere").show();
+			// show various inputs
+			lw_settings(parent_widget);
+			// show hide unnecessary settings for images
+			$(parent_widget + " .which_part").hide();
+			$(parent_widget + " .pw_page_selector").hide();
+			$(parent_widget + " .pw_post_id").show();
+			$(parent_widget + " p.pw_with_offset").show();
+			$(parent_widget + " p.pw_posts_number").show();
+			$(parent_widget + " .pw_taxonomies").hide();
+			$(parent_widget + " .taxonomy_comparison").hide();
+			$(parent_widget + " .pw_against_taxonomy").hide();
+			$(parent_widget + " .pw_meta_sort").hide();
+			$(parent_widget + " .prevent_from").hide();
+			$(parent_widget + " .restrict_to").hide();
+			// hide some parts of the content block, not used in the gallery case
+			//$(parent_widget + " .pw_title_settings").hide();
+			$(parent_widget + " .pw_comments_booble").hide();
+			$(parent_widget + " .pw_with_excerpt").hide();
+			$(parent_widget + " .pw_postmeta").hide();
+			$(parent_widget + " .stick_on_template_types").hide();
+			$(parent_widget + " .pw_comments_selector").hide();
+			$(parent_widget + " .pw_comments_comments_closed_info").hide();
+			$(parent_widget + " .pw_navigation").hide();
+			$(parent_widget + " .navigation_title").hide();
+			$(parent_widget + " .show_comments_title").hide();
 		}
 		
 	}
-	
+	//
+	// images settings
+	// 
+	var image_settings = function(This){
+		parent_widget = 'div#' + $(This).parents('div.pw_2046_lw').attr('id');
+		if($(parent_widget + ' .image_size').attr('value') == 0){;
+			$(parent_widget + " p.image_settings").hide();
+		}else{
+			$(parent_widget + " p.image_settings").show();
+		}
+	}
 	//
 	// do stuf when the widget is dropped in
 	//
 	$('div.widgets-sortables').bind('sortstop',function(event,ui){
 		$('p.lw_type_change_note').hide();
-		//console.log('just dropped in');
+		// image_settings
+		image_settings(this);
 		$('#widgets-right select.location_selector').each( function() {
 			location_select(this);
 			// scafolding behavior
 			scafoldig_select(this);
 			// meta_value inputs
 			meta_inputs(this);
+			// image_settings
+			image_settings(this);
 		});
 	});
 	
@@ -124,6 +195,8 @@ jQuery(document).ready(function($){
 		scafoldig_select(this);
 		// meta_value inputs
 		meta_inputs(this);
+		// image_settings
+		image_settings(this);
 	});
 	
 	
@@ -165,6 +238,8 @@ jQuery(document).ready(function($){
 					scafoldig_select(this);
 					// meta_value inputs
 					meta_inputs(this);
+					// image_settings
+					image_settings(this);
 				});
 		}
 	});
@@ -209,23 +284,28 @@ jQuery(document).ready(function($){
 	$(document).delegate('select.location_selector', 'change', function(ev) {
 		// define the parent widget always, because you never know if there are not more same widgets
 		parent_widget = 'div#' + $(this).parents('div.pw_2046_lw').attr('id');
-		//console.log(parent_widget + ' parent_widget');
+		
+		lw_settings(parent_widget);
+		location_select(this);
+		// meta_value inputs
+		meta_inputs(this);
+		/*
 		// final loop
 		if($(parent_widget + ' select.location_selector').attr('value') == 0){
 			
 			//console.log($(parent_widget + ' select.location_selector').attr('value') + ' if');
-			jQuery(parent_widget + " div.if_elsewhere").hide();
+			$(parent_widget + " div.if_elsewhere").hide();
 		}
 		// elsewhere
-		else{
+		else if($(parent_widget + ' select.location_selector').attr('value') == 1){
 			//console.log($(parent_widget + ' select.page_selector').attr('value') + ' <- selector val');
 			// show the div with settings
-			jQuery(parent_widget + " div.if_elsewhere").show();
+			$(parent_widget + " div.if_elsewhere").show();
 			// show various inputs
 			lw_settings(parent_widget);
 			// meta_value inputs
 			meta_inputs(this);
-		}
+		}*/
 	});
 	
 	$(document).delegate('select.page_selector', 'change', function(ev) {
@@ -246,4 +326,10 @@ jQuery(document).ready(function($){
 		// scafolding behavior
 		meta_inputs(this);
 	});
+	// image settings changed
+	$(document).delegate('select.image_size', 'change', function(ev) {
+		// image_settings
+		image_settings(this);
+	});
+	
 });

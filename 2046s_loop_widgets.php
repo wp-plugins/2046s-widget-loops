@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.245
+ * Version: 0.246
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -56,7 +56,10 @@ function w2046_main_loop_load_widgets() {
 		$defaults = array(
 			'the_post_type' => 'post', // false, true
 			'the_widget_title' => '', // false, true
+			'edit_link' => 'on', // false, true
+			'html_heading' => 'h2', // h1, h2, ...
 			'the_post_title' => 'on', // false, true
+			'the_post_title_link' => 'on', // false, true
 			'image_position' => 1, // 0,1
 			'image_size' => 2, // none, thumbnail, large
 			'image_with_link' => 0, // false, true
@@ -95,7 +98,7 @@ function w2046_main_loop_load_widgets() {
 
 		// get all custom "post" types
 		$args_types=array(
-			'public'   => true, // publicaly visible
+			'public'	=> true, // publicaly visible
 			//'_builtin' => false, // only not built in
 			//'capability_type' => 'post' // and only types of post
 		); 
@@ -143,25 +146,41 @@ function w2046_main_loop_load_widgets() {
 				</div>
 				<h3>'.__('Content','p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
-					<p class="pw_image_position">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_position' ) .'" value="0" '; if ($instance['image_position'] == 0) {echo 'checked="checked"';} echo '> '.__('Image above the title','p_2046s_loop_widget').'<br />
-						<input type="checkbox" name="'. $this->get_field_name( 'the_post_title' ).'"'; if ($instance['the_post_title'] == 'on'){ echo 'checked="checked"'; } echo '/>'.__('Show', 'p_2046s_loop_widget').' "'. $type_title.'" '.__('title','p_2046s_loop_widget').'<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_position' ) .'" value="1" '; if ($instance['image_position'] == 1) {echo 'checked="checked"';} echo '> '.__('Image below the title','p_2046s_loop_widget').'<br />
-						<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_with_link' ).'" value="0"'; if ($instance['image_with_link'] == '0'){ echo 'checked="checked"'; } echo '/> '.__('Image without link','p_2046s_loop_widget').'<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_with_link' ).'" value="1"'; if ($instance['image_with_link'] == '1'){ echo 'checked="checked"'; } echo '/> '.__('Image as a link to the','p_2046s_loop_widget').' "'. $type_title.'"<br />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="'. $this->get_field_name( 'image_with_link' ).'" value="2"'; if ($instance['image_with_link'] == '2'){ echo 'checked="checked"'; } echo '/> '.__('Image as a link to it\'s large version','p_2046s_loop_widget').'
+					<p class="pw_title_settings">
+						<strong>'.__('Title', 'p_2046s_loop_widget').'</strong><br />
+						<input type="checkbox" name="'. $this->get_field_name( 'the_post_title' ).'"'; if ($instance['the_post_title'] == 'on'){ echo 'checked="checked"'; } echo '/>'.__('Show title','p_2046s_loop_widget').
+						' <input type="checkbox" name="'. $this->get_field_name( 'the_post_title_link' ).'"'; if ($instance['the_post_title_link'] == 'on'){ echo 'checked="checked"'; } echo '/>'.__('as a link', 'p_2046s_loop_widget').
+						' <input type="checkbox" name="'. $this->get_field_name( 'edit_link' ).'"'; if ($instance['edit_link'] == 'on'){ echo 'checked="checked"'; } echo '/>'.__('Show edit link', 'p_2046s_loop_widget');
+						$heading_array = array('h1','h2','h3','h4','h5', 'span');
+						echo '<select name="'. $this->get_field_name( 'html_heading' ).'" class="navigation">';
+							foreach($heading_array as $h){
+								echo '<option '; if($instance['html_heading'] == $h){echo 'selected="selected"';} echo' value="'.$h.'" >'.$h.'</option>';
+							}
+						echo '</select>
 					</p>
-					<strong>Image size</strong>
 					<p class="pw_image_size">
-					
-						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="0" '; if ($instance['image_size'] == 0) echo 'checked="checked"'; echo '> '.__('No picture','p_2046s_loop_widget').'<br>
-						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="1" '; if ($instance['image_size'] == 1) echo 'checked="checked"'; echo '> '.__('Thumbnail','p_2046s_loop_widget').'<br>
-						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="2" '; if ($instance['image_size'] == 2) echo 'checked="checked"'; echo '> '.__('Medium','p_2046s_loop_widget').'<br />
-						<input type="radio" name="'. $this->get_field_name( 'image_size' ).'" value="3" '; if ($instance['image_size'] == 3) echo 'checked="checked"'; echo '> '.__('Large','p_2046s_loop_widget').'
-					</p>';
-					// TODO: image resorting, javascript hiding 
-					echo '<p class="pw_comments_booble">
+						<strong>Image</strong>
+						<select name="'. $this->get_field_name( 'image_size' ).'" class="image_size">
+							<option name="'. $this->get_field_name( 'image_size' ).'" value="0"'; if ($instance['image_size'] == 0) echo ' selected="selected"'; echo '> '.__('No picture','p_2046s_loop_widget').'</option>
+							<option name="'. $this->get_field_name( 'image_size' ).'" value="1"'; if ($instance['image_size'] == 1) echo ' selected="selected"'; echo '> '.__('Thumbnail','p_2046s_loop_widget').'</option>
+							<option name="'. $this->get_field_name( 'image_size' ).'" value="2"'; if ($instance['image_size'] == 2) echo ' selected="selected"'; echo '> '.__('Medium','p_2046s_loop_widget').'</option>
+							<option name="'. $this->get_field_name( 'image_size' ).'" value="3"'; if ($instance['image_size'] == 3) echo ' selected="selected"'; echo '> '.__('Large','p_2046s_loop_widget').'</option>
+						</select>
+					</p>
+					<p class="image_settings">
+						<strong class="image_position_title">'.__('Image position', 'p_2046s_loop_widget').'</strong><br />
+						<select name="'. $this->get_field_name( 'image_position' ).'" class="image_position">
+							<option name="'. $this->get_field_name( 'image_position' ) .'" value="0" '; if ($instance['image_position'] == 0) {echo 'selected="selected"';} echo '> '.__('Image above the title','p_2046s_loop_widget').'</option>
+							<option name="'. $this->get_field_name( 'image_position' ) .'" value="1" '; if ($instance['image_position'] == 1) {echo 'selected="selected"';} echo '> '.__('Image below the title','p_2046s_loop_widget').'</option>
+						</select>
+						<strong>'.__('Image linking', 'p_2046s_loop_widget').'</strong><br />
+						<select name="'. $this->get_field_name( 'image_with_link' ).'" class="image_with_link">
+							<option name="'. $this->get_field_name( 'image_with_link' ).'" value="0" '; if ($instance['image_with_link'] == '0'){ echo 'selected="selected" '; } echo '> '.__('Image without link','p_2046s_loop_widget').'</option>
+							<option name="'. $this->get_field_name( 'image_with_link' ).'" value="1" '; if ($instance['image_with_link'] == '1'){ echo 'selected="selected" '; } echo '> '.__('Image as a link to the','p_2046s_loop_widget').' "'. $type_title.'"</option>
+							<option name="'. $this->get_field_name( 'image_with_link' ).'" value="2" '; if ($instance['image_with_link'] == '2'){ echo 'selected="selected" '; } echo '> '.__('Image as a link to it\'s "large" version','p_2046s_loop_widget').'</option>
+						</select>
+					</p>
+					<p class="pw_comments_booble">
 						<input type="checkbox" name="'. $this->get_field_name( 'comments_booble' ).'" '; if ($instance['comments_booble'] == 'on'){ echo 'checked="checked"'; } echo'/> '.__('Show comments booble','p_2046s_loop_widget').'
 					</p>
 					<p class="pw_with_excerpt">
@@ -173,7 +192,7 @@ function w2046_main_loop_load_widgets() {
 				
 					<p class="pw_postmeta">
 						<strong>'.__('Whether to show metadata for','p_2046s_loop_widget').' '. $type_title.'</strong>
-						<fieldset class="stick_on_template_types" id="stick_on_template_types">';
+						<fieldset class="stick_on_template_types">';
 							// create temporary list of current taxonomy types
 							$tmp_all_tax = array();
 							foreach ($all_taxonomies as $each_tax){
@@ -194,7 +213,7 @@ function w2046_main_loop_load_widgets() {
 								}
 								echo ' type="checkbox" name="'.$this->get_field_name( 'postmeta' ).'[]" value="'.$types.'" /> '.$types.'<br />';
 							}
-							// render check boxes fro taxonomies
+							// render check boxes for taxonomies
 							foreach ($tmp_all_tax as $types){
 								echo '<input';
 								if(is_array($instance['postmeta'])){
@@ -208,7 +227,7 @@ function w2046_main_loop_load_widgets() {
 							
 						echo '</fieldset>
 					</p>
-					<strong>'.__('Show comments','p_2046s_loop_widget').'</strong>
+					<strong class="show_comments_title">'.__('Show comments','p_2046s_loop_widget').'</strong>
 					<p class="pw_comments_selector">
 						<select name="'. $this->get_field_name( 'comments_selector' ).'" class="comments_selector" >
 							<option '; if($instance['comments_selector'] == 0){echo 'selected="selected"';} echo ' value="0" >'.__('Show','p_2046s_loop_widget').'</option>
@@ -221,7 +240,7 @@ function w2046_main_loop_load_widgets() {
 						<em>'.__('Note: Comments will be shown on final post or page only!','p_2046s_loop_widget').'</em>
 					</p>
 				</div>
-				<h3>'.__('Navigation','p_2046s_loop_widget').'</h3>
+				<h3 class="navigation_title">'.__('Navigation','p_2046s_loop_widget').'</h3>
 				<p class="pw_navigation">
 					<select name="'. $this->get_field_name( 'navigation' ).'" class="navigation" >
 						<option value="">'.__('Without navigation','p_2046s_loop_widget').'</option>
@@ -263,19 +282,23 @@ function w2046_main_loop_load_widgets() {
 				<h3>'.__('Where this loop will be shown & what','p_2046s_loop_widget').'</h3>
 				
 				<p class="pw_location_selector">
-					<select name="'. $this->get_field_name( 'location_selector' ).'" class="location_selector" >
+					<select name="'. $this->get_field_name( 'location_selector' ).'" class="location_selector">
 						<option '; if($instance['location_selector'] == 0){echo 'selected="selected"';} echo' value="0">'.__('On final Post (Page)','p_2046s_loop_widget').'</option>
+						<option '; if($instance['location_selector'] == 2){echo 'selected="selected"';} echo' value="2">'.__('Gallery (Images of post/page)','p_2046s_loop_widget').'</option>
 						<option '; if($instance['location_selector'] == 1){echo 'selected="selected"';} echo' value="1">'.__('Elsewhere','p_2046s_loop_widget').'</option>
 					</select>
 					<p>
 					<em>'.__('"On final post" make sense when the widget is on single.php / page.php.','p_2046s_loop_widget').'</em>
 					</p>
 					<p>
+					<em>'.__('"Images of final post/page (gallery)": The content settings are applied to the gallery images.').'</em>
+					</p>
+					<p>
 					<em>'.__('"Elsewhere": you decide which','p_2046s_loop_widget').' "'. $type_title.'" '.__('content you want to see, how and where.','p_2046s_loop_widget').'</em>
 					</p>
 				</p>
 				<div class="if_elsewhere">
-					<h3>'.__('Which','p_2046s_loop_widget').' '. $type_title.'</h3>
+					<h3 class="which_part">'.__('Which','p_2046s_loop_widget').' '. $type_title.'</h3>
 					<div class="pw_holder">
 						<p class="pw_page_selector">
 							<strong>'.__('Select the logic','p_2046s_loop_widget').'</strong><br />
@@ -305,9 +328,9 @@ function w2046_main_loop_load_widgets() {
 							<strong>'.__('Enter','p_2046s_loop_widget').' '. $type_title.' ID(s)</strong><br />
 							<input type="text" name="'. $this->get_field_name( 'post_id' ).'" '; if (!empty($instance['post_id'])){ echo 'value="'.$instance['post_id'].'"'; }else{ echo 'value=""';} echo'/>
 							<br />
-							<em>'.__('Separate IDs by comma.','p_2046s_loop_widget').'</em>
+							<em>'.__('Separate IDs by comma.','p_2046s_loop_widget').'<br />
+							'.__('In the case of gallery, only first ID will be used. If empty the ID of visited post/page is used.','p_2046s_loop_widget').'</em>
 						</p>';
-						 
 						$iter = 0;
 						// filter objects
 						//$all_taxonomies = wp_filter_object_list($all_taxonomies, array('_builtin' => false));
@@ -349,7 +372,7 @@ function w2046_main_loop_load_widgets() {
 							}
 						}
 						if(count($all_taxonomies) > 1){
-							echo '<p>'.'
+							echo '
 								<strong>'.__('The comparison type','p_2046s_loop_widget').'</strong>
 								<select name="'. $this->get_field_name( 'taxonomy_comparison' ).'" class="taxonomy_comparison">
 									<option '; if($instance['taxonomy_comparison'] == 'OR'){echo 'selected="selected"';} echo' value="OR">'.__('Matching one of the selected terms','p_2046s_loop_widget').' (OR)</option>
@@ -412,7 +435,7 @@ function w2046_main_loop_load_widgets() {
 								if($the_type == 'page'){
 									$posible_orders = array('none','ID', 'title', 'date','modified','rand','comment_count','menu_order', 'parent', 'meta_value','meta_value_num');
 								}else{
-									$posible_orders = array('none','ID', 'title', 'date','modified','rand','comment_count', 'meta_value','meta_value_num');
+									$posible_orders = array('none','ID', 'title', 'date','modified','rand','comment_count', 'meta_value','meta_value_num','menu_order');
 								}
 								foreach($posible_orders as $order){
 									echo '<option '; if($instance['order_by'] == $order){echo 'selected="selected"';} echo' value="'.$order.'" >'.$order.'</option>'; 
@@ -426,8 +449,8 @@ function w2046_main_loop_load_widgets() {
 							</span>
 						</p>
 					</div>
-					<h3>'.__('Restrict to','p_2046s_loop_widget').'</h3>
-					<div class="pw_holder">
+					<h3 class="restrict_to">'.__('Restrict to','p_2046s_loop_widget').'</h3>
+					<div class="pw_holder restrict_to">
 						<p class="restrict_to_ids">
 							<strong>'.__('Restrict to post or page IDs:','p_2046s_loop_widget').'</strong><br />
 							<input type="text" name="'. $this->get_field_name( 'restrict_to_ids' ).'" '; if (!empty($instance['restrict_to_ids'])){ echo 'value="'.$instance['restrict_to_ids'].'"'; }else{ echo 'value=""';} echo'/>
@@ -435,8 +458,8 @@ function w2046_main_loop_load_widgets() {
 							<em>'.__('No restrictions if empty. Separate IDs by comma.','p_2046s_loop_widget').'</em>
 						</p>
 					</div>
-					<h3>'.__('Prevent from being shown on','p_2046s_loop_widget').'</h3>
-					<div class="pw_holder">
+					<h3 class="prevent_from">'.__('Prevent from being shown on','p_2046s_loop_widget').'</h3>
+					<div class="pw_holder prevent_from">
 						<p class="pw_stick_on_template_types">
 							<fieldset class="stick_on_template_types" id="stick_on_template_types">';
 								$i = 1;
@@ -479,7 +502,10 @@ function w2046_main_loop_load_widgets() {
 			/* Strip tags for title and name to remove HTML (important for text inputs). */
 			$instance['the_post_type'] = strip_tags( $new_instance['the_post_type'] ); 
 			$instance['the_widget_title'] = strip_tags( $new_instance['the_widget_title'] ); 
-			$instance['the_post_title'] = strip_tags( $new_instance['the_post_title'] ); 
+			$instance['the_post_title'] = strip_tags( $new_instance['the_post_title'] );
+			$instance['the_post_title_link'] = strip_tags( $new_instance['the_post_title_link'] );
+			$instance['edit_link'] = strip_tags( $new_instance['edit_link'] );  
+			$instance['html_heading'] = strip_tags( $new_instance['html_heading'] ); 
 			$instance['image_size'] = strip_tags( $new_instance['image_size'] );
 			$instance['image_position'] = strip_tags( $new_instance['image_position'] ); 
 			$instance['image_with_link'] = strip_tags( $new_instance['image_with_link'] ); 
@@ -523,8 +549,11 @@ function w2046_main_loop_load_widgets() {
 		
 		// the viarables
 		$the_post_type = $instance['the_post_type']; //
-		$the_widget_title =$instance['the_widget_title']; //
+		$the_widget_title = $instance['the_widget_title']; //
+		$html_heading = $instance['html_heading']; //
 		$the_post_title = $instance['the_post_title']; //
+		$the_post_title_link = $instance['the_post_title_link'];
+		$edit_link = $instance['edit_link']; //
 		$image_size = $instance['image_size'];//
 		$image_position = $instance['image_position']; //
 		$image_with_link = $instance['image_with_link']; //
@@ -565,11 +594,13 @@ function w2046_main_loop_load_widgets() {
 		global $post;
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		/* Display name from widget settings if one was input. */
-
+		// init the val.
+		$p_id = '';
 		$args = array(
 			'post_type' => $the_post_type,
 			'paged' => $paged,
 		);
+		
 		// if they want to show particular ID instead the actual post || page
 		// check if they selected location: "Elsewhere"
 		if($location_selector == 1){
@@ -724,8 +755,8 @@ function w2046_main_loop_load_widgets() {
 						$args_parent = array(
 							'post_parent' => $post->post_parent,
 							'posts_per_page' => $posts_number,
-							'order' => 'ASC',
-							'orderby' => 'menu_order'
+							'order' => $the_order,
+							'orderby' => $order_by
 				 		);
 				 		$args = array_merge( $args , $args_parent);
 			 		}else{
@@ -734,6 +765,7 @@ function w2046_main_loop_load_widgets() {
 				}
 				// selected taxonnomy
 				elseif($page_selector == 4){
+				
 					if(!empty($taxonomies)){
 						// define the basic arguments, the relation
 						$args_taxonomies = array(
@@ -758,9 +790,16 @@ function w2046_main_loop_load_widgets() {
 						}
 						// merge tax query with the main array
 						$args = array_merge( $args, $args_taxonomies);
+					}else{
+					
+						$args_taxonomies = array(
+							'posts_per_page' => $posts_number
+							);
+						// merge tax query with the main array
+						$args = array_merge( $args, $args_taxonomies);
 					}
 				}
-				// 5   From the same taxonomy as the curently seen post.page
+				// 5	From the same taxonomy as the curently seen post.page
 				elseif($page_selector == 5){
 					if(!empty($against_taxonomy)){
 						$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
@@ -791,9 +830,38 @@ function w2046_main_loop_load_widgets() {
 				}
 			}
 		}
+
+		// or gallery of the final post
+		elseif($location_selector == 2){
+			// lets make the gallery the WP_query way, so we can wrap the image as like the posts
+			// get the images parent post ID
+			if (!empty($post_id)){
+				$ids_clean = str_replace (" ", "", $post_id);
+				if(explode(',' ,$ids_clean)){
+					$expl_ids = explode(',' ,$ids_clean);
+					$p_id = $expl_ids[0];
+				}else{
+					$p_id = $ids_clean;
+				}
+			}else{
+				$p_id = $post->ID;
+			}
+			$args = array( 
+				'post_parent' => $p_id, // Get data from the current post
+				'post_type' => 'attachment', // Only bring back attachments
+				'post_mime_type' => 'image', // Only bring back attachments that are images
+				'posts_per_page' => $posts_number, // Show us the first result
+				'offset' => $with_offset,
+				'post_status' => 'inherit', // Attachments default to "inherit", rather than published. Use "inherit" or "all". 
+				'orderby' =>  $order_by,
+				'order' => $the_order,
+			);
+		
+		}
 		// "else" meaning, they decided to show the actual final loop,
 		// presumably on sidebar in page.php or single.php
-		else{
+		//
+		elseif($location_selector == 0){
 			$args_ids = array(
 				'post__in' => array($post->ID),
 				'posts_per_page' => 1
@@ -807,87 +875,88 @@ function w2046_main_loop_load_widgets() {
 			echo '</pre></p>';
 		}
 		
+		// if we do not process the post gallery only
+		if($location_selector != 2){
+			// RESTRICTIONS
+			$stick_ids = array();
+			if(!empty($restrict_to_ids)){
+				// make an array if ids
+				$stick_ids_clean = str_replace (" ", "", $restrict_to_ids);
+				if(explode(',' ,$stick_ids_clean)){
+					$stick_ids = explode(',' ,$stick_ids_clean);
+				}else{
+					array_push($stick_ids, $restrict_to_ids);
+				}
+			}
+			// if there are restrictions, AND the the curent post->id is not the in the restricted array_merge
+			// let it go
+			if ((!empty($stick_ids)) && (!in_array($post->ID, $stick_ids))){
+				return;
+			}
+			// disalow the widget to be seen on :
+			/* how it comes
+			1 Single post
+			2 home
+			3 Front Page
+			4 Archive
+			5 Tag/Term list
+			6 taxonomy
+			7 Category list
+			8 Author's list
+			9 Search
+			10 404 error page
+			*/
+			if(!empty($stick_on_template_types)){
+				if(is_single() && in_array(1, $stick_on_template_types)){
+					return;
+				}
+				if(is_home() && in_array(2, $stick_on_template_types)){
+					return;
+				}
+				if(is_front_page() && in_array(3, $stick_on_template_types)){
+					return;
+				}
+				if(is_archive() && in_array(4, $stick_on_template_types)){
+					return;
+				}
+				if(is_tag() && in_array(5, $stick_on_template_types)){
+					return;
+				}
+				if(is_tax() && in_array(6, $stick_on_template_types)){
+					return;
+				}
+				if(is_category() && in_array(7, $stick_on_template_types)){
+					return;
+				}
+				if(is_author() && in_array(8, $stick_on_template_types)){
+					return;
+				}
+				if(is_search() && in_array(9, $stick_on_template_types)){
+					return;
+				}
+				if(is_404() && in_array(10, $stick_on_template_types)){
+					return;
+				}
+				//var_dump($stick_on_template_types);
+			}
+			// Disallow for certain pages posts
+			$disallow_on_ids_array = array();
+			if(!empty($disallow_on_ids)){
+				$disallow_on_clean = str_replace (" ", "", $disallow_on_ids);
+				if(explode(',' ,$disallow_on_clean)){
+					$disallow_on_ids_array = explode(',' ,$disallow_on_clean);
+				}else{
+					array_push($disallow_on_ids_array, $disallow_on_ids);
+				}
+				// if the current page has the restricted id
+				// let it go
+				if((is_page() || is_single()) && in_array($post->ID, $disallow_on_ids_array)){
+					return;
+				}
+			}
+		}
 		// The Query
 		$the_query = new WP_Query( $args );
-		
-		// RESTRICTIONS
-		$stick_ids = array();
-		if(!empty($restrict_to_ids)){
-			// make an array if ids
-			$stick_ids_clean = str_replace (" ", "", $restrict_to_ids);
-			if(explode(',' ,$stick_ids_clean)){
-				$stick_ids = explode(',' ,$stick_ids_clean);
-			}else{
-				array_push($stick_ids, $restrict_to_ids);
-			}
-		}
-		// if there are restrictions, AND the the curent post->id is not the in the restricted array_merge
-		// let it go
-		if ((!empty($stick_ids)) && (!in_array($post->ID, $stick_ids))){
-			return;
-		}
-		// disalow the widget to be seen on :
-		/* how it comes
-		1 Single post
-		2 home
-		3 Front Page
-		4 Archive
-		5 Tag/Term list
-		6 taxonomy
-		7 Category list
-		8 Author's list
-		9 Search
-		10 404 error page
-		*/
-		if(!empty($stick_on_template_types)){
-			if(is_single() && in_array(1, $stick_on_template_types)){
-				return;
-			}
-			if(is_home() && in_array(2, $stick_on_template_types)){
-				return;
-			}
-			if(is_front_page() && in_array(3, $stick_on_template_types)){
-				return;
-			}
-			if(is_archive() && in_array(4, $stick_on_template_types)){
-				return;
-			}
-			if(is_tag() && in_array(5, $stick_on_template_types)){
-				return;
-			}
-			if(is_tax() && in_array(6, $stick_on_template_types)){
-				return;
-			}
-			if(is_category() && in_array(7, $stick_on_template_types)){
-				return;
-			}
-			if(is_author() && in_array(8, $stick_on_template_types)){
-				return;
-			}
-			if(is_search() && in_array(9, $stick_on_template_types)){
-				return;
-			}
-			if(is_404() && in_array(10, $stick_on_template_types)){
-				return;
-			}
-			//var_dump($stick_on_template_types);
-		}
-		// Disallow for certain pages posts
-		$disallow_on_ids_array = array();
-		if(!empty($disallow_on_ids)){
-			$disallow_on_clean = str_replace (" ", "", $disallow_on_ids);
-			if(explode(',' ,$disallow_on_clean)){
-				$disallow_on_ids_array = explode(',' ,$disallow_on_clean);
-			}else{
-				array_push($disallow_on_ids_array, $disallow_on_ids);
-			}
-			// if the current page has the restricted id
-			// let it go
-			if((is_page() || is_single()) && in_array($post->ID, $disallow_on_ids_array)){
-				return;
-			}
-		}
-
 		// run the LOOP
 		if($the_query->have_posts()){
 			// scafolding
@@ -933,28 +1002,36 @@ function w2046_main_loop_load_widgets() {
 				}
 					// if user want the image here 
 					if ( has_post_thumbnail() && ($image_position == 0)) { // check if the post has a Post Thumbnail assigned to it.
-						echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
-					} 
+						echo f_2046_build_image($the_query->post, $image_with_link, $image_size, $p_id);
+					}
+					// gallery
+					if(($location_selector == 2 && $image_position == 0) && ($image_size != 0)){
+						echo f_2046_gallery_builder($the_query->post->ID, $image_size, $image_with_link);
+					}
 					// if user want to see post title
 					if($the_post_title == 'on'){
-						echo '<h2>';
-							echo '<a href="'. get_permalink() . '" class="oversize_1" title="';
-							the_title();
-							echo' : ' ;
-							$under_categories = get_the_category();
-							foreach($under_categories as $category) { 
-							 	echo $category->cat_name;
-							 	if  ($category != end($under_categories) ){
-							 		echo ', ';
-							 	}
-							} 
-							echo '">';
+						echo '<'.$html_heading.'>';
+							if($the_post_title_link == 'on'){
+								echo '<a href="'. get_permalink() . '" title="';
 								the_title();
-							echo '</a>';
-								if(is_user_logged_in()){
+								echo' : ' ;
+								$under_categories = get_the_category();
+								foreach($under_categories as $category) { 
+								 	echo $category->cat_name;
+								 	if  ($category != end($under_categories) ){
+								 		echo ', ';
+								 	}
+								} 
+								echo '">';
+							}
+								the_title();
+							if($the_post_title_link == 'on'){
+								echo '</a>';
+							}
+								if(is_user_logged_in() && $edit_link == 'on'){
 								edit_post_link('edit', '', ' <small class="lw_2046_pID">'.$the_query->post->ID.'</small>');
 							}
-						echo '</h2>';
+						echo '</'.$html_heading.'>';
 					}
 					if($comments_booble == 'on'){
 						echo '<span class="wl2046_comment_number">';
@@ -966,14 +1043,18 @@ function w2046_main_loop_load_widgets() {
 					}
 					// if user wants post thumbnail after the title
 					if ( has_post_thumbnail() && $image_position == 1) { // check if the post has a Post Thumbnail assigned to it.
-						echo f_2046_build_image($the_query->post, $image_with_link, $image_size);
+						echo f_2046_build_image($the_query->post, $image_with_link, $image_size, $p_id);
 					} 
-					// if the user want the content
-					if($with_excerpt == '1'){
+					// if the user want the content and we are not going to render the gallery
+					if($with_excerpt == '1' && $location_selector != 2){
 						the_excerpt();
 					}
-					elseif($with_excerpt == '2'){
+					elseif($with_excerpt == '2' && $location_selector != 2){
 						the_content();
+					}
+					// gallery
+					if(($location_selector == 2 && $image_position == 1) && ($image_size != 0)){
+						echo f_2046_gallery_builder($the_query->post->ID, $image_size, $image_with_link, $p_id);
 					}
 					if(!empty($postmeta)){
 						echo '<div class="postmeta">';
@@ -1107,7 +1188,34 @@ function f_2046_build_image($post_, $image_with_link, $image_size) {
 if ( function_exists( 'add_theme_support' ) ) { 
 	add_theme_support( 'post-thumbnails' ); 
 }
-
+// gallery function_exists
+function f_2046_gallery_builder($p_ID, $image_size, $link, $p_id){
+	$l_image_attributes = wp_get_attachment_image_src($p_ID , 'large');
+	$sizes = array('','thumbnail', 'medium','large');
+	foreach($sizes as $key=>$value){
+		if($key == $image_size){
+			$thmb_size = $value;
+		}
+	}
+	$default_img_attr = array(
+		'class'	=> "image $thmb_size lightbox",
+	);
+	// image without link
+	if($link == 0){
+		$output = wp_get_attachment_image( $p_ID, $thmb_size, false);
+	}
+	// image with link to post/page
+	elseif($link == 1){
+		$img_src = wp_get_attachment_image_src( $p_ID, $thmb_size );
+		$post_title = get_the_title($p_id);
+		$output = '<a href="'.get_page_link($p_id).'"  title="'.$post_title.'"><img src="'.$img_src[0] .'" alt="'.$post_title.'"/></a>';
+	}
+	// image with link to large sizes
+	else{
+		$output = '<a href="'.$l_image_attributes[0].'">'. wp_get_attachment_image( $p_ID, $thmb_size, false).'</a>';
+	}
+	return $output;
+}
 // add js and css to the widget admin page
 add_action( 'admin_print_scripts-widgets.php', 'f2046_lw_insert_custom_js', 11 );
 function f2046_lw_insert_custom_js() {
@@ -1115,8 +1223,8 @@ function f2046_lw_insert_custom_js() {
 	wp_enqueue_script('lw_2046_widget_ui');
 	// ams sellect
 	// http://code.google.com/p/jquery-asmselect/
-	wp_register_script('lw_2046_asm_select',plugins_url( 'js/asmselect/jquery.asmselect.js' , __FILE__ ));
-	wp_enqueue_script('lw_2046_asm_select');
+	//wp_register_script('lw_2046_asm_select',plugins_url( 'js/asmselect/jquery.asmselect.js' , __FILE__ ));
+	//wp_enqueue_script('lw_2046_asm_select');
 
 }
 
@@ -1126,3 +1234,4 @@ function f2046_lw_insert_custom_css(){
 	wp_enqueue_style( 'style_lw_2046');
 
 }
+
