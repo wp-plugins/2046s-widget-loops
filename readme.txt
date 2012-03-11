@@ -25,8 +25,11 @@ http://youtu.be/pScOFwTQwYQ
 = Post types =
 
 The widget automatically finds all the public post types your WP has. Native Post and Pages and also your custom post types.
-It will load it's taxonomies. Native (category, tags), custom taxonimies, settings for comments form and more. For the page types it gives you an extra hierarchy settings.
- 
+It will load it's taxonomies. Native (category, tags), custom taxonimies, settings for comments form and more. For the page types it gives you an extra hierarchy settings. 
+
+Since the version 0.246 the widget has a third main function and that is a "gallery builder". The Gallery builder lets you get images from the currently seen post/page, or definied post/page by id.
+It has many settings, like image linking, show/hide post title, settings for image/title location and so on.
+
 = The content =
 
 All the content settings lays on the left side of the widget. There you can select if you would like to see the post title, featured post image. You can choose if 
@@ -49,6 +52,7 @@ logic based on which the widget will show the content.
 
 The final content loop has no settings in this logic area. It doesn't need any, it simply shows the final content. By the final content is meant the main post/page/custom post types
  content on the (template speaking) single.php, page.php.
+
 
 <em>All widgets allows you to display the picture belonging to the looped post/page/custom post type. For that matter the Wordpress "Featured picture" is used.<br />
 The "Debug" mode renders the Query arguments you build by the widget to the front-end of your site, right before the loop.</em>
