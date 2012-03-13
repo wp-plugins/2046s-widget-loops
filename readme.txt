@@ -1,16 +1,17 @@
 === 2046's Loop widget ===
 Contributors: 2046
 Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
-Donate Link: http://2046.cz/freestuff.html
+Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 0.246
+Stable tag: 0.2461
 
 2046's loop widget boosts you website prototyping.
 
 == Description ==
 
+http://youtu.be/dU8Qll6Wqes
 
 The Drag&Drop content management is here. 
 When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
@@ -19,8 +20,6 @@ The widget covers the most routinely used content logic. The aim of this widget 
 The widget went through Localization process and so the core changed a bit. You might have to resave the widgets.
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
-http://youtu.be/pScOFwTQwYQ
-(Beta 1.31 concept preview)
 
 = Post types =
 
@@ -147,9 +146,14 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 == Screenshots ==
  
 1. Screenshot of the version 0.241
-More on <a href="http://2046.cz/freestuff.html">http://2046.cz/freestuff.html</a>
+More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz/freestuff/2046s-loop-widget.html</a>
 
 == Change log ==
+
+= 0.2461 =
+ * no code changes, only the readme update plus new video showcase
+ * 1/2 http://youtu.be/dU8Qll6Wqes
+ * 2/2 http://youtu.be/wupAqsyLsF0
 
 = 0.246 =
 
