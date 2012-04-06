@@ -256,7 +256,8 @@ function w2046_main_loop_load_widgets() {
 						<option '; if($instance['navigation'] == 2){echo 'selected="selected"';} echo' value="2" >'.__('Prev-Next links','p_2046s_loop_widget').'</option>';
 						if (function_exists('wp_pagenavi')) {
 							echo '<option '; if($instance['navigation'] == 3){echo 'selected="selected"';} echo' value="3">WP PageNavi</option>'; 
-						} 
+						}
+						echo '<option '; if($instance['navigation'] == 4){echo 'selected="selected"';} echo' value="4" >'.__('Link to category list','p_2046s_loop_widget').'</option>';
 					echo '</select>';
 					if (!function_exists('wp_pagenavi')) {
 						echo '<em>'.__('If the <a href="http://wordpress.org/extend/plugins/wp-pagenavi/" target="_blank">WP Page Navi</a> is installed it will be listed here too.','p_2046s_loop_widget').'</em>';
@@ -1186,6 +1187,13 @@ function w2046_main_loop_load_widgets() {
 			// show the scribus page navi (if installed)
 			if ($navigation == 3 && function_exists('wp_pagenavi')) { 
 				wp_pagenavi( array( 'query' => $the_query ) );
+			}
+			// show the link to category list
+			if ($navigation == 4) { 
+				$all_cats = get_the_category();
+				echo '<div class="navigation">
+					<a class="link_to_category_list" href="'.get_category_link($all_cats[0]->term_id).'">'.__("view all &rarr;","p_2046s_loop_widget").'</a>
+				</div>';
 			}
 			// comments
 			if($comments_selector == 0){
