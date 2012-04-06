@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 0.247
+Stable tag: 0.2471
 
 2046's loop widget boosts you website prototyping.
 
@@ -149,6 +149,10 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz/freestuff/2046s-loop-widget.html</a>
 
 == Change log ==
+
+= 0.2471 =
+
+ * small fix for  NEW - IDs in "restrict to" is 3 possibilities
 
 = 0.247 =
 

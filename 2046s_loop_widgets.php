@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.247
+ * Version: 0.2471
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -900,6 +900,7 @@ function w2046_main_loop_load_widgets() {
 				// make an array if ids
 				$stick_ids_clean = str_replace (" ", "", $restrict_to_ids);
 				// do it for these page IDS
+				//echo '-----'.$restrict_to_ids_with_childs.'------';
 				if($restrict_to_ids_with_childs == 0){
 					if(explode(',' ,$stick_ids_clean)){
 						$stick_ids = explode(',' ,$stick_ids_clean);
@@ -910,15 +911,14 @@ function w2046_main_loop_load_widgets() {
 				// do it for child pages of the selected IDs
 				elseif($restrict_to_ids_with_childs == 1){
 					// Set up the objects needed
-					// get all existing pages
-					$allpages_wp_query = new WP_Query();
-					$all_wp_pages = $allpages_wp_query->query(array('post_type' => 'page'));
 					// make an array out of given IDs
 					$parents = explode(',' ,$stick_ids_clean);
 					// add child pagesto the array 
 					foreach($parents as $each){
-						$childs = get_page_children($each, $all_wp_pages);
+						$childs = get_children(array('post_parent' => $each));
+						//var_dump($childs);
 						foreach($childs as $child){
+							echo $child->ID.'<br>';
 							array_push($stick_ids, $child->ID);
 						}
 					}
@@ -926,21 +926,17 @@ function w2046_main_loop_load_widgets() {
 				// do it for selected IDs & their child pages
 				else{
 					// Set up the objects needed
-					// get all existing pages
-					$allpages_wp_query = new WP_Query();
-					$all_wp_pages = $allpages_wp_query->query(array('post_type' => 'page'));
 					// make an array out of given IDs
 					$parents = explode(',' ,$stick_ids_clean);
 					foreach($parents as $each){
 						// add each parent to the array_merge first
 						array_push($stick_ids, $each);
 						 
-						$childs = get_page_children($each, $all_wp_pages);
+						$childs = get_children(array('post_parent' => $each));
 						// add child pages to the array as well 
 						foreach($childs as $child){
 							if($child->ID == $post->ID){
 								array_push($stick_ids, $child->ID);
-								var_dump( $stick_ids );
 							}
 						}
 					}
