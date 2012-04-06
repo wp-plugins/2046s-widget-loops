@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.2461
+ * Version: 0.247
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -36,10 +36,17 @@ function w2046_main_loop_load_widgets() {
 	 */
 	function w2046_main_loop() {
 		/* Widget settings. */
-		$widget_ops = array( 'classname' => 'wname_2046_main_loop', 'description' => __('It let\'s you show Post or Pages anywhere. The widget let\'s you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it\'s form.', 'p_2046s_loop_widget') );
+		$widget_ops = array( 
+			'classname' => 'wname_2046_main_loop',
+			'description' => __('It let\'s you show Post or Pages anywhere. The widget let\'s you allow or disallow the loop to be shown on certain places. Plus, you can show or hide comments and it\'s form.','p_2046s_loop_widget') 
+		);	
 
 		/* Widget control settings. */
-		$control_ops = array( 'width' => 620, 'height' => 350, 'id_base' => 'wname_2046_main_loop-widget' );
+		$control_ops = array( 
+			'width' => 620,
+			'height' => 350,
+			'id_base' => 'wname_2046_main_loop-widget' 
+		);
 
 		/* Create the widget. */
 		$this->WP_Widget( 'wname_2046_main_loop-widget', __('2046\'s - loop widget', 'p_2046s_loop_widget'), $widget_ops, $control_ops );
@@ -74,6 +81,7 @@ function w2046_main_loop_load_widgets() {
 			'scafolding_column' => '', // 
 			'location_selector' => true, // single, id, most recent
 			'restrict_to_ids' => '', // numbs
+			'restrict_to_ids_with_childs' => 0,
 			'taxonomy' => array(''), // numbs
 			'taxonomy_comparison' => 'OR', // numbs
 			'order_by' => 'date', 
@@ -139,7 +147,7 @@ function w2046_main_loop_load_widgets() {
 				<h3>'. __('Widget title', 'p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
 					<p class="pw_the_title">
-						<input type="text" name="'. $this->get_field_name( 'the_widget_title' ).'" value="'. $instance['the_widget_title'] .'"/>
+						<input id="in-widget-title" type="text" name="'. $this->get_field_name( 'the_widget_title' ).'" value="'. $instance['the_widget_title'] .'"/>
 						<br />
 						<em>'.__('if empty: no title, no html, nothing', 'p_2046s_loop_widget').'</em>
 					</p>
@@ -456,6 +464,12 @@ function w2046_main_loop_load_widgets() {
 							<input type="text" name="'. $this->get_field_name( 'restrict_to_ids' ).'" '; if (!empty($instance['restrict_to_ids'])){ echo 'value="'.$instance['restrict_to_ids'].'"'; }else{ echo 'value=""';} echo'/>
 							<br />
 							<em>'.__('No restrictions if empty. Separate IDs by comma.','p_2046s_loop_widget').'</em>
+							<br /><br />
+							<select name="'. $this->get_field_name( 'restrict_to_ids_with_childs' ).'" class="restrict_to_ids_with_childs">
+								<option '; if($instance['restrict_to_ids_with_childs'] == 0){echo 'selected="selected"';} echo' value="0">'.__('only on given IDs','p_2046s_loop_widget').'</option>
+								<option '; if($instance['restrict_to_ids_with_childs'] == 1){echo 'selected="selected"';} echo' value="1">'.__('only on child pages of given ID','p_2046s_loop_widget').'</option>
+								<option '; if($instance['restrict_to_ids_with_childs'] == 2){echo 'selected="selected"';} echo' value="2">'.__('for given IDs and it\'s children pages','p_2046s_loop_widget').'</option>
+							</select>
 						</p>
 					</div>
 					<h3 class="prevent_from">'.__('Prevent from being shown on','p_2046s_loop_widget').'</h3>
@@ -534,6 +548,7 @@ function w2046_main_loop_load_widgets() {
 			$instance['posts_number'] = preg_replace("/[^0-9]/", "", $new_instance['posts_number'] );// number
 			$instance['with_offset'] = preg_replace("/[^0-9]/", "", $new_instance['with_offset'] ); // only number
 			$instance['restrict_to_ids'] = preg_replace("/[^0-9\s,]/", "", $new_instance['restrict_to_ids'] );// numbers, spaces, dashes
+			$instance['restrict_to_ids_with_childs'] = preg_replace("/[^0-9\s,]/", "", $new_instance['restrict_to_ids_with_childs'] );// numbers, spaces, dashes
 			$instance['stick_on_template_types'] = $new_instance['stick_on_template_types']; 
 			$instance['disallow_on_ids'] = preg_replace("/[^0-9\s,]/", "", $new_instance['disallow_on_ids']);// numbers, spaces, dashes
 			$instance['debug'] = $new_instance['debug'];  
@@ -578,6 +593,7 @@ function w2046_main_loop_load_widgets() {
 		$with_offset = $instance['with_offset']; //
 		$posts_number = $instance['posts_number']; //
 		$restrict_to_ids = $instance['restrict_to_ids'];
+		$restrict_to_ids_with_childs = $instance['restrict_to_ids_with_childs'];
 		$stick_on_template_types = $instance['stick_on_template_types']; 
 		$disallow_on_ids = $instance['disallow_on_ids']; 
 		$navigation = $instance['navigation'];
@@ -882,15 +898,56 @@ function w2046_main_loop_load_widgets() {
 			if(!empty($restrict_to_ids)){
 				// make an array if ids
 				$stick_ids_clean = str_replace (" ", "", $restrict_to_ids);
-				if(explode(',' ,$stick_ids_clean)){
-					$stick_ids = explode(',' ,$stick_ids_clean);
-				}else{
-					array_push($stick_ids, $restrict_to_ids);
+				// do it for these page IDS
+				if($restrict_to_ids_with_childs == 0){
+					if(explode(',' ,$stick_ids_clean)){
+						$stick_ids = explode(',' ,$stick_ids_clean);
+					}else{
+						array_push($stick_ids, $restrict_to_ids);
+					}
+				}
+				// do it for child pages of the selected IDs
+				elseif($restrict_to_ids_with_childs == 1){
+					// Set up the objects needed
+					// get all existing pages
+					$allpages_wp_query = new WP_Query();
+					$all_wp_pages = $allpages_wp_query->query(array('post_type' => 'page'));
+					// make an array out of given IDs
+					$parents = explode(',' ,$stick_ids_clean);
+					// add child pagesto the array 
+					foreach($parents as $each){
+						$childs = get_page_children($each, $all_wp_pages);
+						foreach($childs as $child){
+							array_push($stick_ids, $child->ID);
+						}
+					}
+				}
+				// do it for selected IDs & their child pages
+				else{
+					// Set up the objects needed
+					// get all existing pages
+					$allpages_wp_query = new WP_Query();
+					$all_wp_pages = $allpages_wp_query->query(array('post_type' => 'page'));
+					// make an array out of given IDs
+					$parents = explode(',' ,$stick_ids_clean);
+					foreach($parents as $each){
+						// add each parent to the array_merge first
+						array_push($stick_ids, $each);
+						 
+						$childs = get_page_children($each, $all_wp_pages);
+						// add child pages to the array as well 
+						foreach($childs as $child){
+							if($child->ID == $post->ID){
+								array_push($stick_ids, $child->ID);
+								var_dump( $stick_ids );
+							}
+						}
+					}
 				}
 			}
-			// if there are restrictions, AND the the curent post->id is not the in the restricted array_merge
+			// if there are restrictions, AND the the curent post->id is not in the restricted array_merge-d $stick_ids
 			// let it go
-			if ((!empty($stick_ids)) && (!in_array($post->ID, $stick_ids))){
+			if (!in_array($post->ID, $stick_ids)){
 				return;
 			}
 			// disalow the widget to be seen on :
@@ -966,7 +1023,7 @@ function w2046_main_loop_load_widgets() {
 			}
 			// if user want to see widget title
 			if (!empty($the_widget_title)){
-				echo '<h4>'.$the_widget_title.'</h4>';
+				echo '<h4 class="widget_title '.$widget_id.'">'.$the_widget_title.'</h4>';
 				
 			}
 			// when one per row 

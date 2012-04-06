@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 0.2461
+Stable tag: 0.247
 
 2046's loop widget boosts you website prototyping.
 
@@ -114,7 +114,7 @@ Don't wary this is just a Javascript skin effect. If you save the widget, or you
 
 == Upgrade Notice == 
 
-= 0.246 =
+= 0.247 =
 
  * resave widgets (as always)
 
@@ -149,6 +149,17 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz/freestuff/2046s-loop-widget.html</a>
 
 == Change log ==
+
+= 0.247 =
+
+ * cache-able 
+ * h4 added class
+ * navigation>link to category (change the arrow)
+ * widget sub-title fixed (admin widget panel)
+ * NEW - IDs in "restrict to" is 3 possibilities:
+	1. only on given IDs
+	2. only on child pages of given id
+	3. for these Ids and it's children 
 
 = 0.2461 =
  * no code changes, only the readme update plus new video showcase
