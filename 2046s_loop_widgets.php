@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.2471
+ * Version: 0.2472
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -361,15 +361,15 @@ function w2046_main_loop_load_widgets() {
 									echo '<strong>'.$each_taxonomy_label.'</strong>';
 									// select id problem
 									echo '<select multiple="multiple" size="5" name="'.$this->get_field_name( 'taxonomy' ).'['.$each_taxonomy_name.'][]" id="'. $this->get_field_id( 'taxonomy' ).'" class="lw_multiple_select" title="'.__('Please select a','p_2046s_loop_widget').' '.$each_taxonomy_label.'">';
-										//$i = 0;
+										$i = 0;
 										foreach($terms as $term){
-											//if($i == 0){echo '<option value="">no restrictions</option>';};
+											if($i == 0){echo '<option value="">no restrictions</option>';};
 											echo '<option ';
 											if(!empty($instance['taxonomy'][$each_taxonomy_name])){
 												if(in_array($term->term_id, $instance['taxonomy'][$each_taxonomy_name])){echo 'selected="selected"';}
 											}
 											echo ' value="'.$term->term_id.'">'.$term->name.' ('.$term->count .')</option>';
-											//$i++;
+											$i++;
 										}
 									echo '</select>
 								</p>
@@ -739,10 +739,13 @@ function w2046_main_loop_load_widgets() {
 				if($page_selector == 0){
 					$post_id_clean = ereg_replace(" ", "", $post_id);
 					$post_ids_array = explode(',', $post_id_clean);
-					$args_ids = array(
-						'post__in' => $post_ids_array
-			 		);
-			 		$args = array_merge( $args , $args_ids);
+					// if empty the no restriction are applied
+					if(!empty($post_ids_array[0])){
+						$args_ids = array(
+							'post__in' => $post_ids_array
+				 		);
+				 		$args = array_merge( $args , $args_ids);
+			 		}
 					/*$args_ids = array(
 						'post__in' => $post_id,
 			 		);
@@ -918,7 +921,6 @@ function w2046_main_loop_load_widgets() {
 						$childs = get_children(array('post_parent' => $each));
 						//var_dump($childs);
 						foreach($childs as $child){
-							echo $child->ID.'<br>';
 							array_push($stick_ids, $child->ID);
 						}
 					}
@@ -941,12 +943,13 @@ function w2046_main_loop_load_widgets() {
 						}
 					}
 				}
+				// if there are restrictions, AND the the curent post->id is not in the restricted array_merge-d $stick_ids
+				// let it go
+				if (!in_array($post->ID, $stick_ids)){
+					return;
+				}
 			}
-			// if there are restrictions, AND the the curent post->id is not in the restricted array_merge-d $stick_ids
-			// let it go
-			if (!in_array($post->ID, $stick_ids)){
-				return;
-			}
+			
 			// disalow the widget to be seen on :
 			/* how it comes
 			1 Single post

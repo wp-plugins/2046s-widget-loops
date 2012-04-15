@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.3.1
-Stable tag: 0.2471
+Stable tag: 0.2472
 
 2046's loop widget boosts you website prototyping.
 
@@ -149,6 +149,12 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz/freestuff/2046s-loop-widget.html</a>
 
 == Change log ==
+
+= 0.2472 =
+
+ * Fix for empty filed for "selected 'xxxxx' IDs", it shows nothing, but it schould show all. If empty no restriction are applied in this setting.
+ * Fix for last fix :), it really works now
+ * added - no restriction field in the category selection, so you can inactivate category constrains
 
 = 0.2471 =
 
