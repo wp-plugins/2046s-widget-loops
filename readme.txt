@@ -4,8 +4,8 @@ Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
 Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
-Tested up to: 3.3.1
-Stable tag: 0.2472
+Tested up to: 3.4.1
+Stable tag: 0.2473
 
 2046's loop widget boosts you website prototyping.
 
@@ -149,6 +149,10 @@ If you have any problems, just re-save widgets. Note the recent widget is replac
 More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz/freestuff/2046s-loop-widget.html</a>
 
 == Change log ==
+
+= 0.2473 =
+
+ * the widget heading is Translation ready, meaning it is parsed by Gettext. Or if you run (plugin) qTranslate then it will go through : qTranslate and then Gettext
 
 = 0.2472 =
 

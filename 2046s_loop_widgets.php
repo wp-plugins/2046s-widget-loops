@@ -516,7 +516,7 @@ function w2046_main_loop_load_widgets() {
 
 			/* Strip tags for title and name to remove HTML (important for text inputs). */
 			$instance['the_post_type'] = strip_tags( $new_instance['the_post_type'] ); 
-			$instance['the_widget_title'] = strip_tags( $new_instance['the_widget_title'] ); 
+			$instance['the_widget_title'] = $new_instance['the_widget_title']; // "strip_tags" removed for qtranslate to work such as <!--:en-->Recomendation<!--:--><!--:cs-->Doporučujeme<!--:-->
 			$instance['the_post_title'] = strip_tags( $new_instance['the_post_title'] );
 			$instance['the_post_title_link'] = strip_tags( $new_instance['the_post_title_link'] );
 			$instance['edit_link'] = strip_tags( $new_instance['edit_link'] );  
@@ -1023,7 +1023,7 @@ function w2046_main_loop_load_widgets() {
 			}
 			// if user want to see widget title
 			if (!empty($the_widget_title)){
-				echo '<h4 class="widget_title '.$widget_id.'">'.$the_widget_title.'</h4>';
+				echo '<h4 class="widget_title '.$widget_id.'">'.__($the_widget_title).'</h4>';
 				
 			}
 			// when one per row 
