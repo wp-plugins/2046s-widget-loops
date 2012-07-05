@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.4.1
-Stable tag: 0.2473
+Stable tag: 0.25
 
 2046's loop widget boosts you website prototyping.
 
@@ -150,9 +150,20 @@ More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz
 
 == Change log ==
 
+= 2.5 = 
+
+ * NEW switch for pagination (on/off)
+ * NEW user capabilities. You can select who can see the widget result.. based on WP roles
+ * FIX post number for Page types, is shown and working from now.
+ * FIX - cruicial fix for post types. From nowt recoignizes the post type correctly and applies the correct logic. (linear = post), (hierarchical = page).. or any other custom post types.
+
+= 0.2474 =
+
+ * fixed the "more" function for the content.. when you use the more tag and select in the widget to see the content, the content will by properly striped.
+
 = 0.2473 =
 
- * the widget heading is Translation ready, meaning it is parsed by Gettext. Or if you run (plugin) qTranslate then it will go through : qTranslate and then Gettext
+ * the widget heading is Translation ready, meaning it is parsed by Gettext or if you have for example then it will go through : qTranslate and then Gettext
 
 = 0.2472 =
 

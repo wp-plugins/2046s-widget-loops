@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.2472
+ * Version: 0.25
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -101,6 +101,8 @@ function w2046_main_loop_load_widgets() {
 			'stick_on_template_types' => array(''), 
 			'disallow_on_ids' => '', // num
 			'navigation' => '', // num
+			'paging' => true, // true, false
+			'permissions' => '-1', //all-  anyone,  level_0 - subcriber, level_1 - contributor , level_2 Author, level_7 editor, level_10 administrator
 			'debug' => '', // num
 		);
 
@@ -117,12 +119,26 @@ function w2046_main_loop_load_widgets() {
 
 		$instance = wp_parse_args( (array) $instance, $defaults ); 
 		
-		echo '<div id="the_widget_id_'.$this->id.'" class="pw_2046_lw">
-				<h3>'.__('Post type','p_2046s_loop_widget').'</h3>
+		echo '<div id="the_widget_id_'.$this->id.'" class="pw_2046_lw">';
+				// permissions
+				$capabilities = array( 'all' => __('Anyone') , 'level_0' => __('Subcriber'), 'level_1' => __('Contributor') , 'level_4' => __('Author'), 'level_7' => __('Editor'), 'level_10' => __('Administrator'));
+				echo '
+				<div class="pw_permissions_holder">
+					<p class="pw_the_post_type">
+						<strong>'.__('Who can see the result','p_2046s_loop_widget').'</strong><br />
+						<select name="'. $this->get_field_name( 'permissions' ) .'" id="permissions" class="permissions">';
+							foreach($capabilities as $user => $value){
+								echo '<option '; if($instance['permissions'] == $user ){echo 'selected="selected"';} echo' value="'.$user.'" >'.$value.'</option>';
+							} 
+						echo '</select>
+					</p>
+				</div>';
+				echo '<h3>'.__('Post type','p_2046s_loop_widget').'</h3>
 				<div class="pw_type_holder">';
 					// if more then default post types exists, built select box
 					//$i = 0;
 					if (count($post_types) > 1){
+						// post type
 						echo '<p class="pw_the_post_type">
 							<strong>'.__('Select post type','p_2046s_loop_widget').'</strong><br />
 							<select name="'. $this->get_field_name( 'the_post_type' ) .'" id="the_post_type" class="the_post_type">';
@@ -262,6 +278,11 @@ function w2046_main_loop_load_widgets() {
 					if (!function_exists('wp_pagenavi')) {
 						echo '<em>'.__('If the <a href="http://wordpress.org/extend/plugins/wp-pagenavi/" target="_blank">WP Page Navi</a> is installed it will be listed here too.','p_2046s_loop_widget').'</em>';
 					} 
+					echo '<p class="pw_paging">
+						<input type="checkbox" name="'. $this->get_field_name( 'paging' ).'"'; if ($instance['paging'] == true){ echo 'checked="checked"'; } echo' /> '.__('Allow to the pagination','p_2046s_loop_widget').'
+						<br />
+						<em>'.__('Note: If you want to see only the content you filter here, not affected by WP inner pagination, uncheck it here.','p_2046s_loop_widget').'</em>
+					</p>';
 				echo '</p>
 				<h3>'.__('Scafolding','p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
@@ -326,6 +347,7 @@ function w2046_main_loop_load_widgets() {
 								}
 									echo '<option '; if($instance['page_selector'] == 6){echo 'selected="selected"';} echo' value="6">'.__('By the custom meta values','p_2046s_loop_widget').'</option>
 							</select>
+							<em>'.__('Help your self as you like.. empty values simply do not make restrictions.','p_2046s_loop_widget').'</em>
 						</p>
 						<p class="pw_parent_page_id">
 							<strong>'. $type_title.' '.__('parent ID','p_2046s_loop_widget').'</strong><br />
@@ -345,7 +367,6 @@ function w2046_main_loop_load_widgets() {
 						//$all_taxonomies = wp_filter_object_list($all_taxonomies, array('_builtin' => false));
 						echo '<div class="pw_taxonomies">';
 						foreach($all_taxonomies as $each_taxonomy){
-							//var_dump($each_taxonomy);
 							$each_taxonomy_label = $each_taxonomy->label;
 							$each_taxonomy_name =  $each_taxonomy->name;
 				
@@ -552,6 +573,8 @@ function w2046_main_loop_load_widgets() {
 			$instance['restrict_to_ids_with_childs'] = preg_replace("/[^0-9\s,]/", "", $new_instance['restrict_to_ids_with_childs'] );// numbers, spaces, dashes
 			$instance['stick_on_template_types'] = $new_instance['stick_on_template_types']; 
 			$instance['disallow_on_ids'] = preg_replace("/[^0-9\s,]/", "", $new_instance['disallow_on_ids']);// numbers, spaces, dashes
+			$instance['paging'] = $new_instance['paging'];  
+			$instance['permissions'] = $new_instance['permissions']; 
 			$instance['debug'] = $new_instance['debug'];  
 
 		return $instance;
@@ -601,620 +624,649 @@ function w2046_main_loop_load_widgets() {
 		$scafolding_selector = $instance['scafolding_selector'];
 		$scafolding_column = $instance['scafolding_column'];
 		$scafolding_row  = $instance['scafolding_row'];
+		$paging = $instance['paging'];
+		$permissions = $instance['permissions'];
 		$debug = $instance['debug'];
 		
-		// reset the previous loops
-		// just to be sure they wont manipulate the curent query
-		wp_reset_postdata();
-		//wp_reset_query();
-		// get the global data of curent seen post || page
-		global $post;
-		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-		/* Display name from widget settings if one was input. */
-		// init the val.
-		$p_id = '';
-		$args = array(
-			'post_type' => $the_post_type,
-			'paged' => $paged,
-		);
 		
-		// if they want to show particular ID instead the actual post || page
-		// check if they selected location: "Elsewhere"
-		if($location_selector == 1){
-			// sorting
-			$sorting_args = array(
-				'order' => $the_order,
-				'orderby' => $order_by,
-				'meta_key' => $meta_key_sort
+		// check the user level
+		if( $permissions == 'all' || current_user_can( $permissions )){
+			// reset the previous loops
+			// just to be sure they wont manipulate the curent query
+			wp_reset_postdata();
+			//wp_reset_query();
+			// get the global data of curent seen post || page
+			global $post;
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			/* Display name from widget settings if one was input. */
+			// init the val.
+			$p_id = '';
+			$args = array(
+				'post_type' => $the_post_type,
 			);
-			$args = array_merge( $args , $sorting_args);
+			// allow diallow pagination
+			if ($paging == true){
+				$pages = array(
+					'paged' => $paged
+					);
+				$args = array_merge( $args , $pages);
+			}else{
+				$pages = array(
+				'nopaging' => true
+				);
+				$args = array_merge( $args , $pages);
+			}
+			// if they want to show particular ID instead the actual post || page
+			// check if they selected location: "Elsewhere"
+			if($location_selector == 1){
+				// sorting
+				$sorting_args = array(
+					'order' => $the_order,
+					'orderby' => $order_by,
+					'meta_key' => $meta_key_sort
+				);
+				$args = array_merge( $args , $sorting_args);
 			
-			// divide by types post | page_selector
-			// for post types
-			if($the_post_type == 'post'){
-				// if the selected the ID
-				if($page_selector == 0){
-					// if they actually set the ID number
-					if(!empty($post_id)){
+				// divide by types post | page_selector
+				// for post types post(linear) || page (hierarchycal)
+				// linear in this case
+				if(!is_post_type_hierarchical($the_post_type)){
+					// if the selected the ID
+					if($page_selector == 0){
+						// if they actually set the ID number
+						if(!empty($post_id)){
+							$post_id_clean = ereg_replace(" ", "", $post_id);
+							$post_ids_array = explode(',', $post_id_clean);
+							$args_ids = array(
+								'post__in' => $post_ids_array
+					 		);
+					 		$args = array_merge( $args , $args_ids);
+				 		}
+				 		// if they left the input empty, show nothing :)
+				 		/*else{
+				 			$args_ids = array(
+								'post__in' => array(0)
+					 		);
+					 		$args = array_merge( $args , $args_ids);
+				 		}*/
+					}
+					// selected taxonnomy
+					elseif($page_selector == 4){
+						if(!empty($taxonomies)){
+							// define the basic arguments, the relation
+							$args_taxonomies = array(
+								'posts_per_page' => $posts_number,
+								'offset' => $with_offset,
+								'tax_query' => array(
+									'relation' => $taxonomy_comparison
+									)
+								);
+							// for each taxonomy, like categories tags, etc.
+							// add the array to the tax_query : for taxonomy by its ID show post under term IDS
+							foreach($taxonomies as $taxonomy => $value){
+								// if there are any terms under the taxonomy selected
+								if(!empty($value[0])){
+									$args_taxonomies_tax_query = array(
+										'taxonomy' => $taxonomy, // get & set the tax name (key)
+										'field' => 'id',
+										'terms' => $value,  // add the term ID array (val)
+									);
+									// add to arrays to tax query a < b
+									array_push( $args_taxonomies['tax_query'], $args_taxonomies_tax_query);
+								}
+							}
+							// merge tax query with the main array
+							$args = array_merge( $args, $args_taxonomies);
+						}else{
+							$args_taxonomies = array(
+								'posts_per_page' => $posts_number,
+								'offset' => $with_offset,
+								);
+							// merge tax query with the main array
+							$args = array_merge( $args, $args_taxonomies);
+					
+						}
+					}
+					// From the same taxonomy as the current page
+					elseif($page_selector == 5){
+						if(!empty($against_taxonomy)){
+							$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
+							$args_taxonomies_against = array(
+							'tax_query' => array(
+									//'relation' => 'AND',
+									array(
+										'taxonomy' => $against_taxonomy,
+										'field' => 'id',
+										'terms' => $current_terms//array( '25')
+									)
+								),
+								'posts_per_page' => $posts_number
+							);
+							$args = array_merge( $args, $args_taxonomies_against);
+						}
+					}
+					// restrict to these post|page with these meta
+					elseif($page_selector == 6 && !empty($meta_key) && !empty($meta_value)){
+						$args_meta_restriction = array(
+							'meta_query' => array(
+								array(
+									'key' => $meta_key,
+									'value' => $meta_value,
+									'compare' => $compare
+								)
+							),
+							'posts_per_page' => $posts_number
+						);
+						$args = array_merge( $args, $args_meta_restriction);
+					}else{
+						// they decided to offset the page
+						if(!empty($with_offset)){
+							$args_offset = array(
+								'offset' => $with_offset,
+								'posts_per_page' => $posts_number
+					 		);
+					 		$args = array_merge( $args , $args_offset);
+						}
+						// number posts defined
+						if(!empty($posts_number)){
+							$args_number = array(
+								'posts_per_page' => $posts_number
+					 		);
+					 		$args = array_merge( $args , $args_number);
+						}
+					}
+				}
+				// for page types (hierarchical)
+				else{
+					// 0 Select Page(s) by IDs
+					if($page_selector == 0){
 						$post_id_clean = ereg_replace(" ", "", $post_id);
 						$post_ids_array = explode(',', $post_id_clean);
-						$args_ids = array(
-							'post__in' => $post_ids_array
+						// if empty the no restriction are applied
+						if(!empty($post_ids_array[0])){
+							$args_ids = array(
+								'post__in' => $post_ids_array
+					 		);
+					 		$args = array_merge( $args , $args_ids);
+				 		}
+						/*$args_ids = array(
+							'post__in' => $post_id,
 				 		);
-				 		$args = array_merge( $args , $args_ids);
+				 		$args = array_merge( $args , $args_ids);*/
 			 		}
-			 		// if they left the input empty, show nothing :)
-			 		/*else{
-			 			$args_ids = array(
-							'post__in' => array(0)
-				 		);
-				 		$args = array_merge( $args , $args_ids);
-			 		}*/
-				}
-				// selected taxonnomy
-				elseif($page_selector == 4){
-					if(!empty($taxonomies)){
-						// define the basic arguments, the relation
-						$args_taxonomies = array(
+					// 1 Children pages of Page parent
+					elseif($page_selector == 1){
+						$args_parent_id = array(
+							'post_parent' => $parent_page_id,
 							'posts_per_page' => $posts_number,
-							'offset' => $with_offset,
-							'tax_query' => array(
-								'relation' => $taxonomy_comparison
-								)
-							);
-						// for each taxonomy, like categories tags, etc.
-						// add the array to the tax_query : for taxonomy by its ID show post under term IDS
-						foreach($taxonomies as $taxonomy => $value){
-							// if there are any terms under the taxonomy selected
-							if(!empty($value[0])){
-								$args_taxonomies_tax_query = array(
-									'taxonomy' => $taxonomy, // get & set the tax name (key)
-									'field' => 'id',
-									'terms' => $value,  // add the term ID array (val)
-								);
-								// add to arrays to tax query a < b
-								array_push( $args_taxonomies['tax_query'], $args_taxonomies_tax_query);
-							}
-						}
-						// merge tax query with the main array
-						$args = array_merge( $args, $args_taxonomies);
-					}else{
-						$args_taxonomies = array(
-							'posts_per_page' => $posts_number
-							);
-						// merge tax query with the main array
-						$args = array_merge( $args, $args_taxonomies);
-					
-					}
-				}
-				// From the same taxonomy as the current page
-				elseif($page_selector == 5){
-					if(!empty($against_taxonomy)){
-						$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
-						$args_taxonomies_against = array(
-						'tax_query' => array(
-								//'relation' => 'AND',
-								array(
-									'taxonomy' => $against_taxonomy,
-									'field' => 'id',
-									'terms' => $current_terms//array( '25')
-								)
-							)
-						);
-						$args = array_merge( $args, $args_taxonomies_against);
-					}
-				}
-				// restrict to these post|page with these meta
-				elseif($page_selector == 6 && !empty($meta_key) && !empty($meta_value)){
-					$args_meta_restriction = array(
-						'meta_query' => array(
-							array(
-								'key' => $meta_key,
-								'value' => $meta_value,
-								'compare' => $compare
-							)
-						)
-					);
-					$args = array_merge( $args, $args_meta_restriction);
-				}else{
-					// they decided to offset the page
-					if(!empty($with_offset)){
-						$args_offset = array(
-							'offset' => $with_offset
 				 		);
-				 		$args = array_merge( $args , $args_offset);
+				 		$args = array_merge( $args , $args_parent_id);
 					}
-					// number posts defined
-					if(!empty($posts_number)){
-						$args_number = array(
-							'posts_per_page' => $posts_number
-				 		);
-				 		$args = array_merge( $args , $args_number);
-					}
-				}
-			}
-			// for page types
-			else{
-				// 0 Select Page(s) by IDs
-				if($page_selector == 0){
-					$post_id_clean = ereg_replace(" ", "", $post_id);
-					$post_ids_array = explode(',', $post_id_clean);
-					// if empty the no restriction are applied
-					if(!empty($post_ids_array[0])){
-						$args_ids = array(
-							'post__in' => $post_ids_array
-				 		);
-				 		$args = array_merge( $args , $args_ids);
-			 		}
-					/*$args_ids = array(
-						'post__in' => $post_id,
-			 		);
-			 		$args = array_merge( $args , $args_ids);*/
-		 		}
-				// 1 Children pages of Page parent
-				elseif($page_selector == 1){
-					$args_parent_id = array(
-						'post_parent' => $parent_page_id,
-						'posts_per_page' => $posts_number,
-			 		);
-			 		$args = array_merge( $args , $args_parent_id);
-				}
-				// 2 Children pages of displayed Page
-				elseif($page_selector == 2){
-					$args_parent_id = array(
-						'post_parent' => $post->ID,
-						'posts_per_page' => $posts_number,
-						'order' => 'ASC',
-						'orderby' => 'menu_order'
-			 		);
-			 		$args = array_merge( $args , $args_parent_id);
-				}
-				// 3 Page(s) from the same hierarchy level
-				elseif($page_selector == 3){
-					if($post->post_parent != 0){
-						$args_parent = array(
-							'post_parent' => $post->post_parent,
+					// 2 Children pages of displayed Page
+					elseif($page_selector == 2){
+						$args_parent_id = array(
+							'post_parent' => $post->ID,
 							'posts_per_page' => $posts_number,
-							'order' => $the_order,
-							'orderby' => $order_by
+							'order' => 'ASC',
+							'orderby' => 'menu_order'
 				 		);
-				 		$args = array_merge( $args , $args_parent);
-			 		}else{
-			 			return;
-			 		}
-				}
-				// selected taxonnomy
-				elseif($page_selector == 4){
+				 		$args = array_merge( $args , $args_parent_id);
+					}
+					// 3 Page(s) from the same hierarchy level
+					elseif($page_selector == 3){
+						if($post->post_parent != 0){
+							$args_parent = array(
+								'post_parent' => $post->post_parent,
+								'posts_per_page' => $posts_number,
+								'order' => $the_order,
+								'orderby' => $order_by
+					 		);
+					 		$args = array_merge( $args , $args_parent);
+				 		}else{
+				 			return;
+				 		}
+					}
+					// selected taxonnomy
+					elseif($page_selector == 4){
 				
-					if(!empty($taxonomies)){
-						// define the basic arguments, the relation
-						$args_taxonomies = array(
-							'posts_per_page' => $posts_number,
-							'tax_query' => array(
-								'relation' => $taxonomy_comparison
-								)
-							);
-						// for each taxonomy, like categories tags, etc.
-						// add the array to the tax_query : for taxonomy by its ID show post under term IDS
-						foreach($taxonomies as $taxonomy => $value){
-							// if there are any terms under the taxonomy selected
-							if(!empty($value[0])){
-								$args_taxonomies_tax_query = array(
-									'taxonomy' => $taxonomy, // get & set the tax name (key)
-									'field' => 'id',
-									'terms' => $value // add the term ID array (val)
+						if(!empty($taxonomies)){
+							// define the basic arguments, the relation
+							$args_taxonomies = array(
+								'posts_per_page' => $posts_number,
+								'tax_query' => array(
+									'relation' => $taxonomy_comparison
+									)
 								);
-								// add to arrays to tax query a < b
-								array_push( $args_taxonomies['tax_query'], $args_taxonomies_tax_query);
+							// for each taxonomy, like categories tags, etc.
+							// add the array to the tax_query : for taxonomy by its ID show post under term IDS
+							foreach($taxonomies as $taxonomy => $value){
+								// if there are any terms under the taxonomy selected
+								if(!empty($value[0])){
+									$args_taxonomies_tax_query = array(
+										'taxonomy' => $taxonomy, // get & set the tax name (key)
+										'field' => 'id',
+										'terms' => $value // add the term ID array (val)
+									);
+									// add to arrays to tax query a < b
+									array_push( $args_taxonomies['tax_query'], $args_taxonomies_tax_query);
+								}
 							}
-						}
-						// merge tax query with the main array
-						$args = array_merge( $args, $args_taxonomies);
-					}else{
+							// merge tax query with the main array
+							$args = array_merge( $args, $args_taxonomies);
+						}else{
 					
-						$args_taxonomies = array(
-							'posts_per_page' => $posts_number
-							);
-						// merge tax query with the main array
-						$args = array_merge( $args, $args_taxonomies);
-					}
-				}
-				// 5	From the same taxonomy as the curently seen post.page
-				elseif($page_selector == 5){
-					if(!empty($against_taxonomy)){
-						$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
-						$args_taxonomies_against = array(
-						'tax_query' => array(
-								//'relation' => 'AND',
-								array(
-									'taxonomy' => $against_taxonomy,
-									'field' => 'id',
-									'terms' => $current_terms//array( '25')
-								)
-							)
-						);
-						// add to arrays to query
-						$args = array_merge( $args, $args_taxonomies_against);
-					}
-				}elseif($page_selector == 6 && !empty($meta_key) && !empty($meta_value)){
-					$args_meta_restriction = array(
-						'meta_query' => array(
-							array(
-								'key' => $meta_key,
-								'value' => $meta_value,
-								'compare' => $compare
-							)
-						)
-					);
-					$args = array_merge( $args, $args_meta_restriction);
-				}
-			}
-		}
-
-		// or gallery of the final post
-		elseif($location_selector == 2){
-			// lets make the gallery the WP_query way, so we can wrap the image as like the posts
-			// get the images parent post ID
-			if (!empty($post_id)){
-				$ids_clean = str_replace (" ", "", $post_id);
-				if(explode(',' ,$ids_clean)){
-					$expl_ids = explode(',' ,$ids_clean);
-					$p_id = $expl_ids[0];
-				}else{
-					$p_id = $ids_clean;
-				}
-			}else{
-				$p_id = $post->ID;
-			}
-			$args = array( 
-				'post_parent' => $p_id, // Get data from the current post
-				'post_type' => 'attachment', // Only bring back attachments
-				'post_mime_type' => 'image', // Only bring back attachments that are images
-				'posts_per_page' => $posts_number, // Show us the first result
-				'offset' => $with_offset,
-				'post_status' => 'inherit', // Attachments default to "inherit", rather than published. Use "inherit" or "all". 
-				'orderby' =>  $order_by,
-				'order' => $the_order,
-			);
-		
-		}
-		// "else" meaning, they decided to show the actual final loop,
-		// presumably on sidebar in page.php or single.php
-		//
-		elseif($location_selector == 0){
-			$args_ids = array(
-				'post__in' => array($post->ID),
-				'posts_per_page' => 1
-	 		);
-	 		$args = array_merge( $args , $args_ids);
-		}
-	
-		if($debug == 1){
-			echo '<p class="lw_2046_debug"><strong>Debug (query args)</strong><br><pre>';
-				var_dump($args);
-			echo '</pre></p>';
-		}
-		
-		// if we do not process the post gallery only
-		if($location_selector != 2){
-			// RESTRICTIONS
-			$stick_ids = array();
-			if(!empty($restrict_to_ids)){
-				// make an array if ids
-				$stick_ids_clean = str_replace (" ", "", $restrict_to_ids);
-				// do it for these page IDS
-				//echo '-----'.$restrict_to_ids_with_childs.'------';
-				if($restrict_to_ids_with_childs == 0){
-					if(explode(',' ,$stick_ids_clean)){
-						$stick_ids = explode(',' ,$stick_ids_clean);
-					}else{
-						array_push($stick_ids, $restrict_to_ids);
-					}
-				}
-				// do it for child pages of the selected IDs
-				elseif($restrict_to_ids_with_childs == 1){
-					// Set up the objects needed
-					// make an array out of given IDs
-					$parents = explode(',' ,$stick_ids_clean);
-					// add child pagesto the array 
-					foreach($parents as $each){
-						$childs = get_children(array('post_parent' => $each));
-						//var_dump($childs);
-						foreach($childs as $child){
-							array_push($stick_ids, $child->ID);
+							$args_taxonomies = array(
+								'posts_per_page' => $posts_number
+								);
+							// merge tax query with the main array
+							$args = array_merge( $args, $args_taxonomies);
 						}
 					}
+					// 5	From the same taxonomy as the curently seen post.page
+					elseif($page_selector == 5){
+						if(!empty($against_taxonomy)){
+							$current_terms  = wp_get_post_terms( $post->ID, $against_taxonomy, array("fields" => "ids"));
+							$args_taxonomies_against = array(
+							'tax_query' => array(
+									//'relation' => 'AND',
+									array(
+										'taxonomy' => $against_taxonomy,
+										'field' => 'id',
+										'terms' => $current_terms//array( '25')
+									)
+								),
+								'posts_per_page' => $posts_number
+								
+							);
+							// add to arrays to query
+							$args = array_merge( $args, $args_taxonomies_against);
+						}
+					}elseif($page_selector == 6 && !empty($meta_key) && !empty($meta_value)){
+						$args_meta_restriction = array(
+							'meta_query' => array(
+								array(
+									'key' => $meta_key,
+									'value' => $meta_value,
+									'compare' => $compare
+								)
+							),
+							'posts_per_page' => $posts_number
+						);
+						$args = array_merge( $args, $args_meta_restriction);
+					}else{
+						$args_meta_restriction = array(
+							'posts_per_page' => $posts_number
+						);
+						$args = array_merge( $args, $args_meta_restriction);
+					}
 				}
-				// do it for selected IDs & their child pages
-				else{
-					// Set up the objects needed
-					// make an array out of given IDs
-					$parents = explode(',' ,$stick_ids_clean);
-					foreach($parents as $each){
-						// add each parent to the array_merge first
-						array_push($stick_ids, $each);
-						 
-						$childs = get_children(array('post_parent' => $each));
-						// add child pages to the array as well 
-						foreach($childs as $child){
-							if($child->ID == $post->ID){
+			}
+
+			// or gallery of the final post
+			elseif($location_selector == 2){
+				// lets make the gallery the WP_query way, so we can wrap the image as like the posts
+				// get the images parent post ID
+				if (!empty($post_id)){
+					$ids_clean = str_replace (" ", "", $post_id);
+					if(explode(',' ,$ids_clean)){
+						$expl_ids = explode(',' ,$ids_clean);
+						$p_id = $expl_ids[0];
+					}else{
+						$p_id = $ids_clean;
+					}
+				}else{
+					$p_id = $post->ID;
+				}
+				$args = array( 
+					'post_parent' => $p_id, // Get data from the current post
+					'post_type' => 'attachment', // Only bring back attachments
+					'post_mime_type' => 'image', // Only bring back attachments that are images
+					'posts_per_page' => $posts_number, // Show us the first result
+					'offset' => $with_offset,
+					'post_status' => 'inherit', // Attachments default to "inherit", rather than published. Use "inherit" or "all". 
+					'orderby' =>  $order_by,
+					'order' => $the_order,
+				);
+		
+			}
+			// "else" meaning, they decided to show the actual final loop,
+			// presumably on sidebar in page.php or single.php
+			//
+			elseif($location_selector == 0){
+				$args_ids = array(
+					'post__in' => array($post->ID),
+					'posts_per_page' => 1
+		 		);
+		 		$args = array_merge( $args , $args_ids);
+			}
+	
+			if($debug == 1){
+				echo '<p class="lw_2046_debug"><strong>Debug (query args)</strong><br><pre>';
+					var_dump($args);
+				echo '</pre></p>';
+			}
+		
+			// if we do not process the post gallery only
+			if($location_selector != 2){
+				// RESTRICTIONS
+				$stick_ids = array();
+				if(!empty($restrict_to_ids)){
+					// make an array if ids
+					$stick_ids_clean = str_replace (" ", "", $restrict_to_ids);
+					// do it for these page IDS
+					//echo '-----'.$restrict_to_ids_with_childs.'------';
+					if($restrict_to_ids_with_childs == 0){
+						if(explode(',' ,$stick_ids_clean)){
+							$stick_ids = explode(',' ,$stick_ids_clean);
+						}else{
+							array_push($stick_ids, $restrict_to_ids);
+						}
+					}
+					// do it for child pages of the selected IDs
+					elseif($restrict_to_ids_with_childs == 1){
+						// Set up the objects needed
+						// make an array out of given IDs
+						$parents = explode(',' ,$stick_ids_clean);
+						// add child pagesto the array 
+						foreach($parents as $each){
+							$childs = get_children(array('post_parent' => $each));
+							foreach($childs as $child){
 								array_push($stick_ids, $child->ID);
 							}
 						}
 					}
+					// do it for selected IDs & their child pages
+					else{
+						// Set up the objects needed
+						// make an array out of given IDs
+						$parents = explode(',' ,$stick_ids_clean);
+						foreach($parents as $each){
+							// add each parent to the array_merge first
+							array_push($stick_ids, $each);
+							 
+							$childs = get_children(array('post_parent' => $each));
+							// add child pages to the array as well 
+							foreach($childs as $child){
+								if($child->ID == $post->ID){
+									array_push($stick_ids, $child->ID);
+								}
+							}
+						}
+					}
+					// if there are restrictions, AND the the curent post->id is not in the restricted array_merge-d $stick_ids
+					// let it go
+					if (!in_array($post->ID, $stick_ids)){
+						return;
+					}
 				}
-				// if there are restrictions, AND the the curent post->id is not in the restricted array_merge-d $stick_ids
-				// let it go
-				if (!in_array($post->ID, $stick_ids)){
-					return;
-				}
-			}
 			
-			// disalow the widget to be seen on :
-			/* how it comes
-			1 Single post
-			2 home
-			3 Front Page
-			4 Archive
-			5 Tag/Term list
-			6 taxonomy
-			7 Category list
-			8 Author's list
-			9 Search
-			10 404 error page
-			*/
-			if(!empty($stick_on_template_types)){
-				if(is_single() && in_array(1, $stick_on_template_types)){
-					return;
+				// disalow the widget to be seen on :
+				/* how it comes
+				1 Single post
+				2 home
+				3 Front Page
+				4 Archive
+				5 Tag/Term list
+				6 taxonomy
+				7 Category list
+				8 Author's list
+				9 Search
+				10 404 error page
+				*/
+				if(!empty($stick_on_template_types)){
+					if(is_single() && in_array(1, $stick_on_template_types)){
+						return;
+					}
+					if(is_home() && in_array(2, $stick_on_template_types)){
+						return;
+					}
+					if(is_front_page() && in_array(3, $stick_on_template_types)){
+						return;
+					}
+					if(is_archive() && in_array(4, $stick_on_template_types)){
+						return;
+					}
+					if(is_tag() && in_array(5, $stick_on_template_types)){
+						return;
+					}
+					if(is_tax() && in_array(6, $stick_on_template_types)){
+						return;
+					}
+					if(is_category() && in_array(7, $stick_on_template_types)){
+						return;
+					}
+					if(is_author() && in_array(8, $stick_on_template_types)){
+						return;
+					}
+					if(is_search() && in_array(9, $stick_on_template_types)){
+						return;
+					}
+					if(is_404() && in_array(10, $stick_on_template_types)){
+						return;
+					}
 				}
-				if(is_home() && in_array(2, $stick_on_template_types)){
-					return;
+				// Disallow for certain pages posts
+				$disallow_on_ids_array = array();
+				if(!empty($disallow_on_ids)){
+					$disallow_on_clean = str_replace (" ", "", $disallow_on_ids);
+					if(explode(',' ,$disallow_on_clean)){
+						$disallow_on_ids_array = explode(',' ,$disallow_on_clean);
+					}else{
+						array_push($disallow_on_ids_array, $disallow_on_ids);
+					}
+					// if the current page has the restricted id
+					// let it go
+					if((is_page() || is_single()) && in_array($post->ID, $disallow_on_ids_array)){
+						return;
+					}
 				}
-				if(is_front_page() && in_array(3, $stick_on_template_types)){
-					return;
-				}
-				if(is_archive() && in_array(4, $stick_on_template_types)){
-					return;
-				}
-				if(is_tag() && in_array(5, $stick_on_template_types)){
-					return;
-				}
-				if(is_tax() && in_array(6, $stick_on_template_types)){
-					return;
-				}
-				if(is_category() && in_array(7, $stick_on_template_types)){
-					return;
-				}
-				if(is_author() && in_array(8, $stick_on_template_types)){
-					return;
-				}
-				if(is_search() && in_array(9, $stick_on_template_types)){
-					return;
-				}
-				if(is_404() && in_array(10, $stick_on_template_types)){
-					return;
-				}
-				//var_dump($stick_on_template_types);
 			}
-			// Disallow for certain pages posts
-			$disallow_on_ids_array = array();
-			if(!empty($disallow_on_ids)){
-				$disallow_on_clean = str_replace (" ", "", $disallow_on_ids);
-				if(explode(',' ,$disallow_on_clean)){
-					$disallow_on_ids_array = explode(',' ,$disallow_on_clean);
-				}else{
-					array_push($disallow_on_ids_array, $disallow_on_ids);
+			// The Query
+			$the_query = new WP_Query( $args );
+			// run the LOOP
+			if($the_query->have_posts()){
+				// scafolding
+				// classical WP
+				if($scafolding_selector == 0){
+					echo $before_widget;
 				}
-				// if the current page has the restricted id
-				// let it go
-				if((is_page() || is_single()) && in_array($post->ID, $disallow_on_ids_array)){
-					return;
-				}
-			}
-		}
-		// The Query
-		$the_query = new WP_Query( $args );
-		// run the LOOP
-		if($the_query->have_posts()){
-			// scafolding
-			// classical WP
-			if($scafolding_selector == 0){
-				echo $before_widget;
-			}
-			// if user want to see widget title
-			if (!empty($the_widget_title)){
-				echo '<h4 class="widget_title '.$widget_id.'">'.__($the_widget_title).'</h4>';
+				// if user want to see widget title
+				if (!empty($the_widget_title)){
+					echo '<h4 class="widget_title '.$widget_id.'">'.__($the_widget_title).'</h4>';
 				
-			}
-			// when one per row 
-				// than do not render div here
-			// many per row
-			if($scafolding_selector == 2){
-				echo '<div class="'.$scafolding_row.'">';
-			}
-			// The Loop
-			while ( $the_query->have_posts() ) : $the_query->the_post();
+				}
+				
+				// when one per row 
+					// than do not render div here
+				// many per row
+				if($scafolding_selector == 2){
+					echo '<div class="'.$scafolding_row.'">';
+				}
+				// The Loop
+				while ( $the_query->have_posts() ) : $the_query->the_post();
 
-				if($scafolding_selector == 1){
-					// row
-					echo '<div ';
-					post_class($scafolding_row);
-					echo '>';
-					// column
-					if(!empty($scafolding_column)){
-						echo '<div class="'.$scafolding_column.'">';
+					if($scafolding_selector == 1){
+						// row
+						echo '<div ';
+						post_class($scafolding_row);
+						echo '>';
+						// column
+						if(!empty($scafolding_column)){
+							echo '<div class="'.$scafolding_column.'">';
+						}
 					}
-				}
-				// scafolding column
-				elseif ($scafolding_selector == 2){
-					echo '<div ';
-					post_class($scafolding_column);
-					echo '>';
-				}
-				// basic WP class
-				else{
-					echo '<div ';
-					post_class();
-					echo '>';
-				}
-					// if user want the image here 
-					if ( has_post_thumbnail() && ($image_position == 0)) { // check if the post has a Post Thumbnail assigned to it.
-						echo f_2046_build_image($the_query->post, $image_with_link, $image_size, $p_id);
+					// scafolding column
+					elseif ($scafolding_selector == 2){
+						echo '<div ';
+						post_class($scafolding_column);
+						echo '>';
 					}
-					// gallery
-					if(($location_selector == 2 && $image_position == 0) && ($image_size != 0)){
-						echo f_2046_gallery_builder($the_query->post->ID, $image_size, $image_with_link);
+					// basic WP class
+					else{
+						echo '<div ';
+						post_class();
+						echo '>';
 					}
-					// if user want to see post title
-					if($the_post_title == 'on'){
-						echo '<'.$html_heading.'>';
-							if($the_post_title_link == 'on'){
-								echo '<a href="'. get_permalink() . '" title="';
-								the_title();
-								echo' : ' ;
-								$under_categories = get_the_category();
-								foreach($under_categories as $category) { 
-								 	echo $category->cat_name;
-								 	if  ($category != end($under_categories) ){
-								 		echo ', ';
-								 	}
-								} 
-								echo '">';
-							}
-								the_title();
-							if($the_post_title_link == 'on'){
-								echo '</a>';
-							}
-								if(is_user_logged_in() && $edit_link == 'on'){
-								edit_post_link('edit', '', ' <small class="lw_2046_pID">'.$the_query->post->ID.'</small>');
-							}
-						echo '</'.$html_heading.'>';
-					}
-					if($comments_booble == 'on'){
-						echo '<span class="wl2046_comment_number">';
-							comments_number( ':)	', '1', '%' );
-							if(comments_open() == false){
-								echo ' &#10013;'; //&#9873;
-							}
-						echo '</span>';
-					}
-					// if user wants post thumbnail after the title
-					if ( has_post_thumbnail() && $image_position == 1) { // check if the post has a Post Thumbnail assigned to it.
-						echo f_2046_build_image($the_query->post, $image_with_link, $image_size, $p_id);
-					} 
-					// if the user want the content and we are not going to render the gallery
-					if($with_excerpt == '1' && $location_selector != 2){
-						the_excerpt();
-					}
-					elseif($with_excerpt == '2' && $location_selector != 2){
-						the_content();
-					}
-					// gallery
-					if(($location_selector == 2 && $image_position == 1) && ($image_size != 0)){
-						echo f_2046_gallery_builder($the_query->post->ID, $image_size, $image_with_link, $p_id);
-					}
-					if(!empty($postmeta)){
-						echo '<div class="postmeta">';
-							if(in_array('Date', $postmeta)){
-								echo '<span class="lw2046_postmeta_date">';
-								_e ('Posted on');
-								echo ': '. get_the_date().'</span>';
-							}
-							if(in_array('Author', $postmeta)){
-								echo '<span class="lw2046_postmeta_author">';
-								_e ('Author');
-								echo ': ';
-								the_author_link();
-								echo '</span>';
-							}
-							// work on taxonomies
-							foreach($postmeta as $meta){
-								// pass the Data and author
-								if ($meta == 'Date' || $meta == 'Author'){
-									continue;
+						// if user want the image here 
+						if ( has_post_thumbnail() && ($image_position == 0)) { // check if the post has a Post Thumbnail assigned to it.
+							echo f_2046_build_image($the_query->post, $image_with_link, $image_size, $p_id);
+						}
+						// gallery
+						if(($location_selector == 2 && $image_position == 0) && ($image_size != 0)){
+							echo f_2046_gallery_builder($the_query->post->ID, $image_size, $image_with_link);
+						}
+						// if user want to see post title
+						if($the_post_title == 'on'){
+							echo '<'.$html_heading.'>';
+								if($the_post_title_link == 'on'){
+									echo '<a href="'. get_permalink() . '" title="';
+									the_title();
+									echo' : ' ;
+									$under_categories = get_the_category();
+									foreach($under_categories as $category) { 
+									 	echo $category->cat_name;
+									 	if  ($category != end($under_categories) ){
+									 		echo ', ';
+									 	}
+									} 
+									echo '">';
 								}
-								$args=array(
-									'name' => $meta
-								);
-								$output = 'objects'; // or objects
-								$tax = get_taxonomy($meta);//get_taxonomies($args,$output);
-								// get terms
-								$taxo_terms = get_the_term_list( $the_query->post->ID, $meta, '', ', ', '' ); 
-								// write label
-								if(!empty($taxo_terms)){
-									// print label
-									echo $tax->labels->name . ': ';
-									// print terms
-									echo $taxo_terms;
+									the_title();
+								if($the_post_title_link == 'on'){
+									echo '</a>';
 								}
-							}
-						echo '</div>';
+									if(is_user_logged_in() && $edit_link == 'on'){
+									edit_post_link('edit', '', ' <small class="lw_2046_pID">'.$the_query->post->ID.'</small>');
+								}
+							echo '</'.$html_heading.'>';
+						}
+						if($comments_booble == 'on'){
+							echo '<span class="wl2046_comment_number">';
+								comments_number( ':)	', '1', '%' );
+								if(comments_open() == false){
+									echo ' &#10013;'; //&#9873;
+								}
+							echo '</span>';
+						}
+						// if user wants post thumbnail after the title
+						if ( has_post_thumbnail() && $image_position == 1) { // check if the post has a Post Thumbnail assigned to it.
+							echo f_2046_build_image($the_query->post, $image_with_link, $image_size, $p_id);
+						} 
+						// if the user want the content and we are not going to render the gallery
+						if($with_excerpt == '1' && $location_selector != 2){
+							the_excerpt();
+						}
+						elseif($with_excerpt == '2' && $location_selector != 2){
+							global $more;
+							$more = 0;
+							the_content();
+						}
+						// gallery
+						if(($location_selector == 2 && $image_position == 1) && ($image_size != 0)){
+							echo f_2046_gallery_builder($the_query->post->ID, $image_size, $image_with_link, $p_id);
+						}
+						if(!empty($postmeta)){
+							echo '<div class="postmeta">';
+								if(in_array('Date', $postmeta)){
+									echo '<span class="lw2046_postmeta_date">';
+									_e ('Posted on');
+									echo ': '. get_the_date().'</span>';
+								}
+								if(in_array('Author', $postmeta)){
+									echo '<span class="lw2046_postmeta_author">';
+									_e ('Author');
+									echo ': ';
+									the_author_link();
+									echo '</span>';
+								}
+								// work on taxonomies
+								foreach($postmeta as $meta){
+									// pass the Data and author
+									if ($meta == 'Date' || $meta == 'Author'){
+										continue;
+									}
+									$args=array(
+										'name' => $meta
+									);
+									$output = 'objects'; // or objects
+									$tax = get_taxonomy($meta);//get_taxonomies($args,$output);
+									// get terms
+									$taxo_terms = get_the_term_list( $the_query->post->ID, $meta, '', ', ', '' ); 
+									// write label
+									if(!empty($taxo_terms)){
+										// print label
+										echo $tax->labels->name . ': ';
+										// print terms
+										echo $taxo_terms;
+									}
+								}
+							echo '</div>';
+						}
+						// Create navigation // on final pages
+						if(($navigation == 1) && (is_page() || is_single())){
+							echo '<div class="navigation">';
+								previous_post_link('<div class="nav-previous">%link</div>');
+								next_post_link('<div class="nav-next">%link</div>'); 
+							echo '</div>';
+						}
+					// scafolding column
+					if ($scafolding_selector == 1){
+						if(!empty($scafolding_column)){
+							echo '</div><!-- END column -->';
+						}
+						echo '</div><!-- END row -->';
+					}else{
+						echo '</div><!-- END post (or, and) column -->';
 					}
-					// Create navigation // on final pages
-					if(($navigation == 1) && (is_page() || is_single())){
-						echo '<div class="navigation">';
-							previous_post_link('<div class="nav-previous">%link</div>');
-							next_post_link('<div class="nav-next">%link</div>'); 
-						echo '</div>';
+				endwhile;
+				// scafolding classical WP
+				if ($scafolding_selector == 0){
+					/* After widget (defined by themes). */
+					echo $after_widget;
+				}
+				elseif($scafolding_selector == 2){
+					echo '</div>';
+				}
+				// Create navigation
+				if($navigation == 2){
+					echo '<div class="navigation">';
+						previous_posts_link(__('&#171; previous','p_2046s_loop_widget'), $the_query->max_num_pages);
+						next_posts_link(__('next &#187;','p_2046s_loop_widget'), $the_query->max_num_pages);
+						//posts_nav_link(' &#183; ', 'previous page', 'next page');
+					echo '</div>';
+				}
+				// show the scribus page navi (if installed)
+				if ($navigation == 3 && function_exists('wp_pagenavi')) { 
+					wp_pagenavi( array( 'query' => $the_query ) );
+				}
+				// show the link to category list
+				if ($navigation == 4) { 
+					$all_cats = get_the_category();
+					echo '<div class="navigation">
+						<a class="link_to_category_list" href="'.get_category_link($all_cats[0]->term_id).'">'.__("view all &rarr;","p_2046s_loop_widget").'</a>
+					</div>';
+				}
+				// comments
+				if($comments_selector == 0){
+					// show comments with the comments disabled text if disabled
+					if($comments_comments_closed_info == 'on'){
+					comments_template( '', true );
 					}
-				// scafolding column
-				if ($scafolding_selector == 1){
-					if(!empty($scafolding_column)){
-						echo '</div><!-- END column -->';
+					// show comments, when disabled do not show fucking "comments are closed" message
+					else{
+						if($the_query->post->comment_status == "open"){comments_template( '', true );}
 					}
-					echo '</div><!-- END row -->';
-				}else{
-					echo '</div><!-- END post (or, and) column -->';
 				}
-			endwhile;
-			// scafolding classical WP
-			if ($scafolding_selector == 0){
-				/* After widget (defined by themes). */
-				echo $after_widget;
-			}
-			elseif($scafolding_selector == 2){
-				echo '</div>';
-			}
-			// Create navigation
-			if($navigation == 2){
-				echo '<div class="navigation">';
-					previous_posts_link(__('&#171; previous','p_2046s_loop_widget'), $the_query->max_num_pages);
-					next_posts_link(__('next &#187;','p_2046s_loop_widget'), $the_query->max_num_pages);
-					//posts_nav_link(' &#183; ', 'previous page', 'next page');
-				echo '</div>';
-			}
-			// show the scribus page navi (if installed)
-			if ($navigation == 3 && function_exists('wp_pagenavi')) { 
-				wp_pagenavi( array( 'query' => $the_query ) );
-			}
-			// show the link to category list
-			if ($navigation == 4) { 
-				$all_cats = get_the_category();
-				echo '<div class="navigation">
-					<a class="link_to_category_list" href="'.get_category_link($all_cats[0]->term_id).'">'.__("view all &rarr;","p_2046s_loop_widget").'</a>
-				</div>';
-			}
-			// comments
-			if($comments_selector == 0){
-				// show comments with the comments disabled text if disabled
-				if($comments_comments_closed_info == 'on'){
-				comments_template( '', true );
-				}
-				// show comments, when disabled do not show fucking "comments are closed" message
-				else{
-					if($the_query->post->comment_status == "open"){comments_template( '', true );}
-				}
-			}
-		} // END if have a post
-	// Reset Post Data
-	wp_reset_postdata();
+			} // END if have a post
+		// Reset Post Data
+		wp_reset_postdata();
+		} // end user check
 	}
 
 } // END of class
 
 // build image html
 function f_2046_build_image($post_, $image_with_link, $image_size) {
-	//var_dump($post_);
 	$post_thumbnail_id = get_post_thumbnail_id( $post_->ID );
 	$output = '';
 	// make the image link to the post/page
