@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2046's loop widget\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-13 17:44+0100\n"
-"PO-Revision-Date: 2012-04-13 17:46+0100\n"
-"Last-Translator: Jan Mucska <2046@2046.cz>\n"
+"POT-Creation-Date: 2012-08-24 20:00+0100\n"
+"PO-Revision-Date: 2012-08-24 20:07+0100\n"
+"Last-Translator: 2046 <2046@2046.cz>\n"
 "Language-Team: 2046 <2046.cz>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -24,428 +24,495 @@ msgstr "Osnadní vám způsob umístění vašeho obsahu kdekoli na vašich str�
 msgid "2046's - loop widget"
 msgstr "2046's - loop widget"
 
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:121
-msgid "Post type"
-msgstr "Post typ"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:127
-msgid "Select post type"
-msgstr "Vyberte \"post\" typ"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:147
-msgid "Widget title"
-msgstr "Nadpis Widgety"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:152
-msgid "if empty: no title, no html, nothing"
-msgstr "Pokud je prázdné nezobrazí se vubec nic, žádný obsah, žádne HTML, nic."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:155
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:195
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:198
-msgid "Content"
-msgstr "Obsah"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:158
-msgid "Title"
-msgstr "Titulek"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:159
-msgid "Show title"
-msgstr "Zobrazit titulek"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:160
-msgid "as a link"
-msgstr "jako odkaz"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:161
-msgid "Show edit link"
-msgstr "zobrazit link na editaci"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:172
-msgid "No picture"
-msgstr "Bez obrázku"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:173
-msgid "Thumbnail"
-msgstr "Zmenšenina"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:174
-msgid "Medium"
-msgstr "Střední velikost"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:175
-msgid "Large"
-msgstr "Velká velikost"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:179
-msgid "Image position"
-msgstr ";Pozice obrázku"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:181
-msgid "Image above the title"
-msgstr "Obrázek nad titulkem"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:182
-msgid "Image below the title"
-msgstr "Obrázek pod titulkem"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:184
-msgid "Image linking"
-msgstr "Odkaz obrázku"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:186
-msgid "Image without link"
-msgstr "Obrázek bez odkazu"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:187
-msgid "Image as a link to the"
-msgstr "Obrázek jako odkaz na"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:188
-msgid "Image as a link to it's \"large\" version"
-msgstr "Obtázek s odkazem na jeho \"velkou\" verzi"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:192
-msgid "Show comments booble"
-msgstr "Zobrazit počet komentářů"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:196
-msgid "No content"
-msgstr "Bez obsahu"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:197
-msgid "Excerpt"
-msgstr "Zkrácenina"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:202
-msgid "Whether to show metadata for"
-msgstr "Jestli ukázat metadata nebo ne"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:238
-msgid "Show comments"
-msgstr "Ukázat komentáře"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:241
-msgid "Show"
-msgstr "Ukázat"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:242
-msgid "Hide"
-msgstr "Skrýt"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:246
-msgid "Show warning text if comments are closed"
-msgstr "Zobrazit upozornění o uzamčených kometářích"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:248
-msgid "Note: Comments will be shown on final post or page only!"
-msgstr "Poznámka: komentáře budou zobrazeny pouze na finální stránce/příspěvku."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:251
-msgid "Navigation"
-msgstr "Navigace"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:254
-msgid "Without navigation"
-msgstr "Bez navigace"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:255
-msgid "Prev-Next. Only on final page"
-msgstr "předchozí-další. Pouze na finální stránce."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:256
-msgid "Prev-Next links"
-msgstr "předchozí-další"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:260
-msgid "Link to category list"
-msgstr "Odkaz na kategorický seznam"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:263
-msgid "If the <a href=\"http://wordpress.org/extend/plugins/wp-pagenavi/\" target=\"_blank\">WP Page Navi</a> is installed it will be listed here too."
-msgstr "Pokud si nainstalujete a zapnete <a href=\"http://wordpress.org/extend/plugins/wp-pagenavi/\" target=\"_blank\">WP Page Navi</a> ukáže se jako jedna z možností."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:266
-msgid "Scafolding"
-msgstr "HTML struktura"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:268
-msgid "type of structure"
-msgstr "typ struktury"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:271
-msgid "Basic Wordpress classes"
-msgstr "Základní třídy WP."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:272
-msgid "One column per row"
-msgstr "Jeden sloupec na řádek"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:273
-msgid "Many Columns per row"
-msgstr "Více sloupců na řádek"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:275
-msgid "Custom classes are added to the basic Wordress classes"
-msgstr "Vlastní třídy budou přidány k implicitním třídám WP."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:278
-msgid "Row div class"
-msgstr "Třída (div) řádku"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:280
-msgid "In Boostrap it will be \"row\""
-msgstr "V Bootstrapu by to bylo \"row\""
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:283
-msgid "Column div class"
-msgstr "Třída (div) sloupce"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:285
-msgid "In Boostrap it can be \"span3\""
-msgstr "V Bootstrapu by to byl \"row\""
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:287
-msgid "Note: see "
-msgstr "Podívejte se na:"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:291
-msgid "Where this loop will be shown & what"
-msgstr "Kde bude tento loop zobrazen a co v něm"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:295
-msgid "On final Post (Page)"
-msgstr "Na finální stránce/příspěvku"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:296
-msgid "Gallery (Images of post/page)"
-msgstr "Galerie (obrázky stránky)"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:297
-msgid "Elsewhere"
-msgstr "Kdekoli"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:300
-msgid "\"On final post\" make sense when the widget is on single.php / page.php."
-msgstr "\"Na finální stránce\" vyberte pokud chcete tímto loopem nahradit hlavní obsah finální stránky."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:303
-msgid "\"Images of final post/page (gallery)\": The content settings are applied to the gallery images."
-msgstr "\"Obrázky příspěvku/stránky\": V obsahovém nastavení nastavíte zobrazení galerie."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:306
-msgid "\"Elsewhere\": you decide which"
-msgstr "\"Kdekoli\", vy se rozhodnete"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:306
-msgid "content you want to see, how and where."
-msgstr "obsah který chcete zobrazit"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:310
-msgid "Which"
-msgstr "Který/á"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:313
-msgid "Select the logic"
-msgstr "Vyber logiku"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:315
-msgid "Select"
-msgstr "Vyber"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:318
-msgid "Children pages of"
-msgstr "Potomci nadřazené stránky"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:318
-msgid "parent"
-msgstr "Nadřazená stránka"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:319
-msgid "Children pages of displayed"
-msgstr "Potomci zobrazené stránky"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:320
-msgid "(s) from the same hierarchy level"
-msgstr "ze stejné hierarchické urovně"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:324
-msgid "Selected taxonomy"
-msgstr "Vyber taxonomii"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:325
-msgid "From the same taxonomy"
-msgstr "Ze stejné taxonomie"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:327
-msgid "By the custom meta values"
-msgstr "Podle vlastních meta"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:331
-msgid "parent ID"
-msgstr "Id nadřazené stránky"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:334
-msgid "ONLY one page ID !"
-msgstr "Pouze jedno ID!"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:337
-msgid "Enter"
-msgstr "Vložit"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:340
-msgid "Separate IDs by comma."
-msgstr "ID oddělujte čárkou"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:341
-msgid "In the case of gallery, only first ID will be used. If empty the ID of visited post/page is used."
-msgstr "V případě galerie bude použito pouze první ID."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:359
-msgid "Select taxonomy term"
-msgstr "Vyberte taxonomický termín"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:363
-msgid "Please select a"
-msgstr "Prosím vyberte"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:376
-msgid "Warning! The number for each term counted for all post/page/cutom post types all together."
-msgstr "Pozor! Počty jednotlivých termínu jsou počitané ze všech typu příspevku a stránek dohromady."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:378
-msgid "Note! If you see the taxonomy selector multiplied, don not panic. These are just virtual copies, a bug."
-msgstr "Poznámka: pokud se vám zobrazí zmultiplikoivane pole pro výběr taxonomií, nepanikařte, je to jen kosmetický bug."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:385
-msgid "The comparison type"
-msgstr "Typ porovnávání"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:387
-msgid "Matching one of the selected terms"
-msgstr "Porovnej k něktrému z vybraných termínů"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:388
-msgid "Is releated to all selected terms"
-msgstr "Vstahuje se ke všem vybraným termínum"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:394
-msgid "Select against which"
-msgstr " "
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:394
-msgid "taxonomy you want to match the loop"
-msgstr ": vyberte se kterou taxonomií chcete porovnat tento loop."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:404
-msgid "Number of posts"
-msgstr "Počet"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:408
-msgid "Offset"
-msgstr "Posun"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:413
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:455
-msgid "Meta key"
-msgstr "Meta klíč"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:415
-msgid "The exact \"meta key\" name. Both key and value must be present!"
-msgstr "Přesný název \"meta key\". Název i hodnota musí být zadané."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:417
-msgid "Meta value"
-msgstr "Meta hodnota"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:419
-msgid "The exact \"meta value\" name. Both key and meta must be present!"
-msgstr "Přesný název \"meta value\". Název i hodnota musí být zadané."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:421
-msgid "Meta comparison"
-msgstr "Porovnáváni meta"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:430
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:433
-msgid "Order"
-msgstr "Řazení"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:435
-msgid "Ascendingly"
-msgstr "Vzestupně"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:436
-msgid "Descendingly"
-msgstr "Sestupně"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:440
-msgid "Order by"
-msgstr "Seřadit podle"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:453
-msgid "meta_value sorts: alphabetically / meta_value_num: sorts numerically / parent: ID"
-msgstr "meta value porovnává abecedně / meta_value_num porovnává číselně / rodič: ID"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:457
-msgid "The exact meta key name."
-msgstr "Přesný název"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:461
-msgid "Restrict to"
-msgstr "Omezit na"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:464
-msgid "Restrict to post or page IDs:"
-msgstr "Omezit na příspěvky a stránky. Zadejte jejich ID."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:467
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:498
-msgid "No restrictions if empty. Separate IDs by comma."
-msgstr "Pokud je pole pržádné nedojde k omezení, ID oddělujte čárkou. "
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:470
-msgid "only on given IDs"
-msgstr "pouze na zvolených ID"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:471
-msgid "only on child pages of given ID"
-msgstr "pouze na podstránkách zvolených stránek"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:472
-msgid "for given IDs and it's children pages"
-msgstr "pro zvolené IDs a jejich podstránky"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:476
-msgid "Prevent from being shown on"
-msgstr "Zamezit ukázat na"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:495
-msgid "Do not show on post/page with IDs:"
-msgstr "Neukázat na příspšvkách a stránkách; podle ID."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:505
-msgid "In order to load the appropriate settings for the selected \"post type\" you have to save the widget."
-msgstr "Abychom mohli nahrát data náležející k vybranému typu, musite Widgetu uložit."
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1117
-msgid "Posted on"
-msgstr "Napsáno"
-
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1122
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:126
+msgid "Anyone"
+msgstr "Kdokoli"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:126
+msgid "Subcriber"
+msgstr "Návštěvník"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:126
+msgid "Contributor"
+msgstr "Spolupracovník"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:126
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1201
 msgid "Author"
 msgstr "Autor"
 
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1178
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:126
+msgid "Editor"
+msgstr "Editor"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:126
+msgid "Administrator"
+msgstr "Administrátor"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:128
+msgid "Widget user info"
+msgstr "Widget info"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:131
+#, fuzzy
+msgid "Widget admin title"
+msgstr "Nadpis Widgety"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:134
+msgid "It helps you distiguish widgets. Used only in this admin area."
+msgstr "Nadpis vám pomůže lépe rozeznat widgety. Zobrazuje se pouze v této administraci."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:137
+#, fuzzy
+msgid "Widget note"
+msgstr "Nadpis Widgety"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:138
+msgid "Describe the widget intention here"
+msgstr "Záměr této widgety."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:140
+msgid "This note is used only in this admin area."
+msgstr "Tato poznámka je viditelné pouze v této administraci."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:143
+msgid "Permissions, Post types"
+msgstr "Přístupové prava, Typ objektu"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:147
+msgid "Who can see the result"
+msgstr "Typ uživatele který uvidí obsah widgety."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:155
+msgid "Post type"
+msgstr "Post typ"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:162
+msgid "Select post type"
+msgstr "Vyberte \"post\" typ"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:183
+msgid "Widget title"
+msgstr "Nadpis Widgety"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:188
+msgid "if empty: no title, no html, nothing"
+msgstr "Pokud je prázdné nezobrazí se vubec nic, žádný obsah, žádne HTML, nic."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:191
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:231
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:234
+msgid "Content"
+msgstr "Obsah"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:194
+msgid "Title"
+msgstr "Titulek"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:195
+msgid "Show title"
+msgstr "Zobrazit titulek"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:196
+msgid "as a link"
+msgstr "jako odkaz"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:197
+msgid "Show edit link"
+msgstr "zobrazit link na editaci"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:208
+msgid "No picture"
+msgstr "Bez obrázku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:209
+msgid "Thumbnail"
+msgstr "Zmenšenina"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:210
+msgid "Medium"
+msgstr "Střední velikost"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:211
+msgid "Large"
+msgstr "Velká velikost"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:215
+msgid "Image position"
+msgstr ";Pozice obrázku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:217
+msgid "Image above the title"
+msgstr "Obrázek nad titulkem"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:218
+msgid "Image below the title"
+msgstr "Obrázek pod titulkem"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:220
+msgid "Image linking"
+msgstr "Odkaz obrázku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:222
+msgid "Image without link"
+msgstr "Obrázek bez odkazu"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:223
+msgid "Image as a link to the"
+msgstr "Obrázek jako odkaz na"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:224
+msgid "Image as a link to it's \"large\" version"
+msgstr "Obtázek s odkazem na jeho \"velkou\" verzi"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:228
+msgid "Show comments booble"
+msgstr "Zobrazit počet komentářů"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:232
+msgid "No content"
+msgstr "Bez obsahu"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:233
+msgid "Excerpt"
+msgstr "Zkrácenina"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:238
+msgid "Whether to show metadata for"
+msgstr "Jestli ukázat metadata nebo ne"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:274
+msgid "Show comments"
+msgstr "Ukázat komentáře"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:277
+msgid "Show"
+msgstr "Ukázat"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:278
+msgid "Hide"
+msgstr "Skrýt"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:282
+msgid "Show warning text if comments are closed"
+msgstr "Zobrazit upozornění o uzamčených kometářích"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:284
+msgid "Note: Comments will be shown on final post or page only!"
+msgstr "Poznámka: komentáře budou zobrazeny pouze na finální stránce/příspěvku."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:287
+msgid "Navigation"
+msgstr "Navigace"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:290
+msgid "Without navigation"
+msgstr "Bez navigace"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:291
+msgid "Prev-Next. Only on final page"
+msgstr "předchozí-další. Pouze na finální stránce."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:292
+msgid "Prev-Next links"
+msgstr "předchozí-další"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:296
+msgid "Link to category list"
+msgstr "Odkaz na kategorický seznam"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:299
+msgid "If the <a href=\"http://wordpress.org/extend/plugins/wp-pagenavi/\" target=\"_blank\">WP Page Navi</a> is installed it will be listed here too."
+msgstr "Pokud si nainstalujete a zapnete <a href=\"http://wordpress.org/extend/plugins/wp-pagenavi/\" target=\"_blank\">WP Page Navi</a> ukáže se jako jedna z možností."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:302
+msgid "Allow to the pagination"
+msgstr "Povolit \"Pagination\" (stránkování)."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:304
+msgid "Note: If you want to see only the content you filter here, not affected by WP inner pagination, uncheck it here."
+msgstr "Poznámka: veškeré loopy podléhají stránkování. pokud nechete aby tato widgeta podlehala stránkování, odškrtněte"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:307
+msgid "Scafolding"
+msgstr "HTML struktura"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:309
+msgid "type of structure"
+msgstr "typ struktury"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:312
+msgid "Basic Wordpress classes"
+msgstr "Základní třídy WP."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:313
+msgid "One column per row"
+msgstr "Jeden sloupec na řádek"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:314
+msgid "Many Columns per row"
+msgstr "Více sloupců na řádek"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:316
+msgid "Custom classes are added to the basic Wordress classes"
+msgstr "Vlastní třídy budou přidány k implicitním třídám WP."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:319
+msgid "Row div class"
+msgstr "Třída (div) řádku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:321
+msgid "In Boostrap it will be \"row\""
+msgstr "V Bootstrapu by to bylo \"row\""
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:324
+msgid "Column div class"
+msgstr "Třída (div) sloupce"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:326
+msgid "In Boostrap it can be \"span3\""
+msgstr "V Bootstrapu by to byl \"row\""
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:328
+msgid "Note: see "
+msgstr "Podívejte se na:"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:332
+msgid "Where this loop will be shown & what"
+msgstr "Kde bude tento loop zobrazen a co v něm"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:336
+msgid "On final Post (Page)"
+msgstr "Na finální stránce/příspěvku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:337
+msgid "Gallery (Images of post/page)"
+msgstr "Galerie (obrázky stránky)"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:338
+msgid "Elsewhere"
+msgstr "Kdekoli"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:341
+msgid "\"On final post\" make sense when the widget is on single.php / page.php."
+msgstr "\"Na finální stránce\" vyberte pokud chcete tímto loopem nahradit hlavní obsah finální stránky."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:344
+msgid "\"Images of final post/page (gallery)\": The content settings are applied to the gallery images."
+msgstr "\"Obrázky příspěvku/stránky\": V obsahovém nastavení nastavíte zobrazení galerie."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:347
+msgid "\"Elsewhere\": you decide which"
+msgstr "\"Kdekoli\", vy se rozhodnete"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:347
+msgid "content you want to see, how and where."
+msgstr "obsah který chcete zobrazit"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:351
+msgid "Which"
+msgstr "Který/á"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:354
+msgid "Select the logic"
+msgstr "Vyber logiku"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:356
+msgid "Select"
+msgstr "Vyber"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:359
+msgid "Children pages of"
+msgstr "Potomci nadřazené stránky"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:359
+msgid "parent"
+msgstr "Nadřazená stránka"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:360
+msgid "Children pages of displayed"
+msgstr "Potomci zobrazené stránky"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:361
+msgid "(s) from the same hierarchy level"
+msgstr "ze stejné hierarchické urovně"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:365
+msgid "Selected taxonomy"
+msgstr "Vyber taxonomii"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:366
+msgid "From the same taxonomy"
+msgstr "Ze stejné taxonomie"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:368
+msgid "By the custom meta values"
+msgstr "Podle vlastních meta"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:370
+msgid "Help your self as you like.. empty values simply do not make restrictions."
+msgstr "Prázdné pole neomezuje výsledek."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:373
+msgid "parent ID"
+msgstr "Id nadřazené stránky"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:376
+msgid "ONLY one page ID !"
+msgstr "Pouze jedno ID!"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:379
+msgid "Enter"
+msgstr "Vložit"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:382
+msgid "Separate IDs by comma."
+msgstr "ID oddělujte čárkou"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:383
+msgid "In the case of gallery, only first ID will be used. If empty the ID of visited post/page is used."
+msgstr "V případě galerie bude použito pouze první ID."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:400
+msgid "Select taxonomy term"
+msgstr "Vyberte taxonomický termín"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:404
+msgid "Please select a"
+msgstr "Prosím vyberte"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:417
+msgid "Warning! The number for each term counted for all post/page/cutom post types all together."
+msgstr "Pozor! Počty jednotlivých termínu jsou počitané ze všech typu příspevku a stránek dohromady."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:419
+msgid "Note! If you see the taxonomy selector multiplied, don not panic. These are just virtual copies, a bug."
+msgstr "Poznámka: pokud se vám zobrazí zmultiplikoivane pole pro výběr taxonomií, nepanikařte, je to jen kosmetický bug."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:426
+msgid "The comparison type"
+msgstr "Typ porovnávání"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:428
+msgid "Matching one of the selected terms"
+msgstr "Porovnej k něktrému z vybraných termínů"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:429
+msgid "Is releated to all selected terms"
+msgstr "Vstahuje se ke všem vybraným termínum"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:435
+msgid "Select against which"
+msgstr " "
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:435
+msgid "taxonomy you want to match the loop"
+msgstr ": vyberte se kterou taxonomií chcete porovnat tento loop."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:445
+msgid "Number of posts"
+msgstr "Počet"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:449
+msgid "Offset"
+msgstr "Posun"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:454
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:496
+msgid "Meta key"
+msgstr "Meta klíč"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:456
+msgid "The exact \"meta key\" name. Both key and value must be present!"
+msgstr "Přesný název \"meta key\". Název i hodnota musí být zadané."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:458
+msgid "Meta value"
+msgstr "Meta hodnota"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:460
+msgid "The exact \"meta value\" name. Both key and meta must be present!"
+msgstr "Přesný název \"meta value\". Název i hodnota musí být zadané."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:462
+msgid "Meta comparison"
+msgstr "Porovnáváni meta"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:471
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:474
+msgid "Order"
+msgstr "Řazení"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:476
+msgid "Ascendingly"
+msgstr "Vzestupně"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:477
+msgid "Descendingly"
+msgstr "Sestupně"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:481
+msgid "Order by"
+msgstr "Seřadit podle"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:494
+msgid "meta_value sorts: alphabetically / meta_value_num: sorts numerically / parent: ID"
+msgstr "meta value porovnává abecedně / meta_value_num porovnává číselně / rodič: ID"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:498
+msgid "The exact meta key name."
+msgstr "Přesný název"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:502
+msgid "Restrict to"
+msgstr "Omezit na"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:505
+msgid "Restrict to post or page IDs:"
+msgstr "Omezit na příspěvky a stránky. Zadejte jejich ID."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:508
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:539
+msgid "No restrictions if empty. Separate IDs by comma."
+msgstr "Pokud je pole pržádné nedojde k omezení, ID oddělujte čárkou. "
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:511
+msgid "only on given IDs"
+msgstr "pouze na zvolených ID"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:512
+msgid "only on child pages of given ID"
+msgstr "pouze na podstránkách zvolených stránek"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:513
+msgid "for given IDs and it's children pages"
+msgstr "pro zvolené IDs a jejich podstránky"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:517
+msgid "Prevent from being shown on"
+msgstr "Zamezit ukázat na"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:536
+msgid "Do not show on post/page with IDs:"
+msgstr "Neukázat na příspšvkách a stránkách; podle ID."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:546
+msgid "In order to load the appropriate settings for the selected \"post type\" you have to save the widget."
+msgstr "Abychom mohli nahrát data náležející k vybranému typu, musite Widgetu uložit."
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1196
+msgid "Posted on"
+msgstr "Napsáno"
+
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1257
 msgid "&#171; previous"
 msgstr "&#171; předchozí"
 
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1179
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1258
 msgid "next &#187;"
 msgstr "další &#187;"
 
-#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1191
+#: /media/data/PROJEKTY/2046s-widget-loops/SVN/2046s_loop_widgets/trunk/2046s_loop_widgets.php:1270
 msgid "view all &rarr;"
 msgstr "zobrazit všechny &rarr;"
 

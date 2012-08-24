@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.25
+ * Version: 0.251
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -63,6 +63,8 @@ function w2046_main_loop_load_widgets() {
 		$defaults = array(
 			'the_post_type' => 'post', // false, true
 			'the_widget_title' => '', // false, true
+			'the_widget_user_title' => '', // false, true
+			'the_widget_user_note' => '', // false, true
 			'edit_link' => 'on', // false, true
 			'html_heading' => 'h2', // h1, h2, ...
 			'the_post_title' => 'on', // false, true
@@ -123,47 +125,65 @@ function w2046_main_loop_load_widgets() {
 				// permissions
 				$capabilities = array( 'all' => __('Anyone') , 'level_0' => __('Subcriber'), 'level_1' => __('Contributor') , 'level_4' => __('Author'), 'level_7' => __('Editor'), 'level_10' => __('Administrator'));
 				echo '
-				<div class="pw_permissions_holder">
-					<p class="pw_the_post_type">
-						<strong>'.__('Who can see the result','p_2046s_loop_widget').'</strong><br />
-						<select name="'. $this->get_field_name( 'permissions' ) .'" id="permissions" class="permissions">';
-							foreach($capabilities as $user => $value){
-								echo '<option '; if($instance['permissions'] == $user ){echo 'selected="selected"';} echo' value="'.$user.'" >'.$value.'</option>';
-							} 
-						echo '</select>
-					</p>
-				</div>';
-				echo '<h3>'.__('Post type','p_2046s_loop_widget').'</h3>
-				<div class="pw_type_holder">';
-					// if more then default post types exists, built select box
-					//$i = 0;
-					if (count($post_types) > 1){
-						// post type
-						echo '<p class="pw_the_post_type">
-							<strong>'.__('Select post type','p_2046s_loop_widget').'</strong><br />
-							<select name="'. $this->get_field_name( 'the_post_type' ) .'" id="the_post_type" class="the_post_type">';
-								foreach($post_types as $post_t){
-									echo '<option '; if($instance['the_post_type'] == $post_t->name ){echo 'selected="selected"';} echo' value="'.$post_t->name.'" >'.$post_t->labels->singular_name.'</option>';
-									
-									// define generally the title of the type
-									if($instance['the_post_type'] == $post_t->name ){
-										$type_title = $post_t->labels->singular_name;
-										$actual_type_name = $post_t->name;
-										$the_type = $post_t->capability_type;
-									}
-									//$i++;
+				<h3>'. __('Widget user info', 'p_2046s_loop_widget').'</h3>
+				<div class="pw_holder">
+					<div class="widget_user_title_holder">
+						<strong>'.__('Widget admin title','p_2046s_loop_widget').'</strong><br />
+						<input id="in-widget-title"  type="text" name="'. $this->get_field_name( 'the_widget_user_title' ).'" value="'. $instance['the_widget_user_title'] .'"/>
+						<br />
+						<em>'.__('It helps you distiguish widgets. Used only in this admin area.', 'p_2046s_loop_widget').'</em>
+					</div>
+					<div class="the_widget_user_note_holder">
+						<strong>'.__('Widget note','p_2046s_loop_widget').'</strong><br />
+						<textarea style="width:99%" placeholder="'.__('Describe the widget intention here', 'p_2046s_loop_widget').'" class="update-nag" name="'. $this->get_field_name( 'the_widget_user_note' ).'">'.$instance['the_widget_user_note'].'</textarea>
+						<br />
+						<em>'.__('This note is used only in this admin area.', 'p_2046s_loop_widget').'</em>
+					</div>
+				</div>
+				<h3>'. __('Permissions, Post types', 'p_2046s_loop_widget').'</h3>
+				<div class="pw_holder">
+					<div class="pw_permissions_holder">
+						<p class="pw_the_post_type">
+							<strong>'.__('Who can see the result','p_2046s_loop_widget').'</strong><br />
+							<select name="'. $this->get_field_name( 'permissions' ) .'" id="permissions" class="permissions">';
+								foreach($capabilities as $user => $value){
+									echo '<option '; if($instance['permissions'] == $user ){echo 'selected="selected"';} echo' value="'.$user.'" >'.$value.'</option>';
 								} 
 							echo '</select>
-						</p>';
-					}
-				echo '</div>';
+						</p>
+					</div>';
+					echo '<h3>'.__('Post type','p_2046s_loop_widget').'</h3>
+					<div class="pw_type_holder">';
+						// if more then default post types exists, built select box
+						//$i = 0;
+						if (count($post_types) > 1){
+							// post type
+							echo '<p class="pw_the_post_type">
+								<strong>'.__('Select post type','p_2046s_loop_widget').'</strong><br />
+								<select name="'. $this->get_field_name( 'the_post_type' ) .'" id="the_post_type" class="the_post_type">';
+									foreach($post_types as $post_t){
+										echo '<option '; if($instance['the_post_type'] == $post_t->name ){echo 'selected="selected"';} echo' value="'.$post_t->name.'" >'.$post_t->labels->singular_name.'</option>';
+									
+										// define generally the title of the type
+										if($instance['the_post_type'] == $post_t->name ){
+											$type_title = $post_t->labels->singular_name;
+											$actual_type_name = $post_t->name;
+											$the_type = $post_t->capability_type;
+										}
+										//$i++;
+									} 
+								echo '</select>
+							</p>';
+						}
+					echo '</div>
+				</div>';
 			// get all the avaiable taxonomies
 			$all_taxonomies = get_object_taxonomies($actual_type_name,'objects');
 			echo '<div class="lw_2046_left">
 				<h3>'. __('Widget title', 'p_2046s_loop_widget').'</h3>
 				<div class="pw_holder">
 					<p class="pw_the_title">
-						<input id="in-widget-title" type="text" name="'. $this->get_field_name( 'the_widget_title' ).'" value="'. $instance['the_widget_title'] .'"/>
+						<input type="text" name="'. $this->get_field_name( 'the_widget_title' ).'" value="'. $instance['the_widget_title'] .'"/>
 						<br />
 						<em>'.__('if empty: no title, no html, nothing', 'p_2046s_loop_widget').'</em>
 					</p>
@@ -538,6 +558,8 @@ function w2046_main_loop_load_widgets() {
 			/* Strip tags for title and name to remove HTML (important for text inputs). */
 			$instance['the_post_type'] = strip_tags( $new_instance['the_post_type'] ); 
 			$instance['the_widget_title'] = $new_instance['the_widget_title']; // "strip_tags" removed for qtranslate to work such as <!--:en-->Recomendation<!--:--><!--:cs-->Doporučujeme<!--:-->
+			$instance['the_widget_user_title'] = strip_tags( $new_instance['the_widget_user_title'] ); 
+			$instance['the_widget_user_note'] = strip_tags( $new_instance['the_widget_user_note'] ); 
 			$instance['the_post_title'] = strip_tags( $new_instance['the_post_title'] );
 			$instance['the_post_title_link'] = strip_tags( $new_instance['the_post_title_link'] );
 			$instance['edit_link'] = strip_tags( $new_instance['edit_link'] );  
@@ -589,6 +611,8 @@ function w2046_main_loop_load_widgets() {
 		// the viarables
 		$the_post_type = $instance['the_post_type']; //
 		$the_widget_title = $instance['the_widget_title']; //
+		$the_widget_user_title = $instance['the_widget_user_title']; //
+		$the_widget_user_note = $instance['the_widget_user_note']; //
 		$html_heading = $instance['html_heading']; //
 		$the_post_title = $instance['the_post_title']; //
 		$the_post_title_link = $instance['the_post_title_link'];
