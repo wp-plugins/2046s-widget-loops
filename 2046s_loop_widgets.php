@@ -135,7 +135,7 @@ function w2046_main_loop_load_widgets() {
 					</div>
 					<div class="the_widget_user_note_holder">
 						<strong>'.__('Widget note','p_2046s_loop_widget').'</strong><br />
-						<textarea style="width:99%" placeholder="'.__('Describe the widget intention here', 'p_2046s_loop_widget').'" class="update-nag" name="'. $this->get_field_name( 'the_widget_user_note' ).'">'.$instance['the_widget_user_note'].'</textarea>
+						<textarea style="width:99%" placeholder="'.__('Describe the widget intention here', 'p_2046s_loop_widget').'" name="'. $this->get_field_name( 'the_widget_user_note' ).'">'.$instance['the_widget_user_note'].'</textarea>
 						<br />
 						<em>'.__('This note is used only in this admin area.', 'p_2046s_loop_widget').'</em>
 					</div>
