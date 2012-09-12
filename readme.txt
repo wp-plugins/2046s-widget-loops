@@ -117,7 +117,8 @@ More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz
 == Change log ==
 
 = 2.52 = 
-	Featured images are not rendred with the width and height in the img tag.... it plays much nicely if you build responsice layout ;)
+Featured images are not rendred with the width and height in the img tag.... it plays much nicely if you build responsice layout ;)
+
 = 2.51 = 
  * NEW - Special widget (admin)
  * NEW - widget notes (admin)
