@@ -116,13 +116,13 @@ More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz
 
 == Change log ==
 
-= 2.52 = 
+= 2.252 = 
 Featured images are not rendred with the width and height in the img tag.... it plays much nicely if you build responsice layout ;)
 
-= 2.51 = 
+= 2.251 = 
  * NEW - Special widget (admin)
  * NEW - widget notes (admin)
-= 2.5 = 
+= 2.25 = 
 
  * NEW switch for pagination (on/off)
  * NEW user capabilities. You can select who can see the widget result.. based on WP roles
