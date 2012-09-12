@@ -16,7 +16,6 @@ http://youtu.be/dU8Qll6Wqes
 When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
 The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standarts.
 
-The widget went through Localization process and so the core changed a bit. You might have to resave the widgets.
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
 
 "A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
