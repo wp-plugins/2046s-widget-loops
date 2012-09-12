@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.4.1
-Stable tag: 0.251
+Stable tag: 0.252
 
 2046's loop widget boosts you website prototyping.
 
@@ -13,48 +13,11 @@ Stable tag: 0.251
 
 http://youtu.be/dU8Qll6Wqes
 
-The Drag&Drop content management is here. 
 When you build the content with "2046's loop widget", the only thing you have to decide is what content you want to see and where. All the programming you always wanted to avoid is gone.
 The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standarts.
 
 The widget went through Localization process and so the core changed a bit. You might have to resave the widgets.
 If you encounter any problem, please let me know on the <a href="http://wordpress.org/tags/2046s-widget-loops">forum</a>.
-
-
-= Post types =
-
-The widget automatically finds all the public post types your WP has. Native Post and Pages and also your custom post types.
-It will load it's taxonomies. Native (category, tags), custom taxonimies, settings for comments form and more. For the page types it gives you an extra hierarchy settings. 
-
-Since the version 0.246 the widget has a third main function and that is a "gallery builder". The Gallery builder lets you get images from the currently seen post/page, or definied post/page by id.
-It has many settings, like image linking, show/hide post title, settings for image/title location and so on.
-
-= The content =
-
-All the content settings lays on the left side of the widget. There you can select if you would like to see the post title, featured post image. You can choose if 
-you would like to see full content, excerpt or without the body content and simply show or hide post meta such as comment numbers, date, author, taxonomies etc.
-In the case of the I call it "final post/page" the comment form settings lets you show or hide the comment form with comments.
-The navigation cover most of the native Wordpress next, prev links, plus if you have Scribu's Page Navi plugin installed then you can choose even that kind of nice navigation. 
-
-= The logic =
-
-The logic is on the right side of the widget.
-
-All the post types in Wordpress are basically linear with no hierarchy, they are categorized and can be tagged. If you are skilled enough or help your self with a plugin you can
-create custom post types and add some extra taxonomies. You can find them all listed in the widget and select the logic on which the widget will render the content
-to the front end of your site. Like, when you want to see "x" posts from the category pets, or "x" posts from the same category as the actual main post is, or select
-posts exactly by their ID or by their custom meta. It lets you order the result by many available parameters.
-On the contrary you can also restrict the widget content not to be shown certain template types, such as index, category, post, or page, search result, or hide it on certain page by it's ID. 
-
-The Wordpress page types are hierarchical. The widget shows you all the settings as like for the posts (even taxonomies if you made any), plus particular hierarchical
-logic based on which the widget will show the content.
-
-The final content loop has no settings in this logic area. It doesn't need any, it simply shows the final content. By the final content is meant the main post/page/custom post types
- content on the (template speaking) single.php, page.php.
-
-
-<em>All widgets allows you to display the picture belonging to the looped post/page/custom post type. For that matter the Wordpress "Featured picture" is used.<br />
-The "Debug" mode renders the Query arguments you build by the widget to the front-end of your site, right before the loop.</em>
 
 "A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
 
@@ -68,6 +31,10 @@ The "Debug" mode renders the Query arguments you build by the widget to the fron
 Tested with <a href="http://wordpress.org/extend/plugins/custom-content-type-manager/">CCTM</a>, <a href="More Types">More types</a>, <a href="http://wordpress.org/extend/plugins/more-taxonomies/">More taxonomies</a>, <a href="http://wpml.org/">WPML</a>.
 <a href="http://wordpress.org/extend/plugins/wp-pagenavi/">WP-PageNavi</a> ready.<br />
 <a href="http://twitter.github.com/">Bootstrap</a> ready.
+
+= Future =
+A completely new version is on the way. The UI is completely drag&drop and the core is re-programmend into extendable object.
+Since then enjoy this ;)
 
 == Installation ==
 
@@ -150,6 +117,8 @@ More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz
 
 == Change log ==
 
+= 2.52 = 
+	Featured images are not rendred with the width and height in the img tag.... it plays much nicely if you build responsice layout ;)
 = 2.51 = 
  * NEW - Special widget (admin)
  * NEW - widget notes (admin)

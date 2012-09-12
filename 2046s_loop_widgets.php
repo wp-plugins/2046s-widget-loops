@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.251
+ * Version: 0.252
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -1308,13 +1308,19 @@ function f_2046_build_image($post_, $image_with_link, $image_size) {
 			'title'	=> trim(strip_tags( $post_->post_title )),
 		);
 		if($image_size == 1){
-			$output .= wp_get_attachment_image( $post_thumbnail_id, 'thumbnail'); //get_the_post_thumbnail('thumbnail', $default_attr);
+			$img_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_->ID ), 'thumbnail' );
+			$output .='<img src="'.$img_src[0] .'" alt="'.$post_title.'"/>';
+			//$output .= wp_get_attachment_image( $post_thumbnail_id, 'thumbnail'); //get_the_post_thumbnail('thumbnail', $default_attr);
 		}
 		if($image_size == 2){
-			$output .= wp_get_attachment_image( $post_thumbnail_id, 'medium'); //get_the_post_thumbnail('medium', $default_attr);
+			$img_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_->ID ), 'medium' );
+			$output .='<img src="'.$img_src[0] .'" alt="'.$post_title.'"/>';
+			//$output .= wp_get_attachment_image( $post_thumbnail_id, 'medium'); //get_the_post_thumbnail('medium', $default_attr);
 		}
 		elseif($image_size == 3){
-			$output .= wp_get_attachment_image( $post_thumbnail_id, 'large'); //get_the_post_thumbnail('large', $default_attr);
+			$img_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_->ID ), 'large' );
+			$output .='<img src="'.$img_src[0] .'" alt="'.$post_title.'"/>';
+			//$output .= wp_get_attachment_image( $post_thumbnail_id, 'large'); //get_the_post_thumbnail('large', $default_attr);
 		}
 	
 	if ($image_with_link > 0){
