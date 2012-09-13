@@ -1,5 +1,5 @@
 /* WP Widget layout fix */
-div.widget-liquid-left{float: left;clear: none;width: 300px;margin-right:0;}
+div.widget-liquid-left{float: left;clear: none;width: 355px;margin-right:0;}
 div.widget-liquid-right {float: left;clear: none;width: 70%;}
 div#widgets-left{margin-right:0;}
 div.widget-liquid-right {float: left;clear: none;width: 70%;}
