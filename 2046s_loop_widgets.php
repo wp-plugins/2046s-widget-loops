@@ -3,7 +3,7 @@
  * Plugin name: 2046's widget loops
  * Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
  * Description: 2046's loop widgets boost you website prototyping.
- * Version: 0.252
+ * Version: 0.253
  * Author: 2046
  * Author URI: http://2046.cz
  *
@@ -1378,6 +1378,77 @@ add_action('admin_print_styles-widgets.php', 'f2046_lw_insert_custom_css');
 function f2046_lw_insert_custom_css(){
 	wp_register_style('style_lw_2046', plugins_url( 'css/style_lw_2046.css' , __FILE__ ),false,0.1,'all');
 	wp_enqueue_style( 'style_lw_2046');
+	if ( get_option('w2046_options') == 1){
+		wp_register_style('style_lw_2046_helper', plugins_url( 'css/style_lw_2046_helper.css' , __FILE__ ),false,0.1,'all');
+		wp_enqueue_style( 'style_lw_2046_helper');
+	}
 
 }
+
+/*
+//  -------- create admin UI ---------------
+*/
+
+
+add_action( 'admin_init', 'sa_register_settings' );
+
+class options_page {
+	function __construct() {
+		add_action('admin_menu', array(&$this, 'admin_menu'));
+	}
+	
+	function w2046_register_settings() {
+		register_setting( 'w2046_options', 'w2046_widget_screen' );
+	}
+	
+	function admin_menu () {
+		add_options_page('2046\'s loop widget','2046\'s loop widget','manage_options','options_page_slug',array($this, 'settings_page'));
+	}
+	
+	function  settings_page () {
+		if ( ! isset( $_REQUEST['updated'] ) )
+			$_REQUEST['updated'] = false; // This checks whether the form has just been submitted. 
+		
+		$db_value = get_option('w2046_options');
+		echo'<div class=”wrap”><p>';
+			screen_icon();
+			echo '<h2>2046\'s loop widget</h2></p><br />';
+
+				if ($_POST['w2046_options'][0] != $db_value) {
+					// fast validatethe data
+					$input = ( esc_attr($_POST['w2046_options'][0]));
+					// insert in to the database
+					update_option( 'w2046_options', $input );
+					$current_screen_value = $input;
+					
+					?>
+					<div class="updated"><p><strong><?php _e('Options updated' ); ?></strong></p></div>
+					<?php
+				}else{
+					//echo '<div class="updated"><p><strong>Nothing to be updated</strong></p></div>';
+					$current_screen_value = get_option('w2046_options');
+				}
+
+				echo '<p>The only purpose of this is to rearrange the admin widget layout giving us more space.</p>
+		
+				<form action="" method="post" id="w2046_loop_w_layout">';
+					//echo settings_fields('w2046_loop');
+					settings_fields( 'w2046_options' );
+					    /* This function outputs some hidden fields required by the form,
+					    including a nonce, a unique number used to ensure the form has been submitted from the admin page
+					    and not somewhere else, very important for security */
+					echo '
+					<input type="checkbox" name="w2046_options[]" value="1"';if( $current_screen_value == 1 ){ echo ' checked="checked"';} ; echo'  />
+					<input type="submit" name="submit" value="Save" />
+					</br>
+					<em>Check this box if you want more space.</em>
+					<br />
+					<img src="'.plugin_dir_url(__FILE__).'/images/widget-scrn.jpg" alt="" />
+				</form>
+			</div>
+		</div>';
+	}
+}
+new options_page;
+
 
