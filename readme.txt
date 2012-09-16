@@ -5,7 +5,7 @@ Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
 Requires at least: 3.1
 Tested up to: 3.4.1
-Stable tag: 0.253
+Stable tag: 0.254
 
 2046's loop widget boosts you website prototyping.
 
@@ -116,6 +116,9 @@ More on <a href="http://2046.cz/freestuff/2046s-loop-widget.html">http://2046.cz
 
 == Change log ==
 
+= 2.254 =
+
+	FIX for call_user_func_array() [function.call-user-func-array]... sorry for that.
 = 2.253 = 
  * NEW - Admin menu > Settings > 2046's loop widget  - lets you switch the widget settings between normal mode and wide mode. More here http://o----o.info/2065/rearrange-resort-widget-screen-in-wordpress/
 
