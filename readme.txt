@@ -20,7 +20,6 @@ If you encounter any problem, please let me know on the <a href="http://wordpres
 
 "A picture better be worth a thousand words." Don't forget to check <a href="http://wordpress.org/extend/plugins/2046s-widget-loops/screenshots/">screenshots</a>.
 
-
 = Localization =
 
  * English
@@ -33,7 +32,6 @@ Tested with <a href="http://wordpress.org/extend/plugins/custom-content-type-man
 <a href="http://twitter.github.com/">Bootstrap</a> ready.
 
 = Future =
-
 The furure is Easy.
 <a href="http://wordpress.org/extend/plugins/easy/screenshots/">Easy</a> is a new version of 2046 loop widgets. It's much more flexible but not complete yet. Tested out and let me know what you think.
 http://wordpress.org/extend/plugins/easy
