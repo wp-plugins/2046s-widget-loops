@@ -33,7 +33,7 @@ Tested with <a href="http://wordpress.org/extend/plugins/custom-content-type-man
 
 = Future =
 The furure is Easy.
-<a href="http://wordpress.org/extend/plugins/easy/screenshots/">Easy</a> is a new version of 2046 loop widgets. It's much more flexible but not complete yet. Tested out and let me know what you think.
+<a href="http://wordpress.org/extend/plugins/easy/screenshots/">Easy</a> is a new version of 2046 loop widgets. It's much more flexible but not complete yet. Test it out and let me know what you think.
 http://wordpress.org/extend/plugins/easy
 
 == Installation ==
