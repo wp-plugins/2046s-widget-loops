@@ -17,7 +17,7 @@ When you build the content with "2046's loop widget", the only thing you have to
 The widget covers the most routinely used content logic. The aim of this widget is to speed up the process of content structuring and simplicity of usage while keeping the standards.
 
 = Note =
-I highly encourage you to use the "Easy" instead of 2046's loop widget. <a href="http://wordpress.org/extend/plugins/easy/screenshots/">Easy</a> is a new version of 2046 loop widgets.  It's is much more flexible it is in active development.
+I highly encourage you to use the "Easy" instead of 2046's loop widget. <a href="http://wordpress.org/extend/plugins/easy/screenshots/">Easy</a> is a new version of 2046 loop widgets.  It's is much more flexible and in active development.
 
 Why I made different Plugin of the same type?
 Well some people use the 2046's loop widget already and are "used to it". Most importantly the Easy is totally different animal although with similar functions.
