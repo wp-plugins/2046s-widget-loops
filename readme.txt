@@ -1,5 +1,5 @@
 === 2046's Loop widget ===
-Contributors: 2046
+Contributors: o----o	
 Plugin URI: http://wordpress.org/extend/plugins/2046s-widget-loops/
 Donate Link: http://2046.cz/freestuff/2046s-loop-widget.html
 Tags: admin, widget, loop, page, post, custom, type, taxonomy, tag, category, comments, content, drag, drop, gallery, image
